@@ -1,0 +1,76 @@
+@startuml
+entity "Users" as Users {
+  * id : INT <<PK>>
+  --
+  name : VARCHAR
+  phone : VARCHAR <<UNIQUE>>
+  password : VARCHAR
+  level : VARCHAR
+  points : INT
+  profile_image : VARCHAR
+  created_at : DATETIME
+  updated_at : DATETIME
+}
+
+entity "Posts" as Posts {
+  * id : INT <<PK>>
+  --
+  user_id : INT <<FK>>
+  type : ENUM {tour, guide, company, photo, general, review}
+  content : TEXT
+  image_url : VARCHAR
+  likes : INT
+  tour_name : VARCHAR <<NULLABLE>>
+  start_date : DATE <<NULLABLE>>
+  end_date : DATE <<NULLABLE>>
+  guide_name : VARCHAR <<NULLABLE>>
+  created_at : DATETIME
+  updated_at : DATETIME
+}
+
+entity "Post_Images" as PostImages {
+  * id : INT <<PK>>
+  --
+  post_id : INT <<FK>>
+  image_url : VARCHAR
+  created_at : DATETIME
+}
+
+entity "Post_Likes" as PostLikes {
+  * id : INT <<PK>>
+  --
+  post_id : INT <<FK>>
+  user_id : INT <<FK>>
+  created_at : DATETIME
+}
+
+entity "Comments" as Comments {
+  * id : INT <<PK>>
+  --
+  post_id : INT <<FK>>
+  user_id : INT <<FK>>
+  content : TEXT
+  created_at : DATETIME
+  updated_at : DATETIME
+}
+
+entity "Vouchers" as Vouchers {
+  * id : INT <<PK>>
+  --
+  user_id : INT <<FK>>
+  code : VARCHAR <<UNIQUE>>
+  discount : VARCHAR
+  status : ENUM {active, used, expired}
+  valid_until : DATE
+  created_at : DATETIME
+  updated_at : DATETIME
+}
+
+Users ||--o{ Posts : "1:n"
+Posts ||--o{ PostImages : "1:n"
+Posts ||--o{ PostLikes : "1:n"
+Posts ||--o{ Comments : "1:n"
+Users ||--o{ PostLikes : "1:n"
+Users ||--o{ Comments : "1:n"
+Users ||--o{ Vouchers : "1:n"
+@enduml

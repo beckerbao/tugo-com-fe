@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .profile-header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #660066;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            color: #660066;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .edit-profile {
+            text-align: right;
+        }
+
+        .edit-profile button {
+            background-color: #660066;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-profile button:hover {
+            background-color: #550055;
+        }
+
+        .section-title {
+            margin: 20px 0 10px;
+            font-size: 18px;
+            color: #660066;
+            border-bottom: 2px solid #660066;
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title button {
+            background-color: #660066;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .section-title button:hover {
+            background-color: #550055;
+        }
+
+
+        .review-list {
+            padding: 0;
+            margin: 0;
+        }
+
+        .post {
+            background-color: #fff;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+
+        .post .user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post .user img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .post .user .name {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .post .meta {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post .meta i {
+            color: #660066;
+        }
+
+        .post .content {
+            margin-bottom: 10px;
+        }
+
+        .post .time {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .voucher-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .voucher-list li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .voucher-details {
+            flex-grow: 1;
+        }
+
+        .voucher-code {
+            font-size: 14px;
+            font-weight: bold;
+            color: #660066;
+        }
+
+        .voucher-status {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .used {
+            color: #999;
+        }
+
+        .expired {
+            color: red;
+        }
+
+        .active {
+            color: green;
+        }
+
+        .voucher-actions button {
+            background-color: #660066;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .voucher-actions button:hover {
+            background-color: #550055;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #660066;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+
+        .bottom-nav a {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .bottom-nav a i {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Header Section -->
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/80" alt="Avatar">
+            <div class="profile-info">
+                <h2>John Doe</h2>
+                <p>Level: Gold Member</p>
+                <p>Points: 1,250</p>
+            </div>
+            <div class="edit-profile">
+                <button>Edit Profile</button>
+            </div>
+        </div>
+
+        <!-- Vouchers Section -->
+        <h3 class="section-title">Your Vouchers</h3>
+        <ul class="voucher-list">
+            <li>
+                <div class="voucher-details">
+                    <strong>Discount: 20% off</strong>
+                    <p class="voucher-code">Code: SAVE20</p>
+                    <p>Valid until: 2024-01-15</p>
+                </div>
+                <div class="voucher-actions">
+                    <button onclick="location.href='voucher.html'">Xem chi tiết</button>
+                </div>
+                <div class="voucher-status active">Active</div>
+            </li>
+            <li>
+                <div class="voucher-details">
+                    <strong>Free Tour Upgrade</strong>
+                    <p class="voucher-code">Code: UPGRADEFREE</p>
+                    <p>Valid until: 2024-02-01</p>
+                </div>
+                <div class="voucher-actions">
+                    <button onclick="location.href='voucher.html'">Xem chi tiết</button>
+                </div>
+                <div class="voucher-status used">Used</div>
+            </li>
+            <li>
+                <div class="voucher-details">
+                    <strong>50% Off on Next Booking</strong>
+                    <p class="voucher-code">Code: HALF50</p>
+                    <p>Expired on: 2023-12-31</p>
+                </div>
+                <div class="voucher-actions">
+                    <button onclick="location.href='voucher.html'">Xem chi tiết</button>
+                </div>
+                <div class="voucher-status expired">Expired</div>
+            </li>
+        </ul>
+
+        <!-- Reviews Section -->
+        <h3 class="section-title">
+            Your Reviews
+            <button onclick="location.href='review.html'">Write Review</button>
+        </h3>
+        <div class="review-list">
+            <div class="post">
+                <div class="user">
+                    <img src="https://via.placeholder.com/40" alt="User Profile">
+                    <div class="name">John Doe</div>
+                </div>
+                <div class="meta">
+                    <i>🗺️</i> <span>Tour: Ha Long Bay</span>
+                </div>
+                <div class="content">
+                    I had an amazing experience visiting Ha Long Bay. Everything was perfect!
+                </div>
+                <div class="time">Posted: 2 days ago</div>
+            </div>
+
+            <div class="post">
+                <div class="user">
+                    <img src="https://via.placeholder.com/40" alt="User Profile">
+                    <div class="name">John Doe</div>
+                </div>
+                <div class="meta">
+                    <i>🧑‍🏫</i> <span>Tour Guide: Mr. Nguyen</span>
+                </div>
+                <div class="content">
+                    Mr. Nguyen was fantastic! Very knowledgeable and friendly.
+                </div>
+                <div class="time">Posted: 5 days ago</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="home.html">
+            <i>🏠</i>
+            Home
+        </a>
+        <a href="profile.html">
+            <i>📄</i>
+            Profile
+        </a>
+        <a href="notifications.html">
+            <i>🔔</i>
+            Notifications
+        </a>
+    </div>
+</body>
+</html>

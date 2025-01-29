@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a Review</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .review-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #660066;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #550055;
+        }
+
+        .review-container h2 {
+            color: #660066;
+            margin: 60px 0 20px 0;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-group input[type="file"] {
+            border: none;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .submit-button {
+            background-color: #660066;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-button:hover {
+            background-color: #550055;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #660066;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+
+        .bottom-nav a {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .bottom-nav a i {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="review-container">
+        <button class="back-button" onclick="history.back()">Back</button>
+        <h2>Write a Review</h2>
+        <form action="submit_review.html" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="tour-name">Tour Name</label>
+                <input type="text" id="tour-name" name="tour_name" placeholder="Enter the tour name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="start-date">Start Date</label>
+                <input type="date" id="start-date" name="start_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="end-date">End Date</label>
+                <input type="date" id="end-date" name="end_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="guide-name">Guide Name</label>
+                <input type="text" id="guide-name" name="guide_name" placeholder="Enter the guide's name">
+            </div>
+
+            <div class="form-group">
+                <label for="review-content">Review</label>
+                <textarea id="review-content" name="review_content" placeholder="Write your review here..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="images">Upload Photos (optional)</label>
+                <input type="file" id="images" name="images[]" accept="image/*" multiple>
+                <small>Maximum 5 images allowed</small>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Review</button>
+        </form>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="home.html">
+            <i>🏠</i>
+            Home
+        </a>
+        <a href="profile.html">
+            <i>📄</i>
+            Profile
+        </a>
+        <a href="notifications.html">
+            <i>🔔</i>
+            Notifications
+        </a>
+    </div>
+</body>
+</html>

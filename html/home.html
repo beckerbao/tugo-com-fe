@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        .header {
+            background-color: #660066;
+            color: #fff;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .header .search-bar {
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+
+        .header input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #660066;
+            color: #fff;
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            margin: 10px 0 20px;
+        }
+
+        .hero button {
+            background-color: #fff;
+            color: #660066;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Statistics Section */
+        .statistics {
+            background-color: #fff;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            flex-wrap: nowrap;
+        }
+
+        .statistics .stat {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .statistics .stat .value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #660066;
+        }
+
+        .statistics .stat .label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 430px) {
+            .statistics {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .statistics .stat {
+                flex: 1 1 100px;
+                margin: 5px;
+            }
+        }
+
+        /* Feed Section */
+        .feed {
+            padding: 15px;
+        }
+
+        .post {
+            background-color: #fff;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+
+        .post .user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post .user img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .post .user .name {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .post .meta {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post .meta i {
+            color: #660066;
+        }
+
+        .post .content {
+            margin-bottom: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .post.expanded .content {
+            display: block;
+            overflow: visible;
+        }
+
+        .post .image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .post .actions {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+            border-top: 1px solid #f1f1f1;
+        }
+
+        .post .actions button {
+            background-color: transparent;
+            border: none;
+            color: #660066;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .post .actions .liked {
+            font-weight: bold;
+            color: #660066;
+        }
+
+        .post .likes {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .post .time {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .feed .spacer {
+            height: 80px;
+        }
+
+        /* Comment Input */
+        .comment-input {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .comment-input input {
+            width: calc(100% - 20px);
+            padding: 5px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #660066;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+
+        .bottom-nav a {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .bottom-nav a i {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+
+        function toggleCommentInput(postId) {
+            const commentInput = document.querySelector(`#${postId} .comment-input`);
+            commentInput.style.display = commentInput.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function submitComment() {
+            alert('Comment submitted!');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">My Community</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to Our Community!</h1>
+        <p>Connect, Share, and Explore with Fellow Travelers</p>
+        <button onclick="location.href='login.html'">Join Now</button>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="statistics">
+        <div class="stat">
+            <div class="value">1,000+</div>
+            <div class="label">Members</div>
+        </div>
+        <div class="stat">
+            <div class="value">500+</div>
+            <div class="label">Posts</div>
+        </div>
+        <div class="stat">
+            <div class="value">200+</div>
+            <div class="label">Tours</div>
+        </div>
+    </div>
+
+    <!-- Feed -->
+    <div class="feed">
+        <!-- Post 1: Review a Tour -->
+        <div class="post">
+            <div class="user">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <div class="name">John Doe</div>
+            </div>
+            <div class="meta">
+                <i>🗺️</i> <span>Tour: Ha Long Bay</span> <span>|</span> <span>Date: 2023-12-01</span>
+            </div>
+            <div class="content">
+                I had an amazing experience visiting Ha Long Bay with this tour. The scenery was breathtaking, and everything was well-organized!
+            </div>
+            <div class="time">Posted 2 hours ago</div>
+            <div class="likes">50 likes</div>
+            <div class="actions">
+                <button>Like</button>
+                <button>Comment</button>
+                <button>Share</button>
+            </div>
+        </div>
+
+        <!-- Post 2: Review a Tour Guide -->
+        <div class="post">
+            <div class="user">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <div class="name">Jane Smith</div>
+            </div>
+            <div class="meta">
+                <i>🧑‍🏫</i> <span>Tour Guide: Mr. Nguyen</span>
+            </div>
+            <div class="content">
+                Our tour guide, Mr. Nguyen, was fantastic! He was knowledgeable, friendly, and made the trip unforgettable.
+            </div>
+            <div class="time">Posted 5 hours ago</div>
+            <div class="likes">75 likes</div>
+            <div class="actions">
+                <button>Like</button>
+                <button>Comment</button>
+                <button>Share</button>
+            </div>
+        </div>
+
+        <!-- Post 3: Review the Company -->
+        <div class="post">
+            <div class="user">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <div class="name">Alex Johnson</div>
+            </div>
+            <div class="meta">
+                <i>🏢</i> <span>Company: Tugo</span>
+            </div>
+            <div class="content">
+                Tugo is a highly professional company with excellent customer service. I highly recommend booking your next trip with them!
+            </div>
+            <div class="time">Posted 1 day ago</div>
+            <div class="likes">100 likes</div>
+            <div class="actions">
+                <button>Like</button>
+                <button>Comment</button>
+                <button>Share</button>
+            </div>
+        </div>
+
+        <!-- Post with Image -->
+        <div class="post">
+            <div class="user">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <div class="name">Emily Wilson</div>
+            </div>
+            <div class="meta">
+                <i>🖼️</i> <span>Photo Tour</span>
+            </div>
+            <img class="image" src="https://via.placeholder.com/300x200" alt="Tour Image">
+            <div class="content">
+                This was an unforgettable trip! The views were stunning, and I managed to capture some amazing photos.
+            </div>
+            <div class="time">Posted 3 hours ago</div>
+            <div class="likes">85 likes</div>
+            <div class="actions">
+                <button>Like</button>
+                <button>Comment</button>
+                <button>Share</button>
+            </div>
+        </div>
+
+        <!-- Post with Liked Status -->
+        <div class="post">
+            <div class="user">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <div class="name">Liked User</div>
+            </div>
+            <div class="meta">
+                <i>🖼️</i> <span>Tour: Liked Tour</span>
+            </div>
+            <div class="content">
+                This is an example post where the user has already liked the post.
+            </div>
+            <div class="time">Posted 1 hour ago</div>
+            <div class="likes">120 likes</div>
+            <div class="actions">
+                <button class="liked">Liked</button>
+                <button>Comment</button>
+                <button>Share</button>
+            </div>
+        </div>
+
+        <!-- Post without Actions -->
+        <div class="post">
+            <div class="user">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <div class="name">Anonymous User</div>
+            </div>
+            <div class="meta">
+                <i>📄</i> <span>General Post</span>
+            </div>
+            <div class="content">
+                This post does not have any action buttons because the user is not logged in.
+            </div>
+            <div class="time">Posted 10 hours ago</div>
+        </div>
+
+        <!-- Post with Comment Input -->
+        <div class="post" id="post-with-comment">
+            <div class="user">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <div class="name">Chris Evans</div>
+            </div>
+            <div class="meta">
+                <i>💬</i> <span>Comment Enabled Post</span>
+            </div>
+            <div class="content">
+                This post has an option to leave comments. Click on the Comment button to add your thoughts.
+            </div>
+            <div class="time">Posted 2 hours ago</div>
+            <div class="likes">30 likes</div>
+            <div class="actions">
+                <button>Like</button>
+                <button onclick="toggleCommentInput('post-with-comment')">Comment</button>
+                <button>Share</button>
+            </div>
+            <div class="comment-input" style="display: flex; align-items: center;">
+                <input type="text" placeholder="Write a comment..." style="flex: 1; margin-right: 10px;">
+                <button onclick="submitComment()" style="padding: 5px 10px;">📩</button>
+            </div>            
+        </div>
+
+        <!-- Spacer to prevent bottom nav overlap -->
+        <div class="spacer"></div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="home.html">
+            <i>🏠</i>
+            Home
+        </a>
+        <a href="profile.html">
+            <i>📄</i>
+            Profile
+        </a>
+        <a href="notifications.html">
+            <i>🔔</i>
+            Notifications
+        </a>
+    </div>
+
+</body>
+</html>

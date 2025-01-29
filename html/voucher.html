@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher Details</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .voucher-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #660066;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #550055;
+        }
+
+        .voucher-container img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .voucher-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .voucher-details h2 {
+            color: #660066;
+            margin-bottom: 10px;
+        }
+
+        .voucher-details p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .voucher-status {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .policy-container {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .active {
+            color: green;
+        }
+
+        .used {
+            color: #999;
+        }
+
+        .expired {
+            color: red;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #660066;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+
+        .bottom-nav a {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .bottom-nav a i {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="voucher-container">
+        <button class="back-button" onclick="history.back()">Back</button>
+        <img src="https://via.placeholder.com/150" alt="QR Code">
+        <div class="voucher-details">
+            <h2>Discount: 20% off</h2>
+            <p><strong>Code:</strong> SAVE20</p>
+            <p><strong>Valid Until:</strong> 2024-01-15</p>
+            <p class="voucher-status active">Status: Active</p>
+            <div class="policy-container">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent viverra malesuada mauris, ut efficitur libero porttitor a. Sed tincidunt enim vitae arcu dapibus, at consectetur ex vulputate. Pellentesque feugiat nisl ut tortor tincidunt, vel dictum sem tincidunt. Nam euismod euismod magna, sit amet sodales ligula laoreet id. Aenean nec tincidunt justo. Maecenas id urna nisi. Proin eleifend volutpat orci a condimentum. Cras posuere, ligula id facilisis dapibus, eros libero gravida turpis, in vehicula arcu erat sed quam. Integer euismod, arcu id facilisis dignissim, risus augue sodales elit, ut convallis libero nisl sed sapien. Ut aliquet consequat magna id vestibulum. Integer at lorem risus. Ut feugiat ligula ut felis suscipit varius. Aenean at semper orci. Suspendisse potenti. Etiam suscipit vel metus id aliquam. Mauris a orci magna. Donec vel bibendum ligula. Proin ullamcorper pharetra ligula id scelerisque. Nulla nec libero fringilla, malesuada ligula a, lacinia lectus. Cras id ligula at risus consectetur luctus. Donec in ligula nisl. Integer ac nisl ac sem sodales posuere. Donec et ligula consectetur, laoreet libero ac, tristique ligula. Ut eu nunc a eros venenatis malesuada. Duis maximus est eu odio luctus volutpat. Integer eget eros non lorem consequat scelerisque id non enim. Donec dictum, magna ut tincidunt porttitor, augue est auctor arcu, nec accumsan orci libero vitae felis. Quisque tincidunt ligula a tincidunt tristique. Nulla eu tincidunt mi. Phasellus sollicitudin nisl in ex viverra ultrices. Integer ac varius magna. Suspendisse at ultricies neque. Nulla nec facilisis turpis. Vestibulum id feugiat metus. Aliquam nec sollicitudin mi, eget blandit tortor. Donec in rutrum sapien. Nam ac venenatis erat. Cras ut efficitur enim. Etiam eget ligula non lorem volutpat luctus. Donec scelerisque sagittis ultricies. Suspendisse ac turpis dui. Aenean consequat vel risus id facilisis. Proin feugiat neque eget nisl laoreet, non dictum quam auctor. Etiam et augue euismod, malesuada libero at, consequat augue. Pellentesque tristique nisl non nulla convallis, a pharetra purus fermentum. Maecenas malesuada erat eget luctus efficitur. Aliquam non nunc sed eros maximus malesuada in nec magna. Donec dictum est a ligula mollis, vitae vestibulum augue volutpat. Integer dictum bibendum erat, sit amet rhoncus mi. Cras vehicula eros eget justo faucibus, at maximus nisl tempor. Suspendisse aliquet consequat purus ut fermentum. Vivamus malesuada magna nisi, id vestibulum nisl fermentum in. Fusce ut ex vel mauris pellentesque luctus. Mauris tincidunt ligula sit amet ex feugiat, sit amet pharetra ipsum posuere. Pellentesque fermentum, nulla id scelerisque facilisis, justo nisi blandit mauris, vitae finibus nulla ex sed augue. Nullam porta ac nulla vel feugiat. Suspendisse potenti. Fusce vitae sollicitudin enim, quis tincidunt dolor. Cras auctor scelerisque sapien, sit amet fermentum nisl consectetur sed. Ut malesuada rutrum malesuada. Duis tristique metus sit amet fermentum fermentum. Nullam ultricies metus sed fermentum malesuada. Suspendisse ultricies, ante et vehicula fringilla, metus quam vehicula libero, non lacinia lectus ligula non magna. Ut aliquam, ligula quis viverra tristique, elit risus feugiat quam, in feugiat urna magna a ipsum. Phasellus et purus et velit gravida gravida id non eros. Aenean non ligula neque. Nunc et sapien orci. Aliquam pharetra orci at magna condimentum, ut efficitur urna sollicitudin. Cras quis fermentum nunc, nec malesuada arcu. Ut dictum lacus sit amet luctus accumsan. Aenean ac mollis nisi. Fusce euismod mauris ut massa sollicitudin, vitae finibus urna vulputate.
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="home.html">
+            <i>🏠</i>
+            Home
+        </a>
+        <a href="profile.html">
+            <i>📄</i>
+            Profile
+        </a>
+        <a href="notifications.html">
+            <i>🔔</i>
+            Notifications
+        </a>
+    </div>
+</body>
+</html>

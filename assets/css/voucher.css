@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.voucher-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    text-align: center;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #660066;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #550055;
+}
+
+.voucher-container img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.voucher-details {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.voucher-details h2 {
+    color: #660066;
+    margin-bottom: 10px;
+}
+
+.voucher-details p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.voucher-status {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.policy-container {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #555;
+    text-align: justify;
+}
+
+.active {
+    color: green;
+}
+
+.used {
+    color: #999;
+}
+
+.expired {
+    color: red;
+}
