@@ -72,7 +72,7 @@ class APICaller {
     }
 
     // Hàm POST
-    public static function postMultipart($endpoint, $data, $headers = [], ) {
+    public static function postMultipart($endpoint, $data, $headers = [] ) {
         $url = self::$baseUrl . $endpoint;
     
         $ch = curl_init();
