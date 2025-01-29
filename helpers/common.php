@@ -23,5 +23,10 @@ function get_current_domain() {
 
 //return image domain
 function get_image_domain() {
-    return "http://localhost:9090";
+    if (file_exists(__DIR__ . '/../.env')) {
+        $env = parse_ini_file(__DIR__ . '/../.env');
+        return $env['DOMAIN_URL'] ?? '';
+    } else {
+        throw new Exception(".env file not found.");
+    }
 }

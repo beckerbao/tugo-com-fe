@@ -5,6 +5,9 @@ $page_title = "Login";
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
 include '../helpers/common.php';
+
+APICaller::init();
+
 // Handle login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $phone = $_POST['phone'] ?? '';

@@ -6,6 +6,8 @@ include '../includes/header.php';
 include '../helpers/apiCaller.php';
 include '../helpers/common.php';
 
+APICaller::init();
+
 //TODO: Thay bằng token thực tế
 $access_token = get_access_token();
 

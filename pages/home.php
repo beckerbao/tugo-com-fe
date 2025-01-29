@@ -4,6 +4,8 @@ include '../includes/header.php';
 include '../helpers/apiCaller.php';
 include '../helpers/common.php';
 
+APICaller::init();
+
 // Gọi API để lấy dữ liệu
 $statistics = APICaller::get('/statistics');
 $posts = APICaller::get('/posts');
