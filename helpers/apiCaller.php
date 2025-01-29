@@ -1,6 +1,7 @@
 <?php
 class APICaller {
-    private static $baseUrl = 'http://host.docker.internal:9090/api/v1'; // Thay bằng URL API chính thức của bạn
+    // private static $baseUrl = 'http://host.docker.internal:9090/api/v1'; // Thay bằng URL API chính thức của bạn
+    private static $baseUrl = 'https://edd2-14-160-150-11.ngrok-free.app/api/v1';
 
     // Hàm GET
     public static function get($endpoint, $params = []) {
