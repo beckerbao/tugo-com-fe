@@ -28,18 +28,22 @@ body {
     margin-bottom: 5px;
     display: block;
     color: #555;
+    text-align: left;
+    padding-left: 10px;
 }
 
 .register-container input {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
 }
 
 .register-container button {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 10px;
     background-color: #660066;
     color: #fff;
@@ -48,14 +52,35 @@ body {
     cursor: pointer;
     font-size: 16px;
     margin-bottom: 15px;
+    margin-left: 10px;
 }
 
 .register-container button:hover {
     background-color: #550055;
 }
 
-.error-message {
+.register-container .error-message {
     color: red;
     margin-bottom: 15px;
     text-align: left;
+    padding-left: 10px;
+}
+
+.register-container .back-to-home {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.register-container .back-to-home a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ddd;
+    color: #660066;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.register-container .back-to-home a:hover {
+    background-color: #ccc;
 }
