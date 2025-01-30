@@ -55,5 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     <div class="back-to-home">
         <a href="home.php">← Back to Homepage</a>
     </div>
+    <div class="go-to-register">
+        <a href="register.php">Don't have an account? Register here</a>
+    </div>
 </div>
 <?php include '../includes/footer.php'; ?>
