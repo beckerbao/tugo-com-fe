@@ -57,7 +57,7 @@ $posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
         <?php if($post['type'] == 'tour'){ ?>    
         <div class="post">
             <div class="user">
-                <img src="<?php echo $post['user']['profile_image'] ?? '../assets/images/placeholder.png'; ?>" alt="User Profile">
+            <img src="<?php echo hasHttpOrHttps($post['user']['profile_image'])?$post['user']['profile_image']:(get_image_domain() . $post['user']['profile_image']) ?>" alt="User Profile">
                 <div class="name"><?php echo $post['user']['name']; ?></div>
             </div>
             <div class="meta">

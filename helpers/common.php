@@ -30,3 +30,10 @@ function get_image_domain() {
         throw new Exception(".env file not found.");
     }
 }
+
+function hasHttpOrHttps($url) {
+    if (isset($url) && (strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0)) {
+        return true;
+    }
+    return false;
+}

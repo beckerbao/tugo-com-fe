@@ -57,14 +57,14 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
     ?>
     <!-- Header Section -->
     <div class="profile-header">
-        <img src="<?php echo $user['profile_image']; ?>" alt="Avatar">
+        <img src="<?php echo hasHttpOrHttps($user['profile_image'])?$user['profile_image']:(get_image_domain() . $user['profile_image']) ?>" alt="Avatar">
         <div class="profile-info">
             <h2><?php echo $user['name']; ?></h2>
             <p>Level: <?php echo $user['level']; ?></p>
             <p>Points: <?php echo $user['points']; ?></p>
         </div>
         <div class="edit-profile">
-            <button onclick="location.href='edit-profile.php'">Edit Profile</button>
+            <button onclick="location.href='editprofile.php'">Edit Profile</button>
             <form method="POST" style="margin-top: 10px;">
                 <button type="submit" name="logout" class="logout-button">Logout</button>
             </form>
@@ -104,7 +104,7 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
         ?>        
         <div class="post">
             <div class="user">
-                <img src="<?php echo $user['profile_image']; ?>" alt="User Profile">
+                <img src="<?php echo hasHttpOrHttps($user['profile_image'])?$user['profile_image']:(get_image_domain() . $user['profile_image']) ?>" alt="User Profile">
                 <div class="name"><?php echo $user['name']; ?></div>
             </div>
             <div class="meta">
