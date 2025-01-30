@@ -1,4 +1,6 @@
 <?php 
+// Ensure session is started
+session_start();
 $page_title = "Homepage";
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
