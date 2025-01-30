@@ -24,7 +24,16 @@ $posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
 <div class="hero">
     <h1>Welcome to Our Community!</h1>
     <p>Connect, Share, and Explore with Fellow Travelers</p>
-    <button onclick="location.href='login.php'">Join Now</button>
+    <?php
+    // var_dump(get_access_token());
+    //not login yet
+    if(get_access_token()==null){
+        
+    ?>
+        <button onclick="location.href='register.php'">Join Now</button>
+    <?php
+    }
+    ?>
 </div>
 
 <!-- Statistics Section -->
