@@ -14,16 +14,16 @@ $statistics = isset($statistics['data']) ? $statistics['data'] : [];
 $posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
 ?>
 <script src="../assets/js/home.js"></script>
-<div class="header">
+<!-- <div class="header">
     <div class="logo">My Community</div>
     <div class="search-bar">
         <input type="text" placeholder="Search...">
     </div>
-</div>
+</div> -->
 
 <div class="hero">
-    <h1>Welcome to Our Community!</h1>
-    <p>Connect, Share, and Explore with Fellow Travelers</p>
+    <h1>Chào mừng bạn đến với GoReview</h1>
+    <p>Kết nối, chia sẻ kinh nghiệm du lịch</p>
     <?php
     // var_dump(get_access_token());
     //not login yet
@@ -40,16 +40,16 @@ $posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
 <div class="statistics">
     <div class="stat">
         <div class="value"><?php echo $statistics['users'] ?? '0'; ?>+</div>
-        <div class="label">Members</div>
+        <div class="label">Thành viên</div>
     </div>
     <div class="stat">
         <div class="value"><?php echo $statistics['posts'] ?? '0'; ?>+</div>
-        <div class="label">Posts</div>
+        <div class="label">Bài viết</div>
     </div>
-    <div class="stat">
+    <!-- <div class="stat">
         <div class="value"><?php echo $statistics['comments'] ?? '0'; ?>+</div>
         <div class="label">Comments</div>
-    </div>
+    </div> -->
 </div>
 
 <div class="feed">

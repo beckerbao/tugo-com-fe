@@ -4,10 +4,10 @@
         <div class="name"><?php echo $post['user']['name']; ?></div>
     </div>
     <div class="meta">
-        <i>🗺️</i> <span>Tour: <?php echo $post['tour_name'];?></span> <span>|</span> <span>Date: <?php echo $post['start_date']; ?></span>
+        <i>🗺️</i> <span>Tên tour: <?php echo $post['tour_name'];?></span> <span>|</span> <span>Ngày: <?php echo $post['start_date']; ?></span>
     </div>
     <div class="meta">
-        <i>🧑‍🏫</i> <span>Tour Guide: <?php echo $post['guide_name']; ?></span>
+        <i>🧑‍🏫</i> <span>Hướng dẫn: <?php echo $post['guide_name']; ?></span>
     </div>
     <?php 
     $post['images'] = isset($post['images']) ? $post['images'] : [];

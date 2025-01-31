@@ -48,7 +48,7 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
 <link rel="stylesheet" href="../assets/css/profile.css">
 <div class="profile-container">
     <?php if (isset($profile['error'])): ?>
-        <p style="color: red;">Error: <?php echo $profile['error']; ?></p>
+        <p style="color: red;">Lỗi: <?php echo $profile['error']; ?></p>
     <?php else: 
         $profile = isset($profile['data']) ? $profile['data'] : [];
         $user = isset($profile['user']) ? $profile['user'] : [];
@@ -60,28 +60,28 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
         <img src="<?php echo hasHttpOrHttps($user['profile_image'])?$user['profile_image']:(get_image_domain() . $user['profile_image']) ?>" alt="Avatar">
         <div class="profile-info">
             <h2><?php echo $user['name']; ?></h2>
-            <p>Level: <?php echo $user['level']; ?></p>
-            <p>Points: <?php echo $user['points']; ?></p>
+            <!-- <p>Level: <?php echo $user['level']; ?></p>
+            <p>Points: <?php echo $user['points']; ?></p> -->
         </div>
         <div class="edit-profile">
-            <button onclick="location.href='editprofile.php'">Edit Profile</button>
+            <button onclick="location.href='editprofile.php'">Cập nhật</button>
             <form method="POST" style="margin-top: 10px;">
-                <button type="submit" name="logout" class="logout-button">Logout</button>
+                <button type="submit" name="logout" class="logout-button">Thoát</button>
             </form>
         </div>
     </div>
 
     <!-- Vouchers Section -->
-    <h3 class="section-title">Your Vouchers</h3>
+    <h3 class="section-title">Voucher ưu đãi</h3>
     <ul class="voucher-list">
         <?php
         foreach ($vouchers as $voucher) {
         ?>
         <li>
             <div class="voucher-details">
-                <strong>Name: <?php echo $voucher['discount']; ?></strong>
-                <p class="voucher-code">Code: <?php echo $voucher['code']; ?></p>
-                <p>Valid until: <?php echo $voucher['valid_until']; ?></p>
+                <strong>Tên voucher: <?php echo $voucher['discount']; ?></strong>
+                <p class="voucher-code">Mã voucher: <?php echo $voucher['code']; ?></p>
+                <p>Ngày hiệu lực: <?php echo $voucher['valid_until']; ?></p>
             </div>
             <div class="voucher-actions">
                 <button onclick="location.href='voucher.php'">Xem chi tiết</button>
@@ -95,8 +95,8 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
 
     <!-- Reviews Section -->
     <h3 class="section-title">
-        Your Reviews
-        <button onclick="location.href='review.php'">Write Review</button>
+        Đánh giá của bạn
+        <button onclick="location.href='review.php'">Viết đánh giá</button>
     </h3>
     <div class="review-list">
         <?php 
@@ -108,15 +108,15 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
                 <div class="name"><?php echo $user['name']; ?></div>
             </div>
             <div class="meta">
-                <i>🗺️</i> <span>Tour: <?php echo $review['tour_name']; ?></span>
+                <i>🗺️</i> <span>Tên tour: <?php echo $review['tour_name']; ?></span>
             </div>
             <div class="meta">
-                <i>🗺️</i> <span>Guide Name: <?php echo $review['guide_name']; ?></span>
+                <i>🗺️</i> <span>Hướng dẫn viên: <?php echo $review['guide_name']; ?></span>
             </div>
             <div class="content">
                 <?php echo $review['content']; ?>
             </div>
-            <div class="time">Posted: <?php echo $review['created_at']; ?></div>
+            <div class="time">Đăng: <?php echo $review['created_at']; ?></div>
         </div>
         <?php
         }

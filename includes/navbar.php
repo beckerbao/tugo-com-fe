@@ -1,11 +1,11 @@
 <div class="bottom-nav">
     <a href="home.php">
         <i>🏠</i>
-        Home
+        Trang chủ
     </a>
     <a href="profile.php">
         <i>📄</i>
-        Profile
+        Tài khoản
     </a>
     <!-- <a href="notifications.php">
         <i>🔔</i>

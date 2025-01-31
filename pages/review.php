@@ -48,48 +48,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <link rel="stylesheet" href="../assets/css/review.css">
 <div class="review-container">
-    <button class="back-button" onclick="location.href='profile.php'">Back</button>
-    <h2>Write a Review</h2>
+    <button class="back-button" onclick="location.href='profile.php'">Quay lại</button>
+    <h2>Viết đánh giá</h2>
     <?php if (!empty($error_message)): ?>
-        <p style="color: red;">Error: <?php echo $error_message; ?></p>
+        <p style="color: red;">Lỗi: <?php echo $error_message; ?></p>
     <?php endif; ?>
     <?php if (!empty($success_message)): ?>
         <p style="color: green;"><?php echo $success_message; ?></p>
     <?php endif; ?>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="tour-name">Tour Name</label>
+            <label for="tour-name">Tên tour</label>
             <input type="text" id="tour-name" name="tour_name" placeholder="Enter the tour name" required>
         </div>
 
         <div class="form-group">
-            <label for="start-date">Start Date</label>
+            <label for="start-date">Ngày khởi hành</label>
             <input type="date" id="start-date" name="start_date" required>
         </div>
 
         <div class="form-group">
-            <label for="end-date">End Date</label>
+            <label for="end-date">Ngày về</label>
             <input type="date" id="end-date" name="end_date" required>
         </div>
 
         <div class="form-group">
-            <label for="guide-name">Guide Name</label>
+            <label for="guide-name">Hướng dẫn viên</label>
             <input type="text" id="guide-name" name="guide_name" placeholder="Enter the guide's name">
         </div>
 
         <div class="form-group">
-            <label for="review-content">Review</label>
+            <label for="review-content">Nội dung đánh giá</label>
             <textarea id="review-content" name="review_content" placeholder="Write your review here..." required></textarea>
         </div>
 
         <div class="form-group">
-            <label for="images">Upload Photos (optional)</label>
+            <label for="images">Đăng ảnh (không bắt buộc)</label>
             <input type="file" id="images" name="images[]" accept="image/*" multiple>
-            <small>Maximum 5 images allowed</small>
+            <small>Chỉ được tối đa 5 ảnh</small>
         </div>
 
-        <button type="submit" class="submit-button">Submit Review</button>
+        <button type="submit" class="submit-button">Gửi đánh giá</button>
     </form>
+    <div class="spacer"></div>
 </div>
 <?php include '../includes/navbar.php'; ?>
 <?php include '../includes/footer.php'; ?>

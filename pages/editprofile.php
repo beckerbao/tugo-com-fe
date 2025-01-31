@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <link rel="stylesheet" href="../assets/css/editprofile.css">
 <div class="edit-profile-container">
-    <h1>Edit Profile</h1>
+    <h1>Cập nhật tài khoản</h1>
     <?php if (!empty($errors)): ?>
         <div class="error-message">
             <ul>
@@ -92,22 +92,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
     <form method="POST" enctype="multipart/form-data">
-        <label for="name">Name</label>
+        <label for="name">Tên hiển thị</label>
         <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($profile['name'] ?? ''); ?>" required>
 
-        <label for="phone">Phone Number</label>
+        <label for="phone">Số điện thoại</label>
         <input type="text" id="phone" name="phone" value="<?php echo htmlspecialchars($profile['phone'] ?? ''); ?>" required>
 
-        <label for="password">Password (leave blank to keep current)</label>
+        <label for="password">Mật khẩu (nếu không đổi, hãy để trống)</label>
         <input type="password" id="password" name="password" placeholder="Enter a new password">
 
-        <label for="profile_image">Profile Image</label>
+        <label for="profile_image">Ảnh đại diện</label>
         <input type="file" id="profile_image" name="profile_image" accept="image/*">
 
-        <button type="submit">Save Changes</button>
+        <button type="submit">Lưu</button>
     </form>
     <div class="back-to-profile">
-        <a href="profile.php">← Back to Profile</a>
+        <a href="profile.php">← Trang tài khoản</a>
     </div>
 </div>
 

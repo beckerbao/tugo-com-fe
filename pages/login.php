@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         </script>";
         exit;
     } else {
-        $error_message = $loginResponse['message'] ?? 'Login failed. Please try again.';
+        $error_message = $loginResponse['message'] ?? 'Đăng nhập thất bại, vui lý kiểm tra lại thông tin';
     }
 }
 ?>
@@ -41,22 +41,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         <p style="color: red;"> <?php echo htmlspecialchars($error_message); ?> </p>
     <?php endif; ?>
     <form method="POST">
-        <label for="phone">Phone Number</label>
-        <input type="text" id="phone" name="phone"  placeholder="Enter your phone number" required>
+        <label for="phone">Số điện thoại</label>
+        <input type="text" id="phone" name="phone"  placeholder="Nhập số điện thoại. Vd: 0903974323" required>
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
 
-        <button type="submit" name="login">Login</button>
+        <button type="submit" name="login">Đăng nhập</button>
     </form>
     <div class="forgot-password">
-        <a href="#">Forgot Password?</a>
+        <a href="#">Quên mật khẩu?</a>
     </div>
     <div class="back-to-home">
-        <a href="home.php">← Back to Homepage</a>
+        <a href="home.php">← Quay lại trang chủ</a>
     </div>
     <div class="go-to-register">
-        <a href="register.php">Don't have an account? Register here</a>
+        <a href="register.php">Chưa có tài khoản? Đăng ký ngay</a>
     </div>
 </div>
 <?php include '../includes/footer.php'; ?>

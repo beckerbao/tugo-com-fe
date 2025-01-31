@@ -44,23 +44,23 @@ function get_time_ago($datetime) {
     $timeDifference = $currentTime - $timestamp;
 
     if ($timeDifference < 1) {
-        return 'Just now';
+        return 'tức thì';
     }
 
     $timeUnits = [
-        31536000 => 'year',
-        2592000 => 'month',
-        604800 => 'week',
-        86400 => 'day',
-        3600 => 'hour',
-        60 => 'minute',
-        1 => 'second'
+        31536000 => 'năm',
+        2592000 => 'tháng',
+        604800 => 'tuần',
+        86400 => 'ngày',
+        3600 => 'giờ',
+        60 => 'phút',
+        1 => 'giây'
     ];
 
     foreach ($timeUnits as $unitSeconds => $unitName) {
         if ($timeDifference >= $unitSeconds) {
             $value = floor($timeDifference / $unitSeconds);
-            return $value . ' ' . $unitName . ($value > 1 ? 's' : '') . ' ago';
+            return $value . ' ' . $unitName . ($value > 1 ? '' : '') . ' trước';
         }
     }
 }
