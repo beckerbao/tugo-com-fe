@@ -1,14 +1,12 @@
 <?php 
-// Ensure session is started
 session_start();
 $page_title = "Homepage";
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
 include '../helpers/common.php';
 
-APICaller::init();
-
 // Gọi API để lấy dữ liệu
+APICaller::init();
 $statistics = APICaller::get('/statistics');
 $posts = APICaller::get('/posts');
 
@@ -55,39 +53,16 @@ $posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
 </div>
 
 <div class="feed">
-    <?php foreach ($posts as $post): ?>  
-        <?php if($post['type'] == 'tour'){ ?>    
-        <div class="post">
-            <div class="user">
-            <img src="<?php echo hasHttpOrHttps($post['user']['profile_image'])?$post['user']['profile_image']:(get_image_domain() . $post['user']['profile_image']) ?>" alt="User Profile">
-                <div class="name"><?php echo $post['user']['name']; ?></div>
-            </div>
-            <div class="meta">
-                <i>🗺️</i> <span>Tour: <?php echo $post['tour_name'];?></span> <span>|</span> <span>Date: <?php echo $post['start_date']; ?></span>
-            </div>
-            <div class="meta">
-                <i>🧑‍🏫</i> <span>Tour Guide: <?php echo $post['guide_name']; ?></span>
-            </div>
-            <?php 
-            $post['images'] = isset($post['images']) ? $post['images'] : [];
-            foreach ($post['images'] as $image): 
-                $image = get_image_domain() . $image;                
-            ?>
-            <img class="image" src="<?php echo $image?>" alt="Tour Image">
-            <?php endforeach; ?>                        
-            <div class="content">
-                <?php echo $post['content']; ?>
-            </div>
-            <div class="time">Posted 2 hours ago</div>
-            <div class="likes"><?php echo $post['likes'];?> likes</div>
-            <!-- <div class="actions">
-                <button>Like</button>
-                <button>Comment</button>
-                <button>Share</button>
-            </div> -->
-        </div>
-        <?php }; ?>
-    <?php endforeach; ?>
+    <?php 
+    foreach ($posts as $post): 
+        $post['time_ago'] = get_time_ago($post['created_at']);
+        if($post['type'] == 'tour'){ 
+            include '../includes/post-tour.php';
+        }else if($post['type'] == 'general'){
+            include '../includes/post-general.php';
+        }
+    endforeach; 
+    ?>
     <div class="spacer"></div>
 </div>
 

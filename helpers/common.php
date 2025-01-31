@@ -37,3 +37,30 @@ function hasHttpOrHttps($url) {
     }
     return false;
 }
+
+function get_time_ago($datetime) {
+    $timestamp = strtotime($datetime);
+    $currentTime = time();
+    $timeDifference = $currentTime - $timestamp;
+
+    if ($timeDifference < 1) {
+        return 'Just now';
+    }
+
+    $timeUnits = [
+        31536000 => 'year',
+        2592000 => 'month',
+        604800 => 'week',
+        86400 => 'day',
+        3600 => 'hour',
+        60 => 'minute',
+        1 => 'second'
+    ];
+
+    foreach ($timeUnits as $unitSeconds => $unitName) {
+        if ($timeDifference >= $unitSeconds) {
+            $value = floor($timeDifference / $unitSeconds);
+            return $value . ' ' . $unitName . ($value > 1 ? 's' : '') . ' ago';
+        }
+    }
+}
