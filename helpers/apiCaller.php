@@ -13,6 +13,11 @@ class APICaller {
         }
     }
 
+    //hàm get base url
+    public static function getBaseUrl() {
+        return self::$baseUrl;
+    }
+
     // Hàm GET
     public static function get($endpoint, $params = []) {
         $url = self::$baseUrl . $endpoint . '?' . http_build_query($params);

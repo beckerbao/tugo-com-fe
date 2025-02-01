@@ -1,0 +1,60 @@
+<?php
+include '../helpers/apiCaller.php';
+include '../helpers/common.php';
+
+if (!isset($_GET['cursor'])) {
+    echo json_encode(['error' => 'Cursor is required.']);
+    exit;
+}
+
+$cursor = $_GET['cursor'];
+APICaller::init();
+$response = APICaller::get("/posts",array("page_size"=>20,"page"=>$cursor));
+
+if (isset($response['data'])) {
+    $posts = $response['data']['posts'];
+    $nextCursor = $response['data']['cursor'];
+    
+    $html = '';
+    foreach ($posts as $post) {
+        if ($post['type'] === 'tour') {
+            $post['time_ago'] = get_time_ago($post['created_at']);
+            $html .= renderPostTour($post);
+        } elseif ($post['type'] === 'general') {
+            $post['time_ago'] = get_time_ago($post['created_at']);
+            $html .= renderPostGeneral($post);
+        }
+    }
+
+    try {
+        $response = [
+            'html' => $html,
+            'nextCursor' => $nextCursor
+        ];
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    } catch (Exception $e) {
+        header('Content-Type: application/json', true, 500);
+        echo json_encode(['error' => $e->getMessage()]);
+    }    
+} else {
+    echo json_encode(['error' => 'Failed to fetch posts.']);
+}
+
+/**
+ * Render post-tour HTML from a template file.
+ */
+function renderPostTour($post) {
+    ob_start();
+    include '../includes/post-tour.php';
+    return ob_get_clean();
+}
+
+/**
+ * Render general post HTML from a template file.
+ */
+function renderPostGeneral($post) {
+    ob_start();
+    include '../includes/post-general.php';
+    return ob_get_clean();
+}

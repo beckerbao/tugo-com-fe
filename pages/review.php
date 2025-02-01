@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="tour-name" name="tour_name" placeholder="Enter the tour name" required>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="start-date">Ngày khởi hành</label>
             <input type="date" id="start-date" name="start_date" required>
         </div>
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
             <label for="end-date">Ngày về</label>
             <input type="date" id="end-date" name="end_date" required>
-        </div>
+        </div> -->
 
         <div class="form-group">
             <label for="guide-name">Hướng dẫn viên</label>

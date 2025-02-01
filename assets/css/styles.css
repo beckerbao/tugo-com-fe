@@ -241,3 +241,26 @@ body {
     font-size: 18px;
     margin-bottom: 5px;
 }
+
+.load-more-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.load-more-container button {
+    padding: 10px 20px;
+    background-color: #660066;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.load-more-container button:hover {
+    background-color: #550055;
+}
+
+.hidden{
+    display: none;
+}

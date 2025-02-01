@@ -8,10 +8,11 @@ include '../helpers/common.php';
 // Gọi API để lấy dữ liệu
 APICaller::init();
 $statistics = APICaller::get('/statistics');
-$posts = APICaller::get('/posts');
+$postsResponse = APICaller::get('/posts',array("page_size"=>20,"page"=>1));
 
 $statistics = isset($statistics['data']) ? $statistics['data'] : [];
-$posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
+$posts = isset($postsResponse['data']['posts']) ? $postsResponse['data']['posts'] : [];
+$nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['cursor'] : null;
 ?>
 <script src="../assets/js/home.js"></script>
 <!-- <div class="header">
@@ -20,10 +21,10 @@ $posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
         <input type="text" placeholder="Search...">
     </div>
 </div> -->
-
+<!-- hidden div to store base URL -->
 <div class="hero">
     <h1>Chào mừng bạn đến với GoReview</h1>
-    <p>Kết nối, chia sẻ kinh nghiệm du lịch</p>
+    <p>Kết nối, chia sẻ kinh nghiệm du lịch cùng Tugo</p>
     <?php
     // var_dump(get_access_token());
     //not login yet
@@ -52,7 +53,7 @@ $posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
     </div> -->
 </div>
 
-<div class="feed">
+<div class="feed" id="feed">
     <?php 
     foreach ($posts as $post): 
         $post['time_ago'] = get_time_ago($post['created_at']);
@@ -63,8 +64,16 @@ $posts = isset($posts['data']['posts']) ? $posts['data']['posts'] : [];
         }
     endforeach; 
     ?>
-    <div class="spacer"></div>
 </div>
+
+<!-- Load More Button -->
+<?php if ($nextCursor): ?>
+    <div class="load-more-container" id="load-more-container">
+        <button id="load-more" onclick="loadMore('<?php echo $nextCursor; ?>')">Xem thêm</button>
+    </div>
+<?php endif; ?>
+
+<div class="spacer"></div>
 
 <!-- Include thêm các phần như Statistics và Feed -->
 

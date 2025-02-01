@@ -3,12 +3,26 @@
         <img src="<?php echo hasHttpOrHttps($post['user']['profile_image'])?$post['user']['profile_image']:(get_image_domain() . $post['user']['profile_image']) ?>" alt="User Profile">
         <div class="name"><?php echo $post['user']['name']; ?></div>
     </div>
+    <?php
+    //if tour_name is not empty
+    if($post['tour_name'] != null){
+    ?>
     <div class="meta">
         <i>🗺️</i> <span>Tên tour: <?php echo $post['tour_name'];?></span> <span>|</span> <span>Ngày: <?php echo $post['start_date']; ?></span>
     </div>
+    <?php
+    }
+    ?>
+    <?php
+    //if tour_name is not empty
+    if($post['guide_name'] != null){
+    ?>
     <div class="meta">
         <i>🧑‍🏫</i> <span>Hướng dẫn: <?php echo $post['guide_name']; ?></span>
     </div>
+    <?php 
+    }
+    ?>
     <?php 
     $post['images'] = isset($post['images']) ? $post['images'] : [];
     foreach ($post['images'] as $image): 
