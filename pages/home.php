@@ -57,8 +57,8 @@ $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['
     <?php 
     foreach ($posts as $post): 
         $post['time_ago'] = get_time_ago($post['created_at']);
-        if($post['type'] == 'tour'){ 
-            include '../includes/post-tour.php';
+        if($post['type'] == 'review'){ 
+            include '../includes/post-review.php';
         }else if($post['type'] == 'general'){
             include '../includes/post-general.php';
         }

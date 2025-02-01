@@ -17,9 +17,9 @@ if (isset($response['data'])) {
     
     $html = '';
     foreach ($posts as $post) {
-        if ($post['type'] === 'tour') {
+        if ($post['type'] === 'review') {
             $post['time_ago'] = get_time_ago($post['created_at']);
-            $html .= renderPostTour($post);
+            $html .= renderPostReview($post);
         } elseif ($post['type'] === 'general') {
             $post['time_ago'] = get_time_ago($post['created_at']);
             $html .= renderPostGeneral($post);
@@ -42,11 +42,11 @@ if (isset($response['data'])) {
 }
 
 /**
- * Render post-tour HTML from a template file.
+ * Render post-review HTML from a template file.
  */
-function renderPostTour($post) {
+function renderPostReview($post) {
     ob_start();
-    include '../includes/post-tour.php';
+    include '../includes/post-review.php';
     return ob_get_clean();
 }
 
