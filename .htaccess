@@ -1,0 +1,11 @@
+# 1. Không cho phép liệt kê các thư mục
+Options -Indexes
+
+# 2. Tự động redirect đến pages/home.php khi truy cập vào thư mục gốc
+DirectoryIndex pages/home.php
+
+# Bảo vệ file .htaccess khỏi bị truy cập trực tiếp
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
