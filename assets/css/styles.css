@@ -144,6 +144,10 @@ body {
     color: #660066;
 }
 
+.content-wrapper {
+    position: relative;
+}
+
 .post .content {
     margin-bottom: 10px;
     overflow: hidden;
@@ -151,11 +155,25 @@ body {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    transition: max-height 0.3s ease;
 }
 
 .post.expanded .content {
     display: block;
     overflow: visible;
+}
+
+.toggle-content {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #660066;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.toggle-content:hover {
+    text-decoration: underline;
 }
 
 .post .image {

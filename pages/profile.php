@@ -79,8 +79,8 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
         ?>
         <li>
             <div class="voucher-details">
-                <strong>Tên voucher: <?php echo $voucher['discount']; ?></strong>
-                <p class="voucher-code">Mã voucher: <?php echo $voucher['code']; ?></p>
+                <strong>Mã voucher: <?php echo $voucher['code']; ?></strong>
+                <!-- <p class="voucher-code">Mã voucher: <?php echo $voucher['code']; ?></p> -->
                 <p>Ngày hiệu lực: <?php echo $voucher['valid_until']; ?></p>
             </div>
             <div class="voucher-actions">

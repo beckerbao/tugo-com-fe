@@ -41,3 +41,19 @@ async function loadMore(cursor, type = 'all') {
         loadMoreButton.disabled = false;
     }
 }
+
+function toggleContent(postId) {
+    const content = document.getElementById(`content-${postId}`);
+    const toggle = document.getElementById(`toggle-${postId}`);
+    
+    if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        content.style.display = '-webkit-box';
+        toggle.textContent = 'Show More';
+    } else {
+        content.classList.add('expanded');
+        content.style.display = 'block';
+        toggle.textContent = 'Show Less';
+    }
+}
+

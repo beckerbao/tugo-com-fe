@@ -29,10 +29,13 @@
         $image = get_image_domain() . $image;                
     ?>
     <img class="image" src="<?php echo $image?>" alt="Tour Image">
-    <?php endforeach; ?>                        
-    <div class="content">
-        <?php echo $post['content']; ?>
-    </div>
+    <?php endforeach; ?>
+    <div class="content-wrapper">                        
+        <div class="content" id="content-<?php echo $post['id']; ?>">
+            <?php echo $post['content']; ?>            
+        </div>        
+        <a href="javascript:void(0);" class="toggle-content" onclick="toggleContent(<?php echo $post['id']; ?>)" id="toggle-<?php echo $post['id']; ?>">Show More</a>
+    </div>    
     <?php include '../includes/post-common.php'; ?>
     <!-- <div class="actions">
         <button>Like</button>
