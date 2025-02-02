@@ -1,11 +1,11 @@
-# Bật chế độ Rewrite
-RewriteEngine On
-
 # Ngăn chặn liệt kê thư mục
 Options -Indexes
 
-# 2. Tự động redirect đến pages/home.php khi truy cập vào thư mục gốc
-DirectoryIndex pages/home.php
+# Bật RewriteEngine
+RewriteEngine On
+
+# Redirect từ root (/) sang /pages/home.php
+RewriteRule ^$ /pages/home.php [L,R=301]
 
 # Chặn truy cập trực tiếp vào file .htaccess
 <Files .htaccess>
