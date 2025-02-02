@@ -57,3 +57,23 @@ function toggleContent(postId) {
     }
 }
 
+function checkContentOverflow(postId) {
+    const content = document.getElementById(`content-${postId}`);
+    const toggle = document.getElementById(`toggle-${postId}`);
+    
+    // Kiểm tra nếu nội dung thực tế lớn hơn vùng hiển thị
+    if (content.scrollHeight > content.offsetHeight) {
+        toggle.style.display = 'inline-block';
+    } else {
+        toggle.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Gọi hàm kiểm tra overflow cho mỗi bài post sau khi DOM đã được load xong
+    document.querySelectorAll('.content').forEach((content) => {
+        const postId = content.id.split('-')[1];
+        checkContentOverflow(postId);
+    });
+});
+

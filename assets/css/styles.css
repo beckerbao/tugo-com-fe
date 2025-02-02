@@ -145,7 +145,7 @@ body {
 }
 
 .content-wrapper {
-    position: relative;
+    position: relative;    
 }
 
 .post .content {
@@ -170,6 +170,8 @@ body {
     color: #660066;
     cursor: pointer;
     text-decoration: none;
+    text-align: right;
+    float: right; /* Đặt nút bên phải ngoài cùng */
 }
 
 .toggle-content:hover {
