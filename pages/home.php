@@ -5,10 +5,12 @@ include '../includes/header.php';
 include '../helpers/apiCaller.php';
 include '../helpers/common.php';
 
+$type = isset($_GET['type']) ? $_GET['type'] : 'all';
+
 // Gọi API để lấy dữ liệu
 APICaller::init();
 $statistics = APICaller::get('/statistics');
-$postsResponse = APICaller::get('/posts',array("page_size"=>20,"page"=>1));
+$postsResponse = APICaller::get('/posts',array("page_size"=>20,"page"=>1,'type'=>$type=='all' ? '' : $type));
 
 $statistics = isset($statistics['data']) ? $statistics['data'] : [];
 $posts = isset($postsResponse['data']['posts']) ? $postsResponse['data']['posts'] : [];
@@ -53,6 +55,15 @@ $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['
     </div> -->
 </div>
 
+<!-- Filter Section -->
+<div class="filter-container">
+    <a href="?type=all" class="<?php echo $type == 'all' ? 'active' : ''; ?>">Tất cả</a>
+    <a href="?type=review" class="<?php echo $type == 'review' ? 'active' : ''; ?>">Đánh giá tour</a>
+    <a href="?type=general" class="<?php echo $type == 'general' ? 'active' : ''; ?>">Giới thiệu tour</a>
+    <!-- <a href="?type=tour" class="<?php echo $type == 'tour' ? 'active' : ''; ?>">Tour</a>
+    <a href="?type=photo" class="<?php echo $type == 'photo' ? 'active' : ''; ?>">Photo</a> -->
+</div>
+
 <div class="feed" id="feed">
     <?php 
     foreach ($posts as $post): 
@@ -69,7 +80,7 @@ $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['
 <!-- Load More Button -->
 <?php if ($nextCursor): ?>
     <div class="load-more-container" id="load-more-container">
-        <button id="load-more" onclick="loadMore('<?php echo $nextCursor; ?>')">Xem thêm</button>
+        <button id="load-more" onclick="loadMore('<?php echo $nextCursor; ?>', '<?php echo $type; ?>')">Xem thêm</button>
     </div>
 <?php endif; ?>
 

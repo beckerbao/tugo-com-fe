@@ -7,9 +7,11 @@ if (!isset($_GET['cursor'])) {
     exit;
 }
 
-$cursor = $_GET['cursor'];
+$cursor = isset($_GET['cursor']) ? $_GET['cursor'] : '';
+$type = isset($_GET['type']) ? $_GET['type'] : '';
+
 APICaller::init();
-$response = APICaller::get("/posts",array("page_size"=>20,"page"=>$cursor));
+$response = APICaller::get("/posts",array("page_size"=>20,"page"=>$cursor,'type'=>$type));
 
 if (isset($response['data'])) {
     $posts = $response['data']['posts'];
