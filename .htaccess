@@ -4,8 +4,8 @@ RewriteEngine On
 # Ngăn chặn liệt kê thư mục
 Options -Indexes
 
-# Redirect truy cập gốc tới pages/home.php
-RewriteRule ^$ pages/home.php [L]
+# 2. Tự động redirect đến pages/home.php khi truy cập vào thư mục gốc
+DirectoryIndex pages/home.php
 
 # Chặn truy cập trực tiếp vào file .htaccess
 <Files .htaccess>
