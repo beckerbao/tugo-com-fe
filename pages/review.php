@@ -70,12 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
        <div class="form-group">
             <label for="start-date">Ngày khởi hành</label>
-            <input type="date" id="start-date" name="start_date" required>
+            <input type="date" id="start-date" name="start_date" pattern="\d{2}/\d{2}/\d{4}" required>
         </div>
 
         <div class="form-group">
             <label for="end-date">Ngày về</label>
-            <input type="date" id="end-date" name="end_date" required>
+            <input type="date" id="end-date" name="end_date" pattern="\d{2}/\d{2}/\d{4}" required>
         </div>
 
         <div class="form-group">

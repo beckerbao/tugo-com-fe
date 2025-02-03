@@ -17,7 +17,7 @@ function get_access_token() {
 //return current domain
 function get_current_domain() {
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'] . "/tugo-com";
+    $host = $_SERVER['HTTP_HOST'];
     return $protocol . '://' . $host;
 }
 
