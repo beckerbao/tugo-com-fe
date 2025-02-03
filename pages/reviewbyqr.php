@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </script>";
         exit;
     } else {
-        $error_message = $response['message'] ?? 'Something went wrong. Please try again.';
+        $error_message = $response['error'] ?? 'Something went wrong. Please try again.';
     }
 }
 ?>
