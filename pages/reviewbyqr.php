@@ -58,6 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
         $error_message = $response['error'] ?? 'Something went wrong. Please try again.';
+
+        $tour_name = $_POST['tour_name'] ?? '';
+        $guide_name = $_POST['guide_name'] ?? '';
+        $start_date_display = $_POST['start_date'] ?? '';
+        $end_date_display = $_POST['end_date'] ?? '';
+        $guest_name = $_POST['guest_name'] ?? '';
+        $guest_phone = $_POST['guest_phone'] ?? '';
+        $review_content = $_POST['review_content'] ?? '';
     }
 }
 ?>
