@@ -131,14 +131,9 @@ class APICaller {
                 'error' => 'Failed to connect: ' . $error,
                 'http_code' => $httpCode
             ];
-        }
-
-        // die;
+        }        
     
-        return [
-            'data' => json_decode($response, true),
-            'http_code' => $httpCode
-        ];
+        return json_decode($response, true);            
     }
     
 
