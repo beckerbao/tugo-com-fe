@@ -11,6 +11,14 @@ APICaller::init();
 //TODO: Thay bằng token thực tế
 $access_token = get_access_token();
 
+// Kiểm tra xem user đã đăng nhập chưa
+if ($access_token==null) {
+    echo "<script>
+    window.location.href='login.php';
+</script>";
+    exit;
+}
+
 // Xử lý form submit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = [
@@ -35,9 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Gửi dữ liệu đến API bằng hàm post
-    $response = APICaller::postMultipart('/review', array_merge($data, ['images' => $files]), $headers);
-
-    // var_dump($response);die;
+    $response = APICaller::postMultipart('/review', array_merge($data, ['images' => $files]), $headers);            
 
     if (isset($response['status']) && $response['status'] === 'error') {
         $error_message = $response['error'];
@@ -62,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="tour-name" name="tour_name" placeholder="Enter the tour name" required>
         </div>
 
-        <!-- <div class="form-group">
+       <div class="form-group">
             <label for="start-date">Ngày khởi hành</label>
             <input type="date" id="start-date" name="start_date" required>
         </div>
@@ -70,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
             <label for="end-date">Ngày về</label>
             <input type="date" id="end-date" name="end_date" required>
-        </div> -->
+        </div>
 
         <div class="form-group">
             <label for="guide-name">Hướng dẫn viên</label>
