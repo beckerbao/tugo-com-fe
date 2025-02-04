@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <link rel="stylesheet" href="../assets/css/review.css">
 <div class="review-container">
-    <button class="back-button" onclick="location.href='home.php'">Quay lại</button>
+    <!-- <button class="back-button" onclick="location.href='home.php'">Quay lại</button> -->
     <h2>Viết đánh giá</h2>
     <?php if (!empty($error_message)): ?>
         <p style="color: red;">Lỗi: <?php echo htmlspecialchars($error_message); ?></p>
