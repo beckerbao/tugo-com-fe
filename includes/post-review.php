@@ -8,7 +8,12 @@
     if($post['tour_name'] != null){
     ?>
     <div class="meta">
-        <i>🗺️</i> <span>Tên tour: <?php echo $post['tour_name'];?></span> <span>|</span> <span>Ngày: <?php echo $post['start_date']; ?></span>
+        <i>🗺️</i> <span>Tên tour: <?php echo $post['tour_name'];?></span> <span>|</span> <span>Ngày khởi hành: 
+            <?php
+                //convert from "2025-02-06T00:00:00+07:00" to date format dd/mm/yyyy 
+                $date = date('d/m/Y', strtotime($post['start_date']));                
+                echo  $date; 
+            ?></span>
     </div>
     <?php
     }
