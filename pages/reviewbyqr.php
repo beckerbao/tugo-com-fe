@@ -1,4 +1,6 @@
 <?php
+// Ensure session is started
+session_start();
 $page_title = "Write a Review by QR";
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
@@ -52,8 +54,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Kiểm tra kết quả từ API
     if (isset($response['status']) && $response['status'] === 'success') {
+        // Lưu thông tin cần thiết vào session để sử dụng trên trang verifyotp.php
+        $_SESSION['otp_data'] = [
+            'guest_phone' => $_POST['guest_phone'],
+            'review_id' => $response['data']['id'] ?? null,
+        ];
+
+        // Redirect sang verifyotp.php để xử lý OTP
         echo "<script>
-            window.location.href='home.php?notice=review_success';
+            window.location.href='verifyotp.php';
         </script>";
         exit;
     } else {
