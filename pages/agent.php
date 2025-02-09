@@ -47,7 +47,7 @@
         // iOS
         if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
             setTimeout(() => { window.location.href = `x-safari-${url}`; }, 0);
-            setTimeout(() => { window.location.href = `com-apple-mobilesafari-tab:${url}`; }, 1000);
+            // setTimeout(() => { window.location.href = `com-apple-mobilesafari-tab:${url}`; }, 1000);
             setTimeout(() => { window.location.href = `googlechrome://${url.replace(/^https?:\/\//, '')}`; }, 2000);
             setTimeout(() => { window.location.href = `firefox://open-url?url=${url}`; }, 3000);
             setTimeout(() => { window.location.href = `x-web-search://?cicd.aitracuuluat.vn`; }, 4000);
@@ -69,4 +69,4 @@
 
 </script>
 
-<button onclick="redirectToDeviceBrowserV2()">Mở trình duyệt</button>
+<button onclick="redirectToDeviceBrowser()">Mở trình duyệt</button>
