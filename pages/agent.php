@@ -1,4 +1,36 @@
 <script>
+    function openBrowser(url, backupUrls = []) {
+        let opened = false;
+
+        // Mở URL trong trình duyệt mặc định
+        window.location.href = url;
+
+        // Nếu sau 2 giây mà người dùng vẫn ở đây, tức là trang không mở được
+        setTimeout(() => {
+            if (!opened && backupUrls.length > 0) {
+                // Thử URL tiếp theo
+                window.location.href = backupUrls.shift();
+                openBrowser(window.location.href, backupUrls);
+            }
+        }, 2000);
+    }
+
+    // Gọi hàm
+    function redirectToDeviceBrowserV2() {
+        const url = "https://www.example.com";
+
+        // Danh sách thử mở trình duyệt theo thứ tự
+        const backupUrls = [
+            `x-safari-${url}`, // Safari trên iOS
+            `com-apple-mobilesafari-tab:${url}`, // Tab mới trên Safari
+            `googlechrome://${url.replace(/^https?:\/\//, '')}`, // Chrome
+            `firefox://open-url?url=${url}`, // Firefox
+            `x-web-search://?${url}` // Safari Search
+        ];
+
+        openBrowser(url, backupUrls);
+    }
+
     function redirectToDeviceBrowser(options = {}) {
         const extraPath = options.extraPath || '';
         const isServerEndPoint = options.isServerEndPoint || false;
@@ -37,4 +69,4 @@
 
 </script>
 
-<button onclick="redirectToDeviceBrowser()">Mở trình duyệt</button>
+<button onclick="redirectToDeviceBrowserV2()">Mở trình duyệt</button>
