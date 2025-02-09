@@ -7,12 +7,12 @@ $user_agent = $_SERVER['HTTP_USER_AGENT'];
 //nếu user sử dụng iOS thì tạo url để mở trình duyệt safari, ng dung trên trang agent.php
 if (strpos($user_agent, 'iPhone') || strpos($user_agent, 'iPad') || strpos($user_agent, 'iPod')) {
     echo "<script>
-    window.location.href = 'x-web-search://www.example.com';
+    window.location.href = 'x-web-search://review.tugo.com.vn';
     </script>";
     exit;
 }else if (strpos($user_agent, 'Android')) {
     echo "<script>
-    window.location.href = 'googlechrome://www.example.com';
+    window.location.href = 'googlechrome://review.tugo.com.vn';
     </script>";
     exit;
 }
