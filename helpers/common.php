@@ -39,6 +39,16 @@ function hasHttpOrHttps($url) {
     return false;
 }
 
+//get version in .env
+function get_version() {
+    if (file_exists(__DIR__ . '/../.env')) {
+        $env = parse_ini_file(__DIR__ . '/../.env');
+        return $env['VERSION'] ?? '';
+    } else {
+        return '';        
+    }        
+}
+
 function get_time_ago($datetime) {
     $timestamp = strtotime($datetime);
     $currentTime = time();

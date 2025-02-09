@@ -93,3 +93,40 @@ body {
 .submit-button:hover {
     background-color: #550055;
 }
+
+.help-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.help-tooltip {
+    display: block;
+    background-color: #fff;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    margin-right: 10px;
+    border: 2px solid red; /* Border màu đỏ */
+}
+
+.help-icon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.help-icon i {
+    font-size: 16px;
+    color: #660066;
+}
