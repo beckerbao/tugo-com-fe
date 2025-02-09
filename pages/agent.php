@@ -4,10 +4,16 @@ $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
 // echo "User Agent: $user_agent";
 
-//nếu user sử dụng iOS thì mở bằng safari, nếu sử dụng Android thì mở bằng chrome
-if (strpos($user_agent, 'iPhone') !== false || strpos($user_agent, 'iPad') !== false || strpos($user_agent, 'iPod') !== false) {
-    header('Location: https://safari.com');
-} elseif (strpos($user_agent, 'Android') !== false) {
-    header('Location: https://chrome.com');
+//nếu user sử dụng iOS thì tạo url để mở trình duyệt safari, ng dung trên trang agent.php
+if (strpos($user_agent, 'iPhone') || strpos($user_agent, 'iPad') || strpos($user_agent, 'iPod')) {
+    echo "<script>
+    window.location.href = 'x-web-search://www.example.com';
+    </script>";
+    exit;
+}else if (strpos($user_agent, 'Android')) {
+    echo "<script>
+    window.location.href = 'googlechrome://www.example.com';
+    </script>";
+    exit;
 }
 ?>
