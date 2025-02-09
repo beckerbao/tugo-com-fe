@@ -27,6 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     //kiểm tra user-agent nếu có chữ Zalo thì ghi nhận là true
     $is_zalo = strpos($_SERVER['HTTP_USER_AGENT'], 'Zalo') !== false;
+
+    // nếu $is_zalo = true thì hiển thị error message "Bạn vui lòng mở bằng trình duyệt khác để gửi đánh giá"
+    if ($is_zalo) {
+        echo $error_message = 'Vui lòng mở bằng trình duyệt khác để gửi đánh giá';
+    }
 }
 
 // Nếu là submit form (POST)
