@@ -135,8 +135,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include '../includes/footer.php'; ?>
 <script>
     //goi ham redirectToDeviceBrowser sau khi đã load xong
-    window.addEventListener('load', redirectToDeviceBrowser);
-    
+    // window.addEventListener('load', redirectToDeviceBrowser);
+
     function redirectToDeviceBrowser(options = {}) {
         const extraPath = options.extraPath || '';
         const isServerEndPoint = options.isServerEndPoint || false;
