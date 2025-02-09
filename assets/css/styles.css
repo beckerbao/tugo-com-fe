@@ -180,7 +180,7 @@ body {
 
 .post .image {
     width: 300px;
-    height: 200px;
+    /* height: 200px; */
     border-radius: 10px;
     margin-bottom: 10px;
 }
