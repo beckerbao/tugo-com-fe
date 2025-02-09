@@ -9,6 +9,10 @@ if (!isset($_GET['cursor'])) {
 
 $cursor = isset($_GET['cursor']) ? $_GET['cursor'] : '';
 $type = isset($_GET['type']) ? $_GET['type'] : '';
+//nếu type=all thi $type='';
+if ($type === 'all') {
+    $type = '';
+}
 
 APICaller::init();
 $response = APICaller::get("/posts",array("page_size"=>20,"page"=>$cursor,'type'=>$type));
