@@ -1,19 +1,53 @@
-<?php
-//detect user agent và hiển thị trên trang agent.php
-$user_agent = $_SERVER['HTTP_USER_AGENT'];
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mở trình duyệt hệ thống</title>
+    <script>
+        (function() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-// echo "User Agent: $user_agent";
+            // Kiểm tra nếu đang chạy trong WebView (ứng dụng thứ 3)
+            const isWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(userAgent) ||
+                              (userAgent.includes("Android") && userAgent.includes("Version/"));
 
-//nếu user sử dụng iOS thì tạo url để mở trình duyệt safari, ng dung trên trang agent.php
-if (strpos($user_agent, 'iPhone') || strpos($user_agent, 'iPad') || strpos($user_agent, 'iPod')) {
-    echo "<script>
-    window.location.href = 'x-web-search://review.tugo.com.vn';
-    </script>";
-    exit;
-}else if (strpos($user_agent, 'Android')) {
-    echo "<script>
-    window.location.href = 'googlechrome://review.tugo.com.vn';
-    </script>";
-    exit;
-}
-?>
+            if (isWebView) {
+                let url = "https://www.example.com"; // Thay thế bằng URL thực của bạn
+                
+                if (/iPhone|iPad|iPod/i.test(userAgent)) {
+                    // Mở trong Safari trên iOS
+                    window.location.href = url;
+                } else if (/Android/i.test(userAgent)) {
+                    // Mở trong Chrome trên Android
+                    window.location.href = "intent://www.example.com#Intent;scheme=https;package=com.android.chrome;end;";
+                } else {
+                    // Nếu không xác định được nền tảng, mở link trực tiếp
+                    window.location.href = url;
+                }
+            }
+        })();
+
+        function openInBrowser() {
+            let url = "https://www.example.com"; // Thay thế bằng URL của bạn
+            
+            try {
+                // Mở trong trình duyệt hệ thống (nếu WebView hỗ trợ)
+                window.open(url, "_system");
+            } catch (e) {
+                // Nếu không mở được, mở trực tiếp
+                window.location.href = url;
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Trang đang chạy trong WebView</h1>
+    <p>Nếu trang này mở trong WebView, bạn nên mở bằng trình duyệt mặc định.</p>
+
+    <!-- Nút mở trong Safari hoặc Chrome -->
+    <button onclick="openInBrowser()">Mở trên Safari/Chrome</button>
+
+</body>
+</html>
