@@ -1,9 +1,9 @@
 <?php 
 session_start();
 $page_title = "Homepage";
-include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
 include '../helpers/common.php';
+include '../includes/header.php'; 
 
 $type = isset($_GET['type']) ? $_GET['type'] : 'all';
 
