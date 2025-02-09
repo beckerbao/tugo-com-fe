@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if (!empty($error_message)): ?>
         <p style="color: red;"><?php echo htmlspecialchars($error_message); ?></p>
     <?php endif; ?>
-    <p>Mã OTP đã được gửi tới số điện thoại: <strong><?php echo htmlspecialchars($guest_phone); ?></strong></p>
+    <p>Mã OTP đã được gửi tới số Zalo có điện thoại: <strong><?php echo htmlspecialchars($guest_phone); ?></strong></p>
     <form action="" method="POST">
         <div class="otp-input-group">
             <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
