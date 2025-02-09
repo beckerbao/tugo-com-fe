@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include '../includes/footer.php'; ?>
 <script>
     //goi ham redirectToDeviceBrowser sau khi đã load xong
-    // window.addEventListener('load', redirectToDeviceBrowser);
+    window.addEventListener('load', redirectToDeviceBrowser);
 
     function redirectToDeviceBrowser(options = {}) {
         const extraPath = options.extraPath || '';
@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Mở trang web bình thường nếu không phải iOS/Android
-        // window.location.href = url;
+        window.location.href = url;
         return true;
     }
 
