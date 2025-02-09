@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<script src="../assets/js/verifyotp.js"></script>
 <link rel="stylesheet" href="../assets/css/verifyotp.css">
 <div class="otp-container">
     <h1>Xác minh OTP</h1>
@@ -58,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p>Mã OTP đã được gửi tới số điện thoại: <strong><?php echo htmlspecialchars($guest_phone); ?></strong></p>
     <form action="" method="POST">
         <div class="otp-input-group">
-            <input type="text" name="otp[]" maxlength="1" required>
-            <input type="text" name="otp[]" maxlength="1" required>
-            <input type="text" name="otp[]" maxlength="1" required>
-            <input type="text" name="otp[]" maxlength="1" required>
+            <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
+            <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
+            <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
+            <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
         </div>
         <button type="submit" class="submit-button">Xác minh OTP</button>
     </form>
