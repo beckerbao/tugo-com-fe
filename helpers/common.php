@@ -45,7 +45,7 @@ function get_version() {
         $env = parse_ini_file(__DIR__ . '/../.env');
         return $env['VERSION'] ?? '';
     } else {
-        return '';        
+        throw new Exception(".env file not found.");
     }        
 }
 
