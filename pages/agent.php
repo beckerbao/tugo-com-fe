@@ -5,5 +5,5 @@ $user_agent = $_SERVER['HTTP_USER_AGENT'];
 echo "User Agent: $user_agent";
 ?>
 <script>
-    window.open(url, '_system');
+    window.open("http://localhost:8081/", '_system');
 </script>
