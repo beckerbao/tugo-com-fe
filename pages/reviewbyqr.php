@@ -91,12 +91,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <link rel="stylesheet" href="../assets/css/review.css">
+<style>
+    .help-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .help-tooltip {
+        display: block;
+        background-color: #fff;
+        color: #333;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 14px;
+        margin-right: 10px;
+        border: 2px solid red; /* Border màu đỏ */
+    }
+
+    .help-icon {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .help-icon i {
+        font-size: 16px;
+        color: #660066;
+    }
+</style>
 <div class="review-container">
     <!-- <button class="back-button" onclick="location.href='home.php'">Quay lại</button> -->
     <!-- Help Section -->
-    <?php
-    if ($is_zalo) {
-    ?>
     <div class="help-container">
         <div class="help-tooltip">
             Bấm vào nút ... để mở trình duyệt khác
@@ -105,9 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <i>&uarr;</i>
         </div>
     </div>
-    <?php
-    }
-    ?>
     <h2>Viết đánh giá</h2>
     <?php if (!empty($error_message)): ?>
         <p style="color: red;">Lỗi: <?php echo htmlspecialchars($error_message); ?></p>
