@@ -13,6 +13,7 @@ $tour_name = '';
 $guide_name = '';
 $start_date_display = '';
 $end_date_display = '';
+$is_zalo = false;
 
 // Nếu là mở trang lần đầu (GET)
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -23,6 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     //tạo URL để redirect qua safari hoặc chrome
     $redirect_url = get_current_domain() . "/pages/reviewbyqr.php?tour_name=" . urlencode($tour_name) . "&start_date=" . urlencode($start_date_display) . "&end_date=" . urlencode($end_date_display) . "&guide_name=" . urlencode($guide_name);
+
+    //kiểm tra user-agent nếu có chữ Zalo thì ghi nhận là true
+    $is_zalo = strpos($_SERVER['HTTP_USER_AGENT'], 'Zalo') !== false;
 }
 
 // Nếu là submit form (POST)
@@ -109,19 +113,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="guide-name" name="guide_name" value="<?php echo htmlspecialchars($guide_name); ?>" readonly>
         </div>
 
+        <!-- nếu $is_zalo = true thì readonly -->
         <div class="form-group">
             <label for="guest-name">Tên khách</label>
-            <input type="text" id="guest-name" name="guest_name" placeholder="Nhập tên khách" required>
+            <input type="text" id="guest-name" name="guest_name" placeholder="Nhập tên khách" required <?php if ($is_zalo) echo 'readonly'; ?>>
         </div>
 
         <div class="form-group">
             <label for="guest-phone">Số điện thoại  (có sử dụng Zalo)</label>
-            <input type="text" id="guest-phone" name="guest_phone" placeholder="Nhập số điện thoại" required>
+            <input type="text" id="guest-phone" name="guest_phone" placeholder="Nhập số điện thoại" required <?php if ($is_zalo) echo 'readonly'; ?>>
         </div>
 
         <div class="form-group">
             <label for="review-content">Nội dung đánh giá</label>
-            <textarea id="review-content" name="review_content" placeholder="Nhập nội dung đánh giá..." required></textarea>
+            <textarea id="review-content" name="review_content" placeholder="Nhập nội dung đánh giá..." required <?php if ($is_zalo) echo 'readonly'; ?>></textarea>
         </div>
 
         <div class="form-group">
@@ -129,8 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="file" id="images" name="images[]" accept="image/*" multiple>
             <small>Chỉ được tối đa 5 ảnh</small>
         </div>
-
-        <button type="submit" class="submit-button">Gửi đánh giá</button>
+        <!-- nếu $is_zalo = true thì disable button -->
+        <button type="submit" class="submit-button" <?php if ($is_zalo) echo 'disabled'; ?>>Gửi đánh giá</button>
     </form>
     <div class="spacer"></div>
 </div>
