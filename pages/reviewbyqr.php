@@ -20,6 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $guide_name = $_GET['guide_name'] ?? '';
     $start_date_display = $_GET['start_date'] ?? ''; // dd/mm/yyyy
     $end_date_display = $_GET['end_date'] ?? '';     // dd/mm/yyyy
+
+    //tạo URL để redirect qua safari hoặc chrome
+    $redirect_url = get_current_domain() . "/pages/reviewbyqr.php?tour_name=" . urlencode($tour_name) . "&start_date=" . urlencode($start_date_display) . "&end_date=" . urlencode($end_date_display) . "&guide_name=" . urlencode($guide_name);
 }
 
 // Nếu là submit form (POST)
@@ -141,35 +144,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const extraPath = options.extraPath || '';
         const isServerEndPoint = options.isServerEndPoint || false;
 
+        // Lấy query string từ URL hiện tại
+        const queryString = window.location.search;
+
         // Lấy API Endpoint từ meta hoặc window.location
         const endpoint = document.querySelector('meta[name="api-endpoint"]')?.getAttribute("content") || window.location.origin;
         
-        // Xây dựng URL
-        const url = `${isServerEndPoint ? endpoint : window.location.origin}${extraPath}`;
-
+        // Xây dựng URL kèm query string
+        const url = `${isServerEndPoint ? endpoint : window.location.origin}${extraPath}${queryString}`;
+        alert(url);
         // Kiểm tra thiết bị
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
         // iOS
         if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
             setTimeout(() => { window.location.href = `x-safari-${url}`; }, 0);
-            // setTimeout(() => { window.location.href = `com-apple-mobilesafari-tab:${url}`; }, 1000);
-            setTimeout(() => { window.location.href = `googlechrome://${url.replace(/^https?:\/\//, '')}`; }, 2000);
-            setTimeout(() => { window.location.href = `firefox://open-url?url=${url}`; }, 3000);
-            setTimeout(() => { window.location.href = `x-web-search://?cicd.aitracuuluat.vn`; }, 4000);
+            setTimeout(() => { window.location.href = `com-apple-mobilesafari-tab:${url}`; }, 1000);
+            setTimeout(() => { window.location.href = `googlechrome://${url.replace(/^https?:\/\//, '')}${queryString}`; }, 2000);
+            setTimeout(() => { window.location.href = `firefox://open-url?url=${url}${queryString}`; }, 3000);
+            setTimeout(() => { window.location.href = `x-web-search://?${url}${queryString}`; }, 4000);
             return false;
         }
 
         // Android
         if (/android/i.test(userAgent)) {
-            setTimeout(() => { window.location.href = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end;`; }, 0);
-            setTimeout(() => { window.location.href = `googlechrome://navigate?url=${url}`; }, 1000);
-            setTimeout(() => { window.location.href = `firefox://open-url?url=${url}`; }, 2000);
+            setTimeout(() => { window.location.href = `intent://${url.replace(/^https?:\/\//, '')}${queryString}#Intent;scheme=https;package=com.android.chrome;end;`; }, 0);
+            setTimeout(() => { window.location.href = `googlechrome://navigate?url=${url}${queryString}`; }, 1000);
+            setTimeout(() => { window.location.href = `firefox://open-url?url=${url}${queryString}`; }, 2000);
             return false;
         }
 
         // Mở trang web bình thường nếu không phải iOS/Android
-        window.location.href = url;
+        // window.location.href = url;
         return true;
     }
 
