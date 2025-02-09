@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <i>&uarr;</i>
         </div>
     </div>
-    <?
+    <?php
     }
     ?>
     <h2>Viết đánh giá</h2>
