@@ -2,9 +2,9 @@
 // Ensure session is started
 session_start();
 $page_title = "Write a Review";
+include '../helpers/common.php';
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
-include '../helpers/common.php';
 
 APICaller::init();
 

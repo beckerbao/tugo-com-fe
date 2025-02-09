@@ -1,7 +1,7 @@
 <?php
 $page_title = "Generate QR Code";
-include '../includes/header.php'; 
 include '../helpers/common.php';
+include '../includes/header.php'; 
 
 // Xử lý form submit
 $qr_code_url = '';

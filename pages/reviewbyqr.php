@@ -2,9 +2,9 @@
 // Ensure session is started
 session_start();
 $page_title = "Write a Review by QR";
+include '../helpers/common.php';
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
-include '../helpers/common.php';
 
 APICaller::init();
 
@@ -152,8 +152,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="form-group">
             <label for="images">Đăng ảnh (không bắt buộc)</label>
-            <input type="file" id="images" name="images[]" accept="image/*" multiple>
-            <small>Chỉ được tối đa 5 ảnh</small>
+            <input type="file" id="images" name="images[]" accept="image/*">
+            <small>Chỉ được tối đa 1 ảnh</small>
         </div>
         <!-- nếu $is_zalo = true thì disable button -->
         <button type="submit" class="submit-button" <?php if ($is_zalo) echo 'disabled'; ?>>Gửi đánh giá</button>

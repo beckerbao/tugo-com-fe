@@ -1,9 +1,9 @@
 <?php
 session_start();
 $page_title = "Verify OTP";
+include '../helpers/common.php';
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
-include '../helpers/common.php';
 
 APICaller::init();
 

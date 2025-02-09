@@ -1,5 +1,6 @@
 <?php 
 $page_title = "Voucher Details";
+include '../helpers/common.php';
 include '../includes/header.php'; 
 ?>
 <link rel="stylesheet" href="../assets/css/voucher.css">

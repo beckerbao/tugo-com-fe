@@ -1,6 +1,7 @@
 <?php
 session_start();
 $page_title = "Register";
+include '../helpers/common.php';
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
 
