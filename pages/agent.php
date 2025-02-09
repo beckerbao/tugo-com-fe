@@ -21,8 +21,8 @@
 
         // Danh sách thử mở trình duyệt theo thứ tự
         const backupUrls = [
-            `x-safari-${url}`, // Safari trên iOS
             `com-apple-mobilesafari-tab:${url}`, // Tab mới trên Safari
+            `x-safari-${url}`, // Safari trên iOS            
             `googlechrome://${url.replace(/^https?:\/\//, '')}`, // Chrome
             `firefox://open-url?url=${url}`, // Firefox
             `x-web-search://?${url}` // Safari Search
