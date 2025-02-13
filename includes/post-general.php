@@ -4,7 +4,7 @@
         <div class="name"><?php echo $post['user']['name']; ?></div>
     </div>
     <div class="meta">
-        <i>🗺️</i> <span>Tên Tour: <?php echo $post['tour_name'];?></span>
+        <i>🗺️</i> <span>Tiêu đề: <?php echo $post['tour_name'];?></span>
     </div>
     <div class="content">
         <?php echo $post['content']; ?>
