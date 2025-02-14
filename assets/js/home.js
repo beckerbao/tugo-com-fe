@@ -61,6 +61,12 @@ function checkContentOverflow(postId) {
     const content = document.getElementById(`content-${postId}`);
     const toggle = document.getElementById(`toggle-${postId}`);
     
+    //if content or toggle is null then return
+    if (!content || !toggle) {
+        console.log('Content or toggle element not found.');
+        return;
+    }
+
     // Kiểm tra nếu nội dung thực tế lớn hơn vùng hiển thị
     if (content.scrollHeight > content.offsetHeight) {
         toggle.style.display = 'inline-block';
@@ -74,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.content').forEach((content) => {
         const postId = content.id.split('-')[1];
         checkContentOverflow(postId);
+        console.log(postId);
     });
 });
 

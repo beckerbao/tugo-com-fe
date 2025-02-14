@@ -16,7 +16,6 @@ $statistics = isset($statistics['data']) ? $statistics['data'] : [];
 $posts = isset($postsResponse['data']['posts']) ? $postsResponse['data']['posts'] : [];
 $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['cursor'] : null;
 ?>
-<script src="../assets/js/home.js"></script>
 <!-- <div class="header">
     <div class="logo">My Community</div>
     <div class="search-bar">
@@ -89,4 +88,5 @@ $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['
 <!-- Include thêm các phần như Statistics và Feed -->
 
 <?php include '../includes/navbar.php'; ?>
+<script src="../assets/js/home.js"></script>
 <?php include '../includes/footer.php'; ?>
