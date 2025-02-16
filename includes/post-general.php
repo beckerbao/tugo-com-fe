@@ -18,7 +18,7 @@
     <?php endforeach; ?>
     <div class="content-wrapper"> 
         <div class="content" id="content-<?php echo $post['id']; ?>">
-            <?php echo $post['id'] ?>. <?php echo $post['content']; ?>
+            <?php echo $post['content']; ?>
         </div>
         <a href="javascript:void(0);" class="toggle-content" onclick="toggleContent(<?php echo $post['id']; ?>)" id="toggle-<?php echo $post['id']; ?>" style="display: none;">Show More</a>
     </div>

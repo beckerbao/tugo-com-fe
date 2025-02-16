@@ -118,7 +118,7 @@ class APICaller {
         // print_r($processedData);
 
         // Đảm bảo Content-Type được thiết lập tự động bởi cURL
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);        
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $processedData); // Gửi dữ liệu dạng multipart/form-data
         
         $response = curl_exec($ch);

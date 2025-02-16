@@ -41,6 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $start_date = $_POST['start_date'] ? date('Y-m-d', strtotime(str_replace('/', '-', $_POST['start_date']))) : '';
     $end_date = $_POST['end_date'] ? date('Y-m-d', strtotime(str_replace('/', '-', $_POST['end_date']))) : '';
 
+    //remove khoảng trắng trước sau và giữa của số điện thoại
+    $_POST['guest_phone'] = preg_replace('/\s+/', '', $_POST['guest_phone']);
+
     // Chuẩn bị dữ liệu gửi đến API
     $data = [
         'tour_name' => $_POST['tour_name'],
