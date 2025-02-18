@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         <button type="submit" name="register">Đăng ký</button>
     </form>
     <div class="back-to-login">
-        <a href="login.php">← Đến trang đăng nhập</a>
+        <a href="login2.php">← Đến trang đăng nhập</a>
     </div>
     <div class="back-to-home">
         <a href="home.php">← Quay lại trang chủ</a>

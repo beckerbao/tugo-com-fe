@@ -14,7 +14,7 @@ $access_token = get_access_token();
 // Kiểm tra xem user đã đăng nhập chưa
 if ($access_token==null) {
     echo "<script>
-    window.location.href='login.php';
+    window.location.href='login2.php';
 </script>";
     exit;
 }

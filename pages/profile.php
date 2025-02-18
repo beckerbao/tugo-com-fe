@@ -40,7 +40,7 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
     // var_dump($headers);
     session_destroy();
     echo "<script>
-    window.location.href='login.php';
+    window.location.href='login2.php';
 </script>";
     exit;
 }

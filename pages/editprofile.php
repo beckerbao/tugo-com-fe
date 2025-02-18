@@ -1,9 +1,9 @@
 <?php
 session_start();
 $page_title = "Edit Profile";
+include '../helpers/common.php';
 include '../includes/header.php'; 
 include '../helpers/apiCaller.php';
-include '../helpers/common.php';
 
 APICaller::init();
 
@@ -11,7 +11,7 @@ APICaller::init();
 $access_token = get_access_token();
 if ($access_token === null) {    
     echo "<script>
-        window.location.href='login.php?notice=not_logged_in';
+        window.location.href='login2.php?notice=not_logged_in';
     </script>";
         exit;
 }
