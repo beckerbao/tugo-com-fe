@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         <a href="home.php">← Quay lại trang chủ</a>
     </div>
     <div class="go-to-register">
-        <a href="register.php">Chưa có tài khoản? Đăng ký ngay</a>
+        <a href="login2.php">Chưa có tài khoản? Đăng ký ngay</a>
     </div>
 </div>
 <?php include '../includes/footer.php'; ?>

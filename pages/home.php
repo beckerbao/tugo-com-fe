@@ -32,7 +32,7 @@ $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['
     if(get_access_token()==null){
         
     ?>
-        <button onclick="location.href='register.php'">Join Now</button>
+        <button onclick="location.href='login2.php'">Join Now</button>
     <?php
     }
     ?>
