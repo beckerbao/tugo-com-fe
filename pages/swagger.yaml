@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: Booking Notification API
+  description: API này được gọi khi có một booking mới được tạo.
+  version: 1.0.0
+
+paths:
+  /booking-notification:
+    post:
+      summary: Nhận thông báo đặt tour thành công
+      description: API này được gọi khi có một booking mới được tạo.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      requestBody:
+        description: Thông tin booking
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingNotificationRequest'
+      responses:
+        200:
+          description: Thông báo nhận thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+
+components:
+  schemas:
+    BookingNotificationRequest:
+      type: object
+      properties:
+        admin_token:
+          type: string
+          description: Token quản trị viên
+        booking_id:
+          type: string
+          description: ID booking
+        sale_name:
+          type: string
+          description: Tên người bán
+        total_amount:
+          type: string
+          description: Tổng tiền booking
+        tour_name:
+          type: string
+          description: Tên tour
+        tour_price_per_guest:
+          type: string
+          description: Giá tour cho mỗi khách hàng
+        customer_name:
+          type: string
+          description: Tên khách hàng
+        customer_phone:
+          type: string
+          description: Số điện thoại khách hàng
+      required:
+        - admin_token
+        - booking_id
+        - sale_name
+        - customer_phone
+
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Trạng thái phản hồi
+        message:
+          type: string
+          description: Thông điệp phản hồi
+      required:
+        - status
+        - message
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Trạng thái phản hồi
+        message:
+          type: string
+          description: Thông điệp phản hồi
+        error:
+          type: string
+          description: Lỗi phản hồi
+      required:
+        - status
+        - message
+        - error
+
+    UnauthorizedResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Trạng thái phản hồi
+        message:
+          type: string
+          description: Thông điệp phản hồi
+        error:
+          type: string
+          description: Lỗi phản hồi
+      required:
+        - status
+        - message
+        - error
