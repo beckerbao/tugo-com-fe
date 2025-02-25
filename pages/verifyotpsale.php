@@ -61,10 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p>Mã OTP đã được gửi tới số Zalo có điện thoại: <strong><?php echo htmlspecialchars($customer_phone); ?></strong></p>
     <form action="" method="POST">
         <div class="otp-input-group">
-            <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
-            <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
-            <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
-            <input type="text" name="otp[]" maxlength="1" class="otp-input" required>
+            <input type="number" name="otp[]" maxlength="1" class="otp-input" required>
+            <input type="number" name="otp[]" maxlength="1" class="otp-input" required>
+            <input type="number" name="otp[]" maxlength="1" class="otp-input" required>
+            <input type="number" name="otp[]" maxlength="1" class="otp-input" required>
         </div>
         <button type="submit" class="submit-button">Xác minh OTP</button>
     </form>
