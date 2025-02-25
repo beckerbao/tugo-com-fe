@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php } ?>
 
-    <h2>Viết đánh giá</h2>
+    <h2>🎉 Cảm ơn bạn đã đặt tour! Hãy chia sẻ trải nghiệm của bạn nhé! 🎉</h2>
 
     <?php if (!empty($error_message)): ?>
         <p style="color: red;">Lỗi: <?php echo htmlspecialchars($error_message); ?></p>
@@ -98,42 +98,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="tour-name">Tên tour</label>
+            <label for="tour-name">Bạn vừa book tour</label>
             <input type="text" id="tour-name" name="tour_name" value="<?php echo htmlspecialchars($tour_name); ?>" readonly>
         </div>
 
         <div class="form-group">
-            <label for="sale-name">Tên nhân viên sale</label>
+            <label for="sale-name">Nhân viên sale hỗ trợ</label>
             <input type="text" id="sale-name" name="sale_name" value="<?php echo htmlspecialchars($sale_name); ?>" readonly>
         </div>
 
         <div class="form-group">
-            <label for="booking-id">Mã Booking</label>
+            <label for="booking-id">Mã số booking của bạn</label>
             <input type="text" id="booking-id" name="booking_id" value="<?php echo htmlspecialchars($booking_id); ?>" readonly>
         </div>
 
         <div class="form-group">
-            <label for="customer-name">Tên khách hàng</label>
+            <label for="customer-name">Tên bạn là</label>
             <input type="text" id="customer-name" name="customer_name" placeholder="Nhập tên khách" required <?php if ($is_zalo) echo 'readonly'; ?>>
         </div>
 
         <div class="form-group">
-            <label for="customer-phone">Số điện thoại (có sử dụng Zalo)</label>
+            <label for="customer-phone">Số điện thoại liên lạc</label>
             <input type="text" id="customer-phone" name="customer_phone" placeholder="Nhập số điện thoại" required <?php if ($is_zalo) echo 'readonly'; ?>>
         </div>
 
         <div class="form-group">
-            <label for="review-content">Nội dung đánh giá</label>
+            <label for="review-content">Theo bạn dịch vụ của bạn sale được đánh giá thế nào?</label>
             <textarea id="review-content" name="review_content" placeholder="Nhập nội dung đánh giá..." required <?php if ($is_zalo) echo 'readonly'; ?>></textarea>
         </div>
 
         <div class="form-group">
-            <label for="rating">Điểm đánh giá (1-10)</label>
+            <label for="rating">Bạn chấm mấy điểm cho dịch vụ của bạn sale? (1-10)</label>
             <input type="number" id="rating" name="rating" min="1" max="10" required <?php if ($is_zalo) echo 'readonly'; ?>>
         </div>
 
         <div class="form-group">
-            <label for="images">Đăng ảnh (không bắt buộc)</label>
+            <label for="images">Bạn có muốn khoe ảnh đã chụp tại Tugo hoặc với bạn sale không? (không bắt buộc)</label>
             <input type="file" id="images" name="images[]" accept="image/*">
             <small>Chỉ được tối đa 1 ảnh</small>
         </div>
