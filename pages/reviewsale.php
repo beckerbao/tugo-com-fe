@@ -20,9 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $tour_name = $_GET['tour_name'] ?? '';
     $sale_name = $_GET['sale_name'] ?? '';
     $booking_id = $_GET['booking_id'] ?? '';
+    $customer_phone = $_GET['customer_phone'] ?? '';
+    $customer_name = $_GET['customer_name'] ?? '';
 
     // Kiểm tra User-Agent có phải từ Zalo không
     $is_zalo = strpos($_SERVER['HTTP_USER_AGENT'], 'Zalo') !== false;
+    $is_zalo = true;
 
     // Nếu là Zalo thì thông báo mở bằng trình duyệt khác
     if ($is_zalo) {
@@ -73,7 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         // Chuyển sang verifyotpsale.php
-        echo "<script>window.location.href='verifyotpsale.php';</script>";
+        echo "<script>
+        alert('Đánh giá thành công!');
+        window.location.href='home.php?notice=review_success';
+        </script>";
         exit;
     } else {
         $error_message = $response['error'] ?? 'Something went wrong. Please try again.';
@@ -114,12 +120,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="form-group">
             <label for="customer-name">Tên bạn là</label>
-            <input type="text" id="customer-name" name="customer_name" placeholder="Nhập tên khách" required <?php if ($is_zalo) echo 'readonly'; ?>>
+            <input type="text" id="customer-name" name="customer_name" value="<?php echo htmlspecialchars($customer_name); ?>" placeholder="Nhập tên khách" required <?php if ($is_zalo) echo 'readonly'; ?>>
         </div>
 
         <div class="form-group">
             <label for="customer-phone">Số điện thoại liên lạc</label>
-            <input type="text" id="customer-phone" name="customer_phone" placeholder="Nhập số điện thoại" required <?php if ($is_zalo) echo 'readonly'; ?>>
+            <input type="text" id="customer-phone" name="customer_phone" value="<?php echo htmlspecialchars($customer_phone); ?>" placeholder="Nhập số điện thoại" required <?php if ($is_zalo) echo 'readonly'; ?>>
         </div>
 
         <div class="form-group">
