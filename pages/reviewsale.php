@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // Kiểm tra User-Agent có phải từ Zalo không
     $is_zalo = strpos($_SERVER['HTTP_USER_AGENT'], 'Zalo') !== false;
-    $is_zalo = true;
+    $is_zalo = false;
 
     // Nếu là Zalo thì thông báo mở bằng trình duyệt khác
     if ($is_zalo) {
