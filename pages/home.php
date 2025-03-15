@@ -76,6 +76,7 @@ function displayRatingStars($rating) {
 <div class="filter-container">
     <a href="?type=all" class="<?php echo $type == 'all' ? 'active' : ''; ?>">Tất cả</a>
     <a href="?type=review" class="<?php echo $type == 'review' ? 'active' : ''; ?>">Đánh giá tour</a>
+    <a href="?type=review_sale" class="<?php echo $type == 'review_sale' ? 'active' : ''; ?>">Đánh giá tư vấn</a>
     <a href="?type=general" class="<?php echo $type == 'general' ? 'active' : ''; ?>">Giới thiệu tour</a>
     <!-- <a href="?type=tour" class="<?php echo $type == 'tour' ? 'active' : ''; ?>">Tour</a>
     <a href="?type=photo" class="<?php echo $type == 'photo' ? 'active' : ''; ?>">Photo</a> -->
