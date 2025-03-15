@@ -15,6 +15,24 @@ $postsResponse = APICaller::get('/posts',array("page_size"=>20,"page"=>1,'type'=
 $statistics = isset($statistics['data']) ? $statistics['data'] : [];
 $posts = isset($postsResponse['data']['posts']) ? $postsResponse['data']['posts'] : [];
 $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['cursor'] : null;
+
+function displayRatingStars($rating) {
+    $maxRating = 10;
+    // Dùng sao đầy (★) cho rating, sao rỗng (☆) cho phần còn lại
+    $fullStar = '★';
+    $emptyStar = '☆';
+    $output = '';
+
+    // Lặp từ 1 đến $maxRating, hiển thị sao đầy nếu chỉ số nhỏ hơn hoặc bằng rating
+    for ($i = 1; $i <= $maxRating; $i++) {
+        if ($i <= $rating) {
+            $output .= '<span style="color:gold;">' . $fullStar . '</span>';
+        } else {
+            $output .= '<span style="color:#ccc;">' . $emptyStar . '</span>';
+        }
+    }
+    return $output;
+}
 ?>
 <!-- <div class="header">
     <div class="logo">My Community</div>
@@ -66,11 +84,13 @@ $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['
 <div class="feed" id="feed">
     <?php 
     foreach ($posts as $post): 
-        $post['time_ago'] = get_time_ago($post['created_at']);
+        $post['time_ago'] = get_time_ago($post['created_at']);        
         if($post['type'] == 'review'){ 
             include '../includes/post-review.php';
         }else if($post['type'] == 'general'){
             include '../includes/post-general.php';
+        }else if($post['type'] == 'review_sale'){
+            include '../includes/post-sale-review.php';
         }
     endforeach; 
     ?>
