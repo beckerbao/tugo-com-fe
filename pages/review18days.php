@@ -16,7 +16,7 @@ APICaller::init();
     <section class="google-form">
         <h2>Phản hồi đánh giá</h2>
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeN-wiPpjcwwS5nNCRt5BeHIXOHZ6ZxlmFDAZUheLNMh9lxcA/viewform?embedded=true" 
-                width="340" height="1952" frameborder="0" marginheight="0" marginwidth="0" scrolling="no">
+                width="340" height="2952" frameborder="0" marginheight="0" marginwidth="0" scrolling="no">
             Loading…
         </iframe>
     </section>
