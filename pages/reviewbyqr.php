@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     //kiểm tra user-agent nếu có chữ Zalo thì ghi nhận là true
     $is_zalo = strpos($_SERVER['HTTP_USER_AGENT'], 'Zalo') !== false;
-
+    $is_zalo = false;
     // nếu $is_zalo = true thì hiển thị error message "Bạn vui lòng mở bằng trình duyệt khác để gửi đánh giá"
     if ($is_zalo) {
         $error_message = 'Vui lòng mở bằng trình duyệt khác để gửi đánh giá';
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Gửi dữ liệu đến API bằng hàm postMultipart
     $response = APICaller::postMultipart('/review/qr', array_merge($data, ['images' => $files]), [
         'Content-Type: multipart/form-data',
-    ]);    
+    ]);
 
     // Kiểm tra kết quả từ API
     if (isset($response['status']) && $response['status'] === 'success') {
@@ -78,7 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Redirect sang verifyotp.php để xử lý OTP
         echo "<script>
-            window.location.href='verifyotp.php';
+            // window.location.href='verifyotp.php';
+            window.location.href='home.php?notice=review_success';
         </script>";
         exit;
     } else {

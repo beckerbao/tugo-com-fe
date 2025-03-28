@@ -110,4 +110,14 @@ function displayRatingStars($rating) {
 
 <?php include '../includes/navbar.php'; ?>
 <script src="../assets/js/home.js"></script>
+<!--
+    cần 1 script check nếu query string biến notice=review_success thì sẽ alert "Đánh giá thành công"
+-->
+<?php
+if (isset($_GET['notice']) && $_GET['notice'] === 'review_success') {
+    echo "<script>
+        alert('Đánh giá thành công!');
+    </script>";
+}
+?>
 <?php include '../includes/footer.php'; ?>

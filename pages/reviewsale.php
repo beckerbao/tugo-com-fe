@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Chuyển sang verifyotpsale.php
         echo "<script>
-        alert('Đánh giá thành công!');
+        // alert('Đánh giá thành công!');
         window.location.href='home.php?notice=review_success';
         </script>";
         exit;
