@@ -1,6 +1,6 @@
 <?php
     // Chuyển đổi string JSON sang mảng và hiển thị booking_id nếu tồn tại
-    $decodedContent = json_decode($post['content'], true);
+    $decodedContent = json_decode($post['raw_content'], true);
 
     $rating_display = "";
     $rating_number = 10;
