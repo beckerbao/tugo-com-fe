@@ -31,7 +31,7 @@
     <?php 
     $post['images'] = isset($post['images']) ? $post['images'] : [];
     foreach ($post['images'] as $image): 
-        $image = get_image_domain() . $image;                
+        // $image = get_image_domain() . $image;                
     ?>
     <img class="image" src="<?php echo $image?>" alt="Tour Image">
     <?php endforeach; ?>
