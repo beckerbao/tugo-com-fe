@@ -54,6 +54,7 @@ function displayRatingStars($rating) {
     <?php
     }
     ?>
+    <p class="app-download-cta">Cài app, đăng nhập <br/> Nhận voucher ưu đãi cùng Tugo!</p>
     <div class="app-download-links">
         <a href="https://play.google.com/store/apps/details?id=com.tugo.travel.vn&hl=en" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">

@@ -331,3 +331,12 @@ body {
 .app-download-links a:hover img {
     transform: scale(1.05);
 }
+
+.app-download-cta {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 500;
+}
