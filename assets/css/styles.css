@@ -312,3 +312,22 @@ body {
     background-color: #660066;
     color: #fff;
 }
+
+.app-download-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.app-download-links a img {
+    height: 45px;
+    object-fit: contain;
+    display: block;
+}
+
+.app-download-links a:hover img {
+    transform: scale(1.05);
+}

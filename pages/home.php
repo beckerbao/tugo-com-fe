@@ -54,6 +54,14 @@ function displayRatingStars($rating) {
     <?php
     }
     ?>
+    <div class="app-download-links">
+        <a href="https://play.google.com/store/apps/details?id=com.tugo.travel.vn&hl=en" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+        </a>
+        <a href="https://apps.apple.com/vn/app/du-l%E1%BB%8Bch-tugo/id6743953061" target="_blank">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+        </a>
+    </div>
 </div>
 
 <!-- Statistics Section -->
