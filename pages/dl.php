@@ -6,7 +6,7 @@ $fullPath = $query ? $path . '?' . $query : $path;
 $universalLink = "https://review.tugo.com.vn" . $fullPath;
 $deepLink = "tugo://" . ltrim($fullPath, '/');
 $androidIntent = "intent://" . ltrim($fullPath, '/') . "#Intent;scheme=tugo;package=com.tugo.travel.vn;end";
-$iosStore = "https://apps.apple.com/app/idYOUR_APP_ID"; // 🔁 Thay bằng App Store ID thật
+$iosStore = "https://apps.apple.com/app/id6743953061"; // 🔁 Thay bằng App Store ID thật
 $androidStore = "https://play.google.com/store/apps/details?id=com.tugo.travel.vn";
 
 $userAgent = $_SERVER['HTTP_USER_AGENT'];
