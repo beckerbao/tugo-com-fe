@@ -1,0 +1,60 @@
+body {
+    font-family: 'Inter', sans-serif;
+  }
+  .countdown {
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  .gallery-img:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+  }
+  .sticky-booking {
+    position: sticky;
+    top: 100px;
+  }
+  .timeline-dot::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #660066;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #660066;
+  }
+  .timeline-line::before {
+    content: '';
+    position: absolute;
+    left: -31px;
+    top: 16px;
+    bottom: -16px;
+    width: 2px;
+    background-color: #660066;
+  }
+  .tab-active {
+    color: #660066;
+    border-color: #660066;
+  }
+  .date-option:hover {
+    border-color: #660066;
+  }
+  .date-option.selected {
+    border-color: #660066;
+    background-color: rgba(102, 0, 102, 0.05);
+  }
+  .review-progress-bar {
+    height: 6px;
+    background-color: #E0E0E0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .review-progress-bar-fill {
+    height: 100%;
+    background-color: #660066;
+  }
