@@ -107,6 +107,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
       },
     };
   </script>  
+  <?php include '../includes/tracking.php'; ?>
 </head>
 <body class="bg-gray-50">
 <script>
