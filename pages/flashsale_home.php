@@ -129,26 +129,9 @@ function getCountryFlag($name) {
   <?php endforeach; ?> 
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white">
-    <!-- Footer content unchanged -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <a href="http://localhost:8081/" class="flex-shrink-0 flex items-center">
-            <span class="font-['Pacifico'] text-white text-2xl">Tugo</span>
-          </a>
-          <p class="mt-3 text-gray-400 text-sm">Công ty Du lịch và Dịch vụ Tugo<br>Số ĐKKD: 0123456789<br>Địa chỉ: 123 Nguyễn Huệ, Quận 1, TP.HCM</p>
-          <div class="mt-4 flex space-x-4">
-            <a href="#" class="text-gray-400 hover:text-white"><i class="ri-facebook-fill ri-lg"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="ri-instagram-fill ri-lg"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="ri-youtube-fill ri-lg"></i></a>
-          </div>
-        </div>
-        <!-- Other footer columns unchanged -->
-      </div>
-      <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 text-sm">© 2025 Tugo. Tất cả quyền được bảo lưu.</div>
-    </div>
-  </footer>
+  <?php
+    include_once('../includes/flashsale-footer.php');
+    ?>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
