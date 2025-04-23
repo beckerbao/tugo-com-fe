@@ -19,7 +19,7 @@ $response = APICaller::get(
 
 $data = $response['data'] ?? [];
 
-// var_dump($data);
+var_dump($data);
 
 function getCountryFlag($name) {
     $map = [
