@@ -59,7 +59,7 @@ $response = APICaller::get('/flashsale/tour-detail', [
     $minutes = floor((($campaign_end_date - time()) % (60 * 60)) / 60);
     $seconds = floor(($campaign_end_date - time()) % 60);
 
-    $countdown = sprintf('%02d ngày %02d:%02d:%02d', $days, $hours, $minutes, $seconds);
+    $countdown = sprintf('Còn %02d ngày %02d:%02d:%02d là kết thúc', $days, $hours, $minutes, $seconds);
 
     //convert campaign start date to GMT+7
     $campaign_start_date = new DateTime($campaign_start_date);
@@ -73,7 +73,7 @@ $response = APICaller::get('/flashsale/tour-detail', [
     $start_minutes = floor((($campaign_start_date - time()) % (60 * 60)) / 60);
     $start_seconds = floor(($campaign_start_date - time()) % 60);
 
-    $commingText = sprintf('%02d ngày %02d:%02d:%02d', $start_days, $start_hours, $start_minutes, $start_seconds);
+    $commingText = sprintf('Chương trình sẽ bắt đầu vào ngày %s', date('d-m-Y', $campaign_start_date));
 
     //if start date > now then the campaign has started
     $campaign_start = true;
@@ -171,8 +171,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
   </div>
   <div class="absolute bottom-0 left-0 w-full p-6">
     <div class="max-w-7xl mx-auto">
-      <div class="flex items-center">
-        <span class="mr-2 text-white text-2xl">🇰🇷</span>
+      <div class="flex items-center">        
         <h1 class="text-3xl font-bold text-white"><?= htmlspecialchars($tour_name) ?></h1>
       </div>
       <div class="mt-2 flex flex-wrap items-center gap-3 text-white">
@@ -183,11 +182,11 @@ $tour_price_strike = ceil($tour_price * 1.15);
           <?php
           if ($campaign_start) {
           ?>
-            <span>Flash Sale còn <?php echo $countdown; ?></span>
+            <span><?php echo $countdown; ?></span>
           <?php
           }else{
           ?>
-            <span>Flash Sale bắt đầu sau <?php echo $commingText; ?></span>
+            <span><?php echo $commingText; ?></span>
           <?php
           }
           ?>

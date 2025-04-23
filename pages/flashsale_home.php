@@ -58,7 +58,8 @@ $commingHour = floor((($campaign_start_date - time()) % (60 * 60 * 24)) / (60 * 
 $commingMinute = floor((($campaign_start_date - time()) % (60 * 60)) / 60);
 $commingSecond = floor(($campaign_start_date - time()) % 60);
 
-$commingText = sprintf('Chương trình sẽ bắt đầu sau %02d ngày %02d:%02d:%02d', $commingDay, $commingHour, $commingMinute, $commingSecond);
+// $commingText = sprintf('Chương trình sẽ bắt đầu sau %02d ngày %02d:%02d:%02d', $commingDay, $commingHour, $commingMinute, $commingSecond);
+$commingText = "Chương trình sẽ bắt đầu vào ngày " . date('d-m-Y', $campaign_start_date) . ", và kết thúc vào ngày " . date('d-m-Y', $campaign_end_date);
 
 // var_dump($data);
 
