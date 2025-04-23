@@ -195,7 +195,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
         <!-- Tổng quan về tour -->
         <div id="tab-overview" class="bg-white rounded-lg shadow-sm p-6 mb-6">
         <h2 class="text-xl font-bold text-gray-900 mb-4">Tổng quan về tour</h2>
-        <?php echo nl2br(htmlspecialchars($tour_summary)); ?>       
+        <?php echo $tour_summary; ?>       
         </div>
         <!-- Lịch trình chi tiết -->
         <div id="tab-itinerary" class="bg-white rounded-lg shadow-sm p-6 mb-6">
