@@ -17,6 +17,7 @@ $airline = '';
 $tour_name = 'Tour du lịch';
 $tour_duration = '';
 $tour_image = '';
+$tour_summary = '';
 $tour_highlights = [];
 $tour_itinerary = [];
 $tour_services = [];
@@ -37,6 +38,7 @@ $response = APICaller::get('/flashsale/tour-detail', [
     $tour_name = $data['name'] ?? $tour_name;
     $tour_duration = $data['duration'] ?? '';
     $tour_image = $data['image'] ?? '';
+    $tour_summary = $data['summary'] ?? '';
     $tour_highlights = $data['highlights'] ?? [];
     $tour_itinerary = $data['itinerary'] ?? [];
     $tour_services = $data['whats_included'] ?? [];
@@ -193,17 +195,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
         <!-- Tổng quan về tour -->
         <div id="tab-overview" class="bg-white rounded-lg shadow-sm p-6 mb-6">
         <h2 class="text-xl font-bold text-gray-900 mb-4">Tổng quan về tour</h2>
-        <p class="text-gray-700 mb-4">
-            Khám phá Hàn Quốc trong <?= $tour_duration ?> với hành trình đặc sắc qua thủ đô Seoul hiện đại,
-            đảo Nami lãng mạn và công viên giải trí Everland sôi động.
-        </p>
-        <p class="text-gray-700 mb-4">
-            Bạn sẽ được trải nghiệm văn hóa, ẩm thực, và mua sắm tại các điểm đến nổi bật như Cung điện Gyeongbokgung,
-            làng cổ Bukchon Hanok, đảo Nami, Everland, Myeongdong...
-        </p>
-        <p class="text-gray-700 mb-4">
-            Tour đã bao gồm vé máy bay khứ hồi, khách sạn, các bữa ăn theo chương trình, vé tham quan và bảo hiểm.
-        </p>       
+        <?php echo nl2br(htmlspecialchars($tour_summary)); ?>       
         </div>
         <!-- Lịch trình chi tiết -->
         <div id="tab-itinerary" class="bg-white rounded-lg shadow-sm p-6 mb-6">
