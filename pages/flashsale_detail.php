@@ -44,6 +44,11 @@ $response = APICaller::get('/flashsale/tour-detail', [
     $collection_name = $response['data']['tour']['collection_name'] ?? '';
     $campaign_end_date = $response['data']['campaign_info']['end_time'] ?? '';
 
+    //convert campaign end date to GMT+7
+    $campaign_end_date = new DateTime($campaign_end_date);
+    $campaign_end_date->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+    $campaign_end_date = $campaign_end_date->format('Y-m-d H:i:s');
+
     //convert campaign end date to number of days hours minutes and seconds from now
     $campaign_end_date = strtotime($campaign_end_date);
     $days = floor(($campaign_end_date - time()) / (60 * 60 * 24));
