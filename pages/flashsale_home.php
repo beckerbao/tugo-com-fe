@@ -18,7 +18,7 @@ $response = APICaller::get(
 );
 
 $data = $response['data'] ?? [];
-
+$collections = $data['collections'] ?? [];
 // var_dump($data);
 
 function getCountryFlag($name) {
@@ -76,7 +76,8 @@ function getCountryFlag($name) {
   </section>
 
   <!-- Collection Sections -->
-  <?php foreach ($data as $collection): ?>
+  <?php foreach ($collections as $collection): ?>
+    
   <section class="py-12 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="collection-card overflow-hidden rounded-lg border border-gray-200 shadow-sm mb-12">
