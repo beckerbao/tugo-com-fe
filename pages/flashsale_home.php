@@ -94,7 +94,7 @@ function getCountryFlag($name) {
           <?php foreach ($collection['tours'] as $tour): ?>
           <?php
             $tourName   = $tour['tour_name'];
-            $departures = array_slice($tour['departures'], 0, 3);
+            $departures = array_slice($tour['departures'], 0, 4);
           ?>
           <div class="tour-card bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm">
             <div class="relative h-48">
