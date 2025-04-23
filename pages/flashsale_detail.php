@@ -44,6 +44,7 @@ $response = APICaller::get('/flashsale/tour-detail', [
     $tour_services = $data['whats_included'] ?? [];
     $tour_gallery = $data['photo_gallery'] ?? [];
     $collection_name = $response['data']['tour']['collection_name'] ?? '';
+    $campaign_start_date = $response['data']['campaign_info']['start_time'] ?? '';
     $campaign_end_date = $response['data']['campaign_info']['end_time'] ?? '';
 
     //convert campaign end date to GMT+7
@@ -59,6 +60,30 @@ $response = APICaller::get('/flashsale/tour-detail', [
     $seconds = floor(($campaign_end_date - time()) % 60);
 
     $countdown = sprintf('%02d ngày %02d:%02d:%02d', $days, $hours, $minutes, $seconds);
+
+    //convert campaign start date to GMT+7
+    $campaign_start_date = new DateTime($campaign_start_date);
+    $campaign_start_date->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+    $campaign_start_date = $campaign_start_date->format('Y-m-d H:i:s');
+
+    //convert campaign start date to number of days hours minutes and seconds from now
+    $campaign_start_date = strtotime($campaign_start_date);
+    $start_days = floor(($campaign_start_date - time()) / (60 * 60 * 24));
+    $start_hours = floor((($campaign_start_date - time()) % (60 * 60 * 24)) / (60 * 60));
+    $start_minutes = floor((($campaign_start_date - time()) % (60 * 60)) / 60);
+    $start_seconds = floor(($campaign_start_date - time()) % 60);
+
+    $commingText = sprintf('%02d ngày %02d:%02d:%02d', $start_days, $start_hours, $start_minutes, $start_seconds);
+
+    //if start date > now then the campaign has started
+    $campaign_start = true;
+    if ($campaign_start_date > time()) {
+      $campaign_start = false;
+    }
+    //force campaign start by GET[force_start]
+    if (isset($_GET['force_start']) && $_GET['force_start'] === 'true') {
+      $campaign_start = true;
+    }
     
 
     foreach ($tour_highlights as $hl) {
@@ -77,6 +102,7 @@ $departure = $departures[0] ?? [
   'available_slots' => 10
 ];
 $departure_date = date('d/m/Y', strtotime($departure['departure_date']));
+$available_slots = $departure['available_slots'];
 $tour_price = $departure['price'];
 $tour_price_strike = ceil($tour_price * 1.15);
 ?>
@@ -154,7 +180,17 @@ $tour_price_strike = ceil($tour_price * 1.15);
         <div class="flex items-center"><i class="ri-time-line mr-1"></i> <?= $tour_duration ?></div>
         <div class="inline-flex items-center px-3 py-1 bg-primary text-white text-sm font-medium rounded-full countdown">
           <i class="ri-flashlight-line mr-1"></i>
-          <span>Flash Sale còn <?php echo $countdown; ?></span>
+          <?php
+          if ($campaign_start) {
+          ?>
+            <span>Flash Sale còn <?php echo $countdown; ?></span>
+          <?php
+          }else{
+          ?>
+            <span>Flash Sale bắt đầu sau <?php echo $commingText; ?></span>
+          <?php
+          }
+          ?>
         </div>
       </div>
     </div>
@@ -169,7 +205,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
         <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
             <div class="flex flex-wrap gap-4 text-sm">
             <div class="flex items-center"><i class="ri-calendar-line text-primary mr-2"></i> Khởi hành: <strong><?= $departure_date ?></strong></div>
-            <div class="flex items-center"><i class="ri-group-line text-primary mr-2"></i> Số chỗ còn nhận: <strong><?= $departure['available_slots'] ?></strong></div>            
+            <div class="flex items-center"><i class="ri-group-line text-primary mr-2"></i> Số chỗ còn nhận: <strong><?= $available_slots ?></strong></div>            
             </div>
             
             <div class="mt-6 flex items-center justify-between">
@@ -297,6 +333,9 @@ $tour_price_strike = ceil($tour_price * 1.15);
                   </div>
                 </div>                
               </div>
+            <?php
+            if ($campaign_start){              
+            ?>
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="contact_name">Họ và tên</label>
                 <input type="text" id="contact_name" name="contact_name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-primary" placeholder="Nhập họ tên của bạn">
@@ -312,8 +351,11 @@ $tour_price_strike = ceil($tour_price * 1.15);
                 </div>            
                 <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-200">
                     <span>Tổng cộng</span>
-                    <span class="text-primary" id="total-price"><?= number_format(($tour_price)) ?>₫</span>
+                    <span class="text-primary" id="total-price"><?= number_format(($tour_price)) ?>₫</span>                    
                 </div>
+                <div class="text-sm text-gray-600 mt-1">
+                    Giá chưa bao gồm TIP
+                  </div>
             </div>
 
             <button id="book-button" class="w-full bg-primary text-white py-3 px-4 rounded-button font-medium hover:bg-primary/90 flex justify-center items-center gap-2">
@@ -324,6 +366,19 @@ $tour_price_strike = ceil($tour_price * 1.15);
                 <span id="button-text">Đặt ngay</span>
             </button>
             <p class="text-sm text-gray-500 text-center mt-2">Không mất phí khi đặt, chỉ thanh toán khi xác nhận</p>
+            <?php
+            }else{
+            ?>
+            <button id="not start" class="w-full bg-primary text-white py-3 px-4 rounded-button font-medium hover:bg-primary/90 flex justify-center items-center gap-2">
+                <svg id="spinner" class="animate-spin hidden h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                </svg>
+                <span id="button-text">Chương trình chưa bắt đầu</span>
+            </button>
+            <?php        
+            }
+            ?>
         </div>
         </div>
     </div>

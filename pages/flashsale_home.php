@@ -18,7 +18,48 @@ $response = APICaller::get(
 );
 
 $data = $response['data'] ?? [];
+$campaign_start_date = $data['campaign_info']['start_time'] ?? '';
+$campaign_end_date = $data['campaign_info']['end_time'] ?? '';
 $collections = $data['collections'] ?? [];
+
+//convert start date to gmt+7
+$campaign_start_date = date('Y-m-d H:i:s', strtotime($campaign_start_date) + 7 * 3600);
+//convert end date to gmt+7
+$campaign_end_date = date('Y-m-d H:i:s', strtotime($campaign_end_date) + 7 * 3600);
+//if start date <= now then the campaign has started
+$campaign_start = true;
+if (strtotime($campaign_start_date) > time()) {
+  $campaign_start = false;
+}
+
+$campaign_end_date = strtotime($campaign_end_date);
+//calculate remaining day, hour, minute, second from campaign end date to current date
+$remainingDay = floor(($campaign_end_date - time()) / (60 * 60 * 24));
+$remainingHour = floor((($campaign_end_date - time()) % (60 * 60 * 24)) / (60 * 60));
+$remainingMinute = floor((($campaign_end_date - time()) % (60 * 60)) / 60);
+$remainingSecond = floor(($campaign_end_date - time()) % 60);
+
+//remaining text, if remaining day > 0 then remaining day, else remaining hour. if remaining hour > 0 then remaining hour, else remaining minute. if remaining minute > 0 then remaining minute, else remaining second
+if ($remainingDay > 0) {
+  $remainingText = $remainingDay . ' ngày';
+} elseif ($remainingHour > 0) {
+  $remainingText = $remainingHour . ' giờ';
+} elseif ($remainingMinute > 0) {
+  $remainingText = $remainingMinute . ' phút';
+} else {
+  $remainingText = $remainingSecond . ' giây';
+}
+$remainingText = sprintf('Chỉ còn %02d ngày %02d:%02d:%02d là kết thúc', $remainingDay, $remainingHour, $remainingMinute, $remainingSecond);
+
+$campaign_start_date = strtotime($campaign_start_date);
+//calculate comming day, hour, minute, second from campaign start date to current date
+$commingDay = floor(($campaign_start_date - time()) / (60 * 60 * 24));
+$commingHour = floor((($campaign_start_date - time()) % (60 * 60 * 24)) / (60 * 60));
+$commingMinute = floor((($campaign_start_date - time()) % (60 * 60)) / 60);
+$commingSecond = floor(($campaign_start_date - time()) % 60);
+
+$commingText = sprintf('Chương trình sẽ bắt đầu sau %02d ngày %02d:%02d:%02d', $commingDay, $commingHour, $commingMinute, $commingSecond);
+
 // var_dump($data);
 
 function getCountryFlag($name) {
@@ -69,7 +110,17 @@ function getCountryFlag($name) {
         <h1 class="text-3xl md:text-4xl font-bold text-white">FLASH SALE TOUR GIÁ SỐC</h1>
         <p class="mt-2 text-lg text-white/90">Ưu đãi số lượng có hạn – chỉ áp dụng cho các ngày khởi hành sắp tới</p>
         <div class="mt-4 inline-flex items-center px-4 py-2 bg-primary text-white rounded-full countdown">
-          <i class="ri-time-line ri-lg mr-2"></i><span class="font-semibold">Còn 2 ngày</span>
+          <?php
+          if ($campaign_start) {
+          ?>
+            <i class="ri-time-line ri-lg mr-2"></i><span class="font-semibold"><?php echo $remainingText ?></span>
+          <?php
+          } else {
+          ?>
+            <i class="ri-time-line ri-lg mr-2"></i><span class="font-semibold"><?php echo $commingText ?></span>
+          <?php
+          }
+          ?>
         </div>
       </div>
     </div>
