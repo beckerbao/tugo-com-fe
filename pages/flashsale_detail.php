@@ -112,6 +112,19 @@ $tour_price_strike = ceil($tour_price * 1.15);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= htmlspecialchars($tour_name) ?> | Tugo</title>
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Flash Sale 5.5 - Mua Tour Giá Gốc">
+  <meta property="og:description" content="Chỉ trong ngày 5.5! Đặt tour với giá gốc, số lượng có hạn.">
+  <meta property="og:image" content="https://review.tugo.com.vn/assets/images/flashsale-5-5.jpg">
+  <meta property="og:url" content="https://review.tugo.com.vn/pages/flashsale_detail.php">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Tags (tùy chọn) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Flash Sale 5.5 - Mua Tour Giá Gốc">
+  <meta name="twitter:description" content="Chỉ trong ngày 5.5! Đặt tour với giá gốc, số lượng có hạn.">
+  <meta name="twitter:image" content="https://yourdomain.com/images/flashsale-5-5.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
