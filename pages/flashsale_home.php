@@ -140,8 +140,8 @@ function getIdCodeByName($name) {
   <section class="hero-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       <div class="w-full max-w-xl bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
-        <h1 class="text-3xl md:text-4xl font-bold text-white">FLASH SALE TOUR GIÁ SỐC</h1>
-        <p class="mt-2 text-lg text-white/90">Ưu đãi số lượng có hạn – chỉ áp dụng cho các ngày khởi hành sắp tới</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-white">5.5 Sale Chào Hè</h1>
+        <p class="mt-2 text-lg text-white/90">Ưu đãi số lượng có hạn và có thể kết thúc sớm khi hết chỗ</p>
         <div class="mt-4 inline-flex items-center px-4 py-2 bg-primary text-white rounded-full countdown">
           <?php
           if ($campaign_start) {
