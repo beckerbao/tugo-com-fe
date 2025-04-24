@@ -313,16 +313,23 @@ $tour_price_strike = ceil($tour_price * 1.15);
                 <label class="block text-sm font-medium text-gray-700 mb-1">Chọn ngày khởi hành</label>
                 <div class="space-y-2">
                     <?php foreach ($departures as $i => $dep): ?>
-                    <div class="date-option <?= $i === 0 ? 'selected' : '' ?> border border-gray-200 rounded p-3 flex justify-between items-center cursor-pointer" 
-                    data-date="<?= $dep['departure_date'] ?>"
-                    data-price="<?= $dep['price'] ?>"
-                    >
-                        <div>
-                        <div class="font-medium"><?= date('d/m/Y', strtotime($dep['departure_date'])) ?></div>
-                        <div class="text-sm text-gray-500">Còn <?= $dep['available_slots'] ?> chỗ</div>
-                        </div>
-                        <div class="text-primary font-bold"><?= number_format($dep['price']) ?>₫</div>
-                    </div>
+                    <?php
+                    //if available slots > 0 then show
+                    if ($dep['available_slots'] > 0) {
+                    ?>
+                      <div class="date-option <?= $i === 0 ? 'selected' : '' ?> border border-gray-200 rounded p-3 flex justify-between items-center cursor-pointer" 
+                      data-date="<?= $dep['departure_date'] ?>"
+                      data-price="<?= $dep['price'] ?>"
+                      >
+                          <div>
+                          <div class="font-medium"><?= date('d/m/Y', strtotime($dep['departure_date'])) ?></div>
+                          <div class="text-sm text-gray-500">Còn <?= $dep['available_slots'] ?> chỗ</div>
+                          </div>
+                          <div class="text-primary font-bold"><?= number_format($dep['price']) ?>₫</div>
+                      </div>
+                    <?php
+                    }
+                    ?>
                     <?php endforeach; ?>
                 </div>
             </div>
