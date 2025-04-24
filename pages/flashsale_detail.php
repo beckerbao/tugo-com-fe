@@ -212,6 +212,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
                 <span class="text-gray-500 line-through text-lg"><?= number_format($tour_price_strike) ?>₫</span>
                 <div class="text-2xl font-bold text-primary"><?= number_format($tour_price) ?>₫</div>
                 <span class="text-sm text-gray-500">Giá/khách (đã bao gồm thuế VAT)</span>
+                <div class="text-sm text-gray-500">Giá chưa bao gồm TIP</div>
             </div>            
             </div>
         </div>
