@@ -5,7 +5,7 @@
             <a href="../pages/flashsale_home.php" class="flex-shrink-0 flex items-center">
                 <img src="../assets/images/tugologo.png" alt="Tugo Logo" class="h-8">
             </a>          
-        </div>
+        </div>        
         <!-- <div class="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
           <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none"><i class="ri-search-line ri-lg"></i></button>
           <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none"><i class="ri-heart-line ri-lg"></i></button>
@@ -16,4 +16,22 @@
         </div>
       </div>
     </div>
+    <?php
+    //check current page is flashsale_home or not, if yes show the button below
+    if (basename($_SERVER['PHP_SELF']) == 'flashsale_home.php') {
+
+    ?>
+    <div class="bg-white py-4 shadow-md sticky top-[calc(100vh-60px)] z-30">
+      <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-4">
+        <button onclick="scrollToDestination('tour_han_quoc')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Hàn Quốc</button>
+        <button onclick="scrollToDestination('tour_nhat_ban')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Nhật Bản</button>
+        <button onclick="scrollToDestination('tour_chau_au')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Châu Âu</button>
+        <button onclick="scrollToDestination('tour_dai_loan')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Đài Loan</button>
+        <button onclick="scrollToDestination('tour_trung_quoc')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Trung Quốc</button>
+        <!-- Thêm các điểm đến khác nếu cần -->
+      </div>
+    </div>
+    <?php
+    }
+    ?>
   </nav>

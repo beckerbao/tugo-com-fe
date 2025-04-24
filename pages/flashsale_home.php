@@ -73,6 +73,19 @@ function getCountryFlag($name) {
     ];
     return $map[$name] ?? '';
 }
+
+//function get id by name
+function getIdCodeByName($name) {
+    $map = [
+        'Tour Đài Loan'   => 'tour_dai_loan',
+        'Tour Hàn Quốc'   => 'tour_han_quoc',
+        'Tour Nhật Bản'   => 'tour_nhat_ban',
+        'Tour Châu Á'    => 'tour_chau_a',
+        'Tour Trung Quốc' => 'tour_trung_quoc',
+        'Tour Châu Âu' => 'tour_chau_au',
+    ];
+    return $map[$name] ?? '';
+}
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0046)http://localhost:8081/pages/flashsale_home.php -->
@@ -110,14 +123,19 @@ function getCountryFlag($name) {
         }
       }
     };
+    function scrollToDestination(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   </script>
   <style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');</style>
   <?php include '../includes/tracking.php'; ?>
 </head>
 <body class="bg-gray-50">
   <!-- Navbar -->
-  <?php include '../includes/flashsale-header.php'; ?>
-
+  <?php include '../includes/flashsale-header.php'; ?>    
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
@@ -138,13 +156,13 @@ function getCountryFlag($name) {
           ?>
         </div>
       </div>
-    </div>
+    </div>    
   </section>
 
   <!-- Collection Sections -->
   <?php foreach ($collections as $collection): ?>
     
-  <section class="py-12 bg-white">
+  <section class="py-12 bg-white" id="<?php echo getIdCodeByName($collection['collection_name']) ?>">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="collection-card overflow-hidden rounded-lg border border-gray-200 shadow-sm mb-12">
         <div class="relative h-48 md:h-64">

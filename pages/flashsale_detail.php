@@ -235,6 +235,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
         <div class="bg-white rounded-lg shadow-sm mb-6 sticky top-16 z-40">
             <div class="flex overflow-x-auto scrollbar-hide">
                 <button data-target="tab-overview" class="tab-active flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap">Tổng quan</button>
+                <button data-target="tab-booking" class="tab-active flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap">Đặt tour</button>
                 <button data-target="tab-itinerary" class="flex-1 px-4 py-3 text-center font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 whitespace-nowrap">Lịch trình</button>
                 <button data-target="tab-attractions" class="flex-1 px-4 py-3 text-center font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 whitespace-nowrap">Điểm tham quan</button>
                 <button data-target="tab-includes" class="flex-1 px-4 py-3 text-center font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 whitespace-nowrap">Dịch vụ bao gồm</button>
@@ -305,7 +306,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
     <div class="w-full lg:w-1/3">            
         <!-- Đặt tour ngay -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div id="tab-booking" class="bg-white rounded-lg shadow-sm p-6 mb-6">
             <h2 class="text-lg font-bold text-gray-900 mb-4">Đặt tour ngay</h2>
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Chọn ngày khởi hành</label>
