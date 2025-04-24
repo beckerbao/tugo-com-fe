@@ -115,7 +115,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Flash Sale 5.5 - Mua Tour Giá Gốc">
   <meta property="og:description" content="Chỉ trong ngày 5.5! Đặt tour với giá gốc, số lượng có hạn.">
-  <meta property="og:image" content="https://review.tugo.com.vn/assets/images/flashsale-5-5.jpg">
+  <meta property="og:image" content="https://review.tugo.com.vn/assets/images/flash55.png">
   <meta property="og:url" content="https://review.tugo.com.vn/pages/flashsale_detail.php">
   <meta property="og:type" content="website">
 
