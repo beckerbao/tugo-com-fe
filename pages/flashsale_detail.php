@@ -250,6 +250,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
         <!-- Lịch trình chi tiết -->
         <div id="tab-itinerary" class="bg-white rounded-lg shadow-sm p-6 mb-6">
         <h2 class="text-xl font-bold text-gray-900 mb-4">Lịch trình chi tiết</h2>
+        <p class="text-sm italic text-red-500 mb-4">(tuỳ theo ngày khởi hành có thể sẽ khác nhau)</p>
         <?php foreach ($tour_itinerary as $i => $day): ?>
             <div class="relative pl-10 pb-8">
             <div class="timeline-dot relative"></div>
