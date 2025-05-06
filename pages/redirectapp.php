@@ -40,7 +40,7 @@
     fallbackLink.href = deepLink;
 
     // Thử redirect ngay
-    window.location.href = deepLink;
+    // window.location.href = deepLink;
 
     // Nếu không có app → user vẫn thấy fallback nút
   </script>
