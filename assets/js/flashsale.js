@@ -19,11 +19,32 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function updatePrice() {
       const qty = parseInt(qtyInput.value, 10) || 1;
-      const currentPrice = getSelectedPrice();
-      document.getElementById('current-qty').textContent = qty;
-      subtotalText.innerHTML = formatCurrency(currentPrice) + ' x <span id="current-qty">' + qty + '</span>';
-      totalText.textContent = formatCurrency(currentPrice * qty);
+      const basePrice = getSelectedPrice();
+    
+      // Tính tổng số tiền CẦN TRỪ nếu người dùng bỏ tick dịch vụ tặng kèm
+      let removedAddons = 0;
+      document.querySelectorAll(".addon-checkbox:not(:checked)").forEach(el => {
+        removedAddons += parseInt(el.dataset.price);
+      });
+    
+      // Tính tổng giảm giá theo đối tượng
+      let discounts = 0;
+      document.querySelectorAll(".discount-checkbox:checked").forEach(el => {
+        discounts += parseInt(el.dataset.discount);
+      });
+    
+      const unitPrice = basePrice - removedAddons - discounts;
+    
+      // Cập nhật hiển thị
+      document.getElementById("current-qty").textContent = qty;
+      subtotalText.innerHTML = formatCurrency(unitPrice) + ' x <span id="current-qty">' + qty + '</span>';
+      totalText.textContent = formatCurrency(unitPrice * qty);
     }
+
+    document.querySelectorAll(".addon-checkbox, .discount-checkbox").forEach(el => {
+      el.addEventListener("change", updatePrice);
+    });
+    qtyInput.addEventListener("change", updatePrice);
 
     minusBtn.addEventListener('click', () => {
         let current = parseInt(qtyInput.value, 10);
@@ -51,6 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const spinner = document.getElementById("spinner");
       const buttonText = document.getElementById("button-text");
 
+      const selectedAddons = Array.from(document.querySelectorAll(".addon-checkbox"))
+      .filter(el => el.checked)
+      .map(el => ({
+        name: el.dataset.name,
+        amount: parseInt(el.dataset.price)
+      }));
+
+    const selectedDiscounts = Array.from(document.querySelectorAll(".discount-checkbox"))
+      .filter(el => el.checked)
+      .map(el => ({
+        name: el.dataset.name,
+        amount: parseInt(el.dataset.discount)
+      }));
+
       if (!selectedOption || !contactName || !contactPhone) {
         alert("Vui lòng nhập đầy đủ tên, số điện thoại và chọn ngày khởi hành.");
         return;
@@ -66,7 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
         name: contactName,
         phone: contactPhone,
         quantity: quantity,
-        price: selectedPrice
+        price: selectedPrice,
+        addons: selectedAddons,               // ✅ dạng object
+        discount_groups: selectedDiscounts    // ✅ dạng object
       };
       
       spinner.classList.remove("hidden");

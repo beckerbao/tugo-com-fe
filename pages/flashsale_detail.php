@@ -235,7 +235,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
         <div class="bg-white rounded-lg shadow-sm mb-6 sticky top-16 z-40">
             <div class="flex overflow-x-auto scrollbar-hide">
                 <button data-target="tab-overview" class="tab-active flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap">Tổng quan</button>
-                <button data-target="tab-booking" class="tab-active flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap">Đặt tour</button>
+                <button data-target="tab-booking" class="flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap">Đặt tour</button>
                 <button data-target="tab-itinerary" class="flex-1 px-4 py-3 text-center font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 whitespace-nowrap">Lịch trình</button>
                 <button data-target="tab-attractions" class="flex-1 px-4 py-3 text-center font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 whitespace-nowrap">Điểm tham quan</button>
                 <button data-target="tab-includes" class="flex-1 px-4 py-3 text-center font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 whitespace-nowrap">Dịch vụ bao gồm</button>
@@ -355,6 +355,82 @@ $tour_price_strike = ceil($tour_price * 1.15);
                   </div>
                 </div>                
               </div>
+              <!-- Dịch vụ tặng kèm -->
+              <div class="mb-4 space-y-3">
+                <div class="text-gray-800 font-semibold mb-1">
+                  Tặng kèm theo gói:
+                  <div class="text-sm text-red-500 font-normal">(bạn có thể bỏ ra nếu chưa cần)</div>
+                </div>
+                <div class="space-y-2">
+                  <label class="flex justify-between items-center text-gray-700">
+                    <div class="flex items-center">
+                      <input type="checkbox" class="mr-2 addon-checkbox" data-price="0" data-name="Phí thanh toán thẻ 2%" checked>
+                      Phí thanh toán thẻ 2%
+                    </div>
+                    <span class="font-medium">+0₫</span>
+                  </label>
+                  <label class="flex justify-between items-center text-gray-700">
+                    <div class="flex items-center">
+                      <input type="checkbox" class="mr-2 addon-checkbox" data-price="0" data-name="Hoàn 100% nếu rớt VISA" checked>
+                      Hoàn 100% nếu rớt VISA
+                    </div>
+                    <span class="font-medium">+0₫</span>
+                  </label>
+                  <label class="flex justify-between items-center text-gray-700">
+                    <div class="flex items-center">
+                      <input type="checkbox" class="mr-2 addon-checkbox" data-price="1000000" data-name="SIM Data du lịch" checked>
+                      SIM Data du lịch
+                    </div>
+                    <span class="font-medium">+1.000.000₫</span>
+                  </label>
+                  <label class="flex justify-between items-center text-gray-700">
+                    <div class="flex items-center">
+                      <input type="checkbox" class="mr-2 addon-checkbox" data-price="1200000" data-name="Phòng chờ thương gia Tân Sơn Nhất" checked>
+                      Phòng chờ thương gia Tân Sơn Nhất
+                    </div>
+                    <span class="font-medium">+1.200.000₫</span>
+                  </label>
+                  <label class="flex justify-between items-center text-gray-700">
+                    <div class="flex items-center">
+                      <input type="checkbox" class="mr-2 addon-checkbox" data-price="3000000" data-name="Dịch vụ làm VISA" checked>
+                      Dịch vụ làm VISA
+                    </div>
+                    <span class="font-medium">+3.000.000₫</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Chọn đối tượng -->
+              <div class="mb-4 space-y-3">
+                <div class="text-gray-800 font-semibold mb-1">
+                  Chọn đối tượng giảm giá:
+                  <div class="text-sm text-red-500 font-normal">(chọn nhóm đối tượng phù hợp))</div>
+                </div>
+                <div class="space-y-2">
+                  <label class="flex justify-between items-center text-gray-700">
+                    <div class="flex items-center">
+                      <input type="checkbox" class="mr-2 discount-checkbox" data-discount="500000" data-name="Trên 40 tuổi">
+                      Trên 40 tuổi
+                    </div>
+                    <span class="font-medium">–500.000₫</span>
+                  </label>
+                  <label class="flex justify-between items-center text-gray-700">
+                    <div class="flex items-center">
+                      <input type="checkbox" class="mr-2 discount-checkbox" data-discount="1000000"  data-name="Trên 50 tuổi">
+                      Trên 50 tuổi
+                    </div>
+                    <span class="font-medium">–1.000.000₫</span>
+                  </label>
+                  <label class="flex justify-between items-center text-gray-700">
+                    <div class="flex items-center">
+                      <input type="checkbox" class="mr-2 discount-checkbox" data-discount="800000"  data-name="Giáo viên">
+                      Giáo viên
+                    </div>
+                    <span class="font-medium">–800.000₫</span>
+                  </label>
+                </div>
+              </div>
+
             <?php
             if ($campaign_start){              
             ?>
@@ -370,7 +446,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
                 <div class="flex justify-between mb-2">
                     <span class="text-gray-600">Giá tour cơ bản</span>
                     <span class="font-medium" id="subtotal-text" data-base="<?= $tour_price ?>"><?= number_format($tour_price) ?>₫ x <span id="current-qty">1</span></span>
-                </div>            
+                </div>                            
                 <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-200">
                     <span>Tổng cộng</span>
                     <span class="text-primary" id="total-price"><?= number_format(($tour_price)) ?>₫</span>                    
