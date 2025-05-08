@@ -136,7 +136,6 @@ $tour_price_strike = ceil($tour_price * 1.15);
     rel="stylesheet"
   />
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-  <script src="../assets/js/flashsale.js"></script>
   <link href="../assets/css/flashsale-detail.css" rel="stylesheet">
   <script>
     tailwind.config = {
@@ -159,7 +158,44 @@ $tour_price_strike = ceil($tour_price * 1.15);
 <script>
   window.TOUR_ID = <?php echo $tour_id ?>;
   window.API_URL = "<?php echo APICaller::getBaseUrl() ?: 'http://localhost:9090/api/v1/flashsale/booking' ?>";
+  window.API_GO_URL = "<?php echo APICaller::getBaseGoUrl() ?: 'http://localhost:9090' ?>";
 </script>
+<style>
+/* Overlay đen mờ */
+#loadingOverlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Khối nội dung loading */
+#loadingContent {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+#loadingIcon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #800080;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Hiệu ứng quay */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
 <!-- Navbar -->
 <?php include '../includes/flashsale-header.php'; ?>
 
@@ -221,11 +257,26 @@ $tour_price_strike = ceil($tour_price * 1.15);
             </div>
             
             <div class="mt-6 flex items-center justify-between">
-            <div>
-                <span class="text-gray-500 line-through text-lg"><?= number_format($tour_price_strike) ?>₫</span>
-                <div class="text-2xl font-bold text-primary"><?= number_format($tour_price) ?>₫</div>
-                <span class="text-sm text-gray-500">Giá/khách (đã bao gồm thuế VAT)</span>
-                <div class="text-sm text-gray-500">Giá chưa bao gồm TIP</div>
+              <div>
+                  <span class="text-gray-500 line-through text-lg"><?= number_format($tour_price_strike) ?>₫</span>
+                  <div class="text-2xl font-bold text-primary"><?= number_format($tour_price) ?>₫</div>
+                  <span class="text-sm text-gray-500">Giá/khách (đã bao gồm thuế VAT)</span>
+                  <div class="text-sm text-gray-500">Giá chưa bao gồm TIP</div>
+              </div>
+              <div style="margin-top: 10px;">
+                <button 
+                    id="customTourBtn"
+                    style="background-color: #800080; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                    Thiết kế tour riêng
+                </button>
+                <!-- <p id="customTourStatus" style="margin-top: 10px; color: #555;"></p> -->
+            </div>
+            <!-- Overlay loading -->
+            <div id="loadingOverlay">
+                <div id="loadingContent">
+                    <div id="loadingIcon"></div>
+                    <div style="font-size: 18px; font-weight: bold;">Hệ thống đang xử lý...</div>
+                </div>
             </div>            
             </div>
         </div>
@@ -406,7 +457,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
     </div>
 </div>
 </div>
-
+<script src="../assets/js/flashsale.js"></script>
 <!-- Footer -->
 <?php
 include_once('../includes/flashsale-footer.php');

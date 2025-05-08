@@ -1,6 +1,7 @@
 <?php
 class APICaller {
     private static $baseUrl;// = 'http://host.docker.internal:9090/api/v1'; // Thay bằng URL API chính thức của bạn
+    private static $baseGoUrl;
     // private static $baseUrl = 'https://edd2-14-160-150-11.ngrok-free.app/api/v1';
 
     // Load base URL from .env file
@@ -8,6 +9,7 @@ class APICaller {
         if (file_exists(__DIR__ . '/../.env')) {
             $env = parse_ini_file(__DIR__ . '/../.env');
             self::$baseUrl = $env['BASE_URL'] ?? '';
+            self::$baseGoUrl = $env['DOMAIN_URL'] ?? '';
         } else {
             throw new Exception(".env file not found.");
         }
@@ -16,6 +18,11 @@ class APICaller {
     //hàm get base url
     public static function getBaseUrl() {
         return self::$baseUrl;
+    }
+
+    //hàm get base go url
+    public static function getBaseGoUrl() {
+        return self::$baseGoUrl;
     }
 
     // Hàm GET

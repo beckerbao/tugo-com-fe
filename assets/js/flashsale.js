@@ -190,3 +190,35 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", function () {
   
 });
+
+document.getElementById('customTourBtn').addEventListener('click', async function() {
+  const overlay = document.getElementById('loadingOverlay');
+  overlay.style.display = 'flex';
+
+  try {
+      const response = await fetch( window.API_GO_URL + '/api/v1/custom-tours/from-app-tour', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+              user_id: 12,
+              tour_id: 1062228724,
+              departure_date: '2025-06-15T00:00:00Z',
+              expected_guests: 2
+          })
+      });
+
+      const result = await response.json();
+
+      if (result.status === 'success') {
+          const customTourId = result.data.custom_tour_id;
+          window.location.href = `https://customtour.tugo.com.vn/?id=${customTourId}`;
+      } else {
+          overlay.style.display = 'none';
+          alert('Đã có lỗi xảy ra: ' + (result.message || 'Không rõ lỗi.'));
+      }
+  } catch (error) {
+      overlay.style.display = 'none';
+      alert('Lỗi kết nối đến hệ thống.');
+      console.error(error);
+  }
+});
