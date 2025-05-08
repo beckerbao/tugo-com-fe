@@ -201,7 +201,7 @@ document.getElementById('customTourBtn').addEventListener('click', async functio
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
               user_id: 12,
-              tour_id: 1062228724,
+              tour_id: window.TOUR_ID,
               departure_date: '2025-06-15T00:00:00Z',
               expected_guests: 2
           })
