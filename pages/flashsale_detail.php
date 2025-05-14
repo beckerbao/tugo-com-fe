@@ -459,7 +459,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
     </div>
 </div>
 </div>
-<script src="../assets/js/flashsale.js?v3"></script>
+<script src="../assets/js/flashsale.js?v3.1"></script>
 <!-- Footer -->
 <?php
 include_once('../includes/flashsale-footer.php');

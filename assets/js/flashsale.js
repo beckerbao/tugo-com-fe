@@ -140,6 +140,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Countdown timer
     function updateCountdown() {
       const countdownElement = document.querySelector(".countdown span");
+      //if countdownElement is null, return
+      if (!countdownElement) {
+        return;
+      }
       const countdownText = countdownElement.textContent;
       const match = countdownText.match(/còn (\d+) ngày (\d+):(\d+):(\d+)/i);
       if (match) {

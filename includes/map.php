@@ -36,6 +36,7 @@ document.getElementById('map-popup').addEventListener('click', function(event) {
 });
 
 // let mapInitialized = false;
+
 // function initMap() {
 //   if (mapInitialized) return;
 //   const map = L.map('osm-map').setView([33.8698439, 151.2082848], 5);
@@ -72,25 +73,26 @@ document.getElementById('map-popup').addEventListener('click', function(event) {
 let mapInitialized = false;
 
 function initMapWithPoints(points) {
-if (mapInitialized) return;
-if (!points.length) return;
+    if (mapInitialized) return;
+    if (!points.length) return;
 
-const center = [parseFloat(points[0].lat), parseFloat(points[0].lng)];
-const map = L.map('osm-map').setView(center, 5);
+    const center = [parseFloat(points[0].lat), parseFloat(points[0].lng)];
+    const map = L.map('osm-map').setView(center, 5);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
-points.forEach(point => {
-    if (point.lat && point.lng) {
-    L.marker([parseFloat(point.lat), parseFloat(point.lng)])
-        .addTo(map)
-        .bindPopup(point.name);
-    }
-});
+    points.forEach(point => {
+        if (point.lat && point.lng) {
+        L.marker([parseFloat(point.lat), parseFloat(point.lng)])
+            .addTo(map)
+            .bindPopup(point.name)
+            .openPopup();
+        }
+    });
 
-mapInitialized = true;
+    mapInitialized = true;
 }
 </script>
 <?php
@@ -108,20 +110,27 @@ if (
     is_array($response['data']['locations'])
 ) {
     $locations = $response['data']['locations'];
-    echo "<script>\n";
-    echo "const points = [\n";
+    ?> 
+    <script>
 
-    foreach ($locations as $location) {
-        $name = addslashes($location['name']);
-        $lat = $location['latitude'];
-        $lng = $location['longitude'];
+    function initMap(){    
+<?php
+        echo "const points = [\n";
 
-        echo "  { lat: \"$lat\", lng: \"$lng\", name: \"$name\" },\n";
+        foreach ($locations as $location) {
+            $name = addslashes($location['name']);
+            $lat = $location['latitude'];
+            $lng = $location['longitude'];
+
+            echo "  { lat: \"$lat\", lng: \"$lng\", name: \"$name\" },\n";
+        }
+
+        echo "];\n";
+        echo "initMapWithPoints(points);\n";
+?>
     }
-
-    echo "];\n";
-    echo "initMapWithPoints(points);\n";
-    echo "</script>\n";
+    </script>
+<?php    
 } else {
     echo "<script>console.error('Không thể lấy danh sách địa điểm');</script>";
 }
