@@ -28,7 +28,7 @@ $campaign_start_date = date('Y-m-d H:i:s', strtotime($campaign_start_date) + 7 *
 $campaign_end_date = date('Y-m-d H:i:s', strtotime($campaign_end_date) + 7 * 3600);
 //if start date <= now then the campaign has started
 $campaign_start = true;
-if (strtotime($campaign_start_date) > time()) {
+if (strtotime($campaign_start_date) > time() || strtotime($campaign_end_date) < time()) {
   $campaign_start = false;
 }
 
@@ -150,7 +150,7 @@ function getIdCodeByName($name) {
           <?php
           } else {
           ?>
-            <i class="ri-time-line ri-lg mr-2"></i><span class="font-semibold"><?php echo $commingText ?></span>
+            <!-- <i class="ri-time-line ri-lg mr-2"></i><span class="font-semibold"><?php echo $commingText ?></span> -->
           <?php
           }
           ?>

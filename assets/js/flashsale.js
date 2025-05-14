@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePrice(); // Initial
 
     //======================
-    const bookButton = document.querySelector("button.bg-primary");
+    // const bookButton = document.querySelector("button.bg-primary");
+    const bookButton = document.getElementById("bookButton");
 
     bookButton.addEventListener("click", async function () {
       const selectedOption = document.querySelector(".date-option.selected");

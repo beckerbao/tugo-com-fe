@@ -25,10 +25,10 @@ $tour_gallery = [];
 
 if ($tour_id) {
   // gọi API tour-detail qua APICaller
-$response = APICaller::get('/flashsale/tour-detail', [
-    'tour_id'       => $tour_id,
-    'force_refresh' => 'true'
-]);
+  $response = APICaller::get('/flashsale/tour-detail', [
+      'tour_id'       => $tour_id,
+      'force_refresh' => 'true'
+  ]);
 
   if ($response['status'] === 'success') {
     $data = $response['data']['tour']['output_json']['data'];
@@ -77,9 +77,10 @@ $response = APICaller::get('/flashsale/tour-detail', [
 
     //if start date > now then the campaign has started
     $campaign_start = true;
-    if ($campaign_start_date > time()) {
+    if ($campaign_start_date > time() || $campaign_end_date < time()) {
       $campaign_start = false;
     }
+
     //force campaign start by GET[force_start]
     if (isset($_GET['force_start']) && $_GET['force_start'] === 'true') {
       $campaign_start = true;
@@ -235,7 +236,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
           <?php
           }else{
           ?>
-            <span><?php echo $commingText; ?></span>
+            <!-- <span><?php echo $commingText; ?></span> -->
           <?php
           }
           ?>
@@ -299,9 +300,10 @@ $tour_price_strike = ceil($tour_price * 1.15);
         <?php echo $tour_summary; ?>       
         </div>
         <!-- Lịch trình chi tiết -->
-        <div id="tab-itinerary" class="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">Lịch trình chi tiết</h2>
-        <p class="text-sm italic text-red-500 mb-4">(tuỳ theo ngày khởi hành có thể sẽ khác nhau)</p>
+        <div id="tab-itinerary" class="bg-white rounded-lg shadow-sm p-6 mb-6">                          
+
+          <?php include_once('../includes/map.php'); ?>
+
         <?php foreach ($tour_itinerary as $i => $day): ?>
             <div class="relative pl-10 pb-8">
             <div class="timeline-dot relative"></div>
@@ -407,7 +409,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
                 </div>                
               </div>
             <?php
-            if ($campaign_start){              
+            if ($campaign_start || 1==1){              
             ?>
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="contact_name">Họ và tên</label>
@@ -431,7 +433,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
                   </div>
             </div>
 
-            <button id="book-button" class="w-full bg-primary text-white py-3 px-4 rounded-button font-medium hover:bg-primary/90 flex justify-center items-center gap-2">
+            <button id="bookButton" class="w-full bg-primary text-white py-3 px-4 rounded-button font-medium hover:bg-primary/90 flex justify-center items-center gap-2">
                 <svg id="spinner" class="animate-spin hidden h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
@@ -457,7 +459,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
     </div>
 </div>
 </div>
-<script src="../assets/js/flashsale.js?v1"></script>
+<script src="../assets/js/flashsale.js?v3"></script>
 <!-- Footer -->
 <?php
 include_once('../includes/flashsale-footer.php');
