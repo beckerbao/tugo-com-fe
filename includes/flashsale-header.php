@@ -7,7 +7,7 @@
             </a>          
             <nav class="desktop-menu">
               <a href="/pages/home.php">Đánh giá từ khách</a>
-              <a href="/pages/flashsale_home.php">Flash Sale</a>
+              <a href="/pages/flashsale_home.php">Tour khuyến mãi</a>
               <a href="/group-tour">Tour nhóm nhỏ</a>
             </nav>
         </div>
