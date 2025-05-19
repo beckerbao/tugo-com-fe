@@ -9,7 +9,7 @@
     </a>
     <a href="flashsale_home.php">
         <i>🔥</i>
-        Flash Sale
+        Tour khuyến mãi
     </a>
     <!-- <a href="notifications.php">
         <i>🔔</i>
