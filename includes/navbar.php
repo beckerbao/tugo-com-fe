@@ -7,6 +7,10 @@
         <i>📄</i>
         Tài khoản
     </a>
+    <a href="flashsale_home.php">
+        <i>🔥</i>
+        Flash Sale
+    </a>
     <!-- <a href="notifications.php">
         <i>🔔</i>
         Notifications

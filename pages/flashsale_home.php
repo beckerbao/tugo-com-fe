@@ -112,7 +112,8 @@ function getIdCodeByName($name) {
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
-  <link href="../assets/css/flashsale-home.css?test" rel="stylesheet">
+  <link href="../assets/css/flashsale-home.css?v4" rel="stylesheet">
+  <link href="../assets/css/flashsale-menu.css?v1" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?version=3.4.16"></script>
   <script>
     tailwind.config = {

@@ -138,6 +138,7 @@ $tour_price_strike = ceil($tour_price * 1.15);
   />
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
   <link href="../assets/css/flashsale-detail.css" rel="stylesheet">
+  <link href="../assets/css/flashsale-menu.css?v1" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {

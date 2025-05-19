@@ -5,15 +5,17 @@
             <a href="../pages/flashsale_home.php" class="flex-shrink-0 flex items-center">
                 <img src="../assets/images/tugologo.png" alt="Tugo Logo" class="h-8">
             </a>          
-        </div>        
-        <!-- <div class="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
-          <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none"><i class="ri-search-line ri-lg"></i></button>
-          <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none"><i class="ri-heart-line ri-lg"></i></button>
-          <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none"><i class="ri-user-line ri-lg"></i></button>
-        </div> -->
-        <div class="-mr-2 flex items-center sm:hidden">
-          <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none"><i class="ri-menu-line ri-lg"></i></button>
+            <nav class="desktop-menu">
+              <a href="/pages/home.php">Đánh giá từ khách</a>
+              <a href="/pages/flashsale_home.php">Flash Sale</a>
+              <a href="/group-tour">Tour nhóm nhỏ</a>
+            </nav>
         </div>
+        
+
+        <button class="menu-toggle" onclick="toggleMobileMenu()">
+          <i class="ri-menu-line"></i>
+        </button>                
       </div>
     </div>
     <?php
@@ -35,3 +37,27 @@
     }
     ?>
   </nav>
+
+
+<!-- Menu toggle button (mobile only) -->
+<!-- <button class="menu-toggle" onclick="toggleMobileMenu()">
+  <i class="ri-menu-line"></i>
+</button> -->
+
+<!-- Slide menu for mobile -->
+<div id="mobileMenu" class="mobile-slide-menu">
+  <button class="close-btn" onclick="toggleMobileMenu()">
+    <i class="ri-close-line"></i>
+  </button>
+  <nav class="mobile-menu-items">
+    <a href="/">Trang chủ</a>
+    <a href="/flashsale">Flash Sale</a>
+    <a href="/group-tour">Tour nhóm nhỏ</a>
+  </nav>
+</div>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+  }
+</script>
