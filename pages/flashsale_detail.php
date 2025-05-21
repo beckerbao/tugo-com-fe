@@ -11,6 +11,7 @@ function fetch_api($url) {
 APICaller::init();
 
 $tour_id = $_GET['tour_id'] ?? null;
+$campaign_id = $_GET['campaign_id'] ?? 1;
 $tourDetail = null;
 $departures = [];
 $airline = '';
@@ -27,7 +28,8 @@ if ($tour_id) {
   // gọi API tour-detail qua APICaller
   $response = APICaller::get('/flashsale/tour-detail', [
       'tour_id'       => $tour_id,
-      'force_refresh' => 'true'
+      'force_refresh' => 'true',
+      'campaign_id'   => $campaign_id
   ]);
 
   if ($response['status'] === 'success') {
@@ -378,6 +380,14 @@ $tour_price_strike = ceil($tour_price * 1.15);
                           <div>
                           <div class="font-medium"><?= date('d/m/Y', strtotime($dep['departure_date'])) ?></div>
                           <div class="text-sm text-gray-500">Còn <?= $dep['available_slots'] ?> chỗ</div>
+                          <?php
+                          //if short_title is not null then show
+                          if ($dep['short_title']!='') {                            
+                          ?>
+                            <div class="text-xs text-red-600">(<?php echo $dep['short_title']?>)</div>
+                          <?php
+                          } 
+                          ?>
                           </div>
                           <div class="text-primary font-bold"><?= number_format($dep['price']) ?>₫</div>
                       </div>
