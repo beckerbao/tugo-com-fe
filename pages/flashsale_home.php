@@ -10,7 +10,7 @@ function fetch_api($url) {
 }
 APICaller::init();
 
-$campaign_id   = $_GET['campaign_id'] ?? '1';
+$campaign_id   = $_GET['campaign_id'] ?? '2';
 $force_refresh = isset($_GET['force_refresh']) && $_GET['force_refresh'] === 'true' ? 'true' : 'false';
 $response = APICaller::get(
     '/flashsale/homepage',
