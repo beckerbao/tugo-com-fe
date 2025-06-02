@@ -10,7 +10,7 @@ function fetch_api($url) {
 }
 APICaller::init();
 
-$campaign_id   = $_GET['campaign_id'] ?? '2';
+$campaign_id   = $_GET['campaign_id'] ?? '3';
 $force_refresh = isset($_GET['force_refresh']) && $_GET['force_refresh'] === 'true' ? 'true' : 'false';
 $response = APICaller::get(
     '/flashsale/homepage',
@@ -96,8 +96,8 @@ function getIdCodeByName($name) {
   <title>Flash Sale Tour Giá Sốc | Tugo</title>
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Mua Tour Giá Gốc">
-  <meta property="og:description" content="Đặt tour với giá gốc, số lượng có hạn.">
+  <meta property="og:title" content="Flash 6.6. Mua Tour Giá Gốc">
+  <meta property="og:description" content="Flash 6.6. Đặt tour với giá gốc, số lượng có hạn.">
   <meta property="og:image" content="https://review.tugo.com.vn/assets/images/flash55.png">
   <meta property="og:url" content="https://review.tugo.com.vn/pages/flashsale_home.php">
   <meta property="og:type" content="website">
@@ -141,8 +141,8 @@ function getIdCodeByName($name) {
   <section class="hero-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       <div class="w-full max-w-xl bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
-        <h1 class="text-3xl md:text-4xl font-bold text-white">Tặng vé phòng chờ Thương Gia</h1>
-        <p class="mt-2 text-lg text-white/90">Du lịch Hè thoải mái cùng gia dình và trẻ nhỏ</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-white">Flash 6.6. Giảm giá sốc</h1>
+        <p class="mt-2 text-lg text-white/90">Du lịch thoải mái cùng gia dình & bạn bè không lo về giá</p>
         <div class="mt-4 inline-flex items-center px-4 py-2 bg-primary text-white rounded-full countdown">
           <?php
           if ($campaign_start) {
