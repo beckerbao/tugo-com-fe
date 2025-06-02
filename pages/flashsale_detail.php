@@ -389,8 +389,14 @@ $tour_price_strike = ceil($tour_price * 1.15);
                           } 
                           ?>
                           </div>
-                          <div>
-                            <span class="text-gray-500 line-through text-sm"><?= number_format(ceil($dep['price']*1.15)) ?>₫</span>
+                          <div>                            
+                            <?php
+                            if ($dep['is_flash_sale']) {                              
+                            ?>
+                              <span class="text-gray-500 line-through text-sm"><?= number_format(ceil($dep['price']*1.15)) ?>₫</span>
+                            <?php
+                            }
+                            ?>
                             <div class="text-primary font-bold"><?= number_format($dep['price']) ?>₫</div>
                           </div>
                       </div>
