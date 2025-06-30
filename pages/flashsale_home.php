@@ -96,8 +96,8 @@ function getIdCodeByName($name) {
   <title>Flash Sale Tour Giá Sốc | Tugo</title>
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Flash 6.6. Mua Tour Giá Gốc">
-  <meta property="og:description" content="Flash 6.6. Đặt tour với giá gốc, số lượng có hạn.">
+  <meta property="og:title" content="Flash 7.7. Mua Tour Giá Gốc">
+  <meta property="og:description" content="Flash 7.7. Đặt tour với giá gốc, số lượng có hạn.">
   <meta property="og:image" content="https://review.tugo.com.vn/assets/images/flash55.png">
   <meta property="og:url" content="https://review.tugo.com.vn/pages/flashsale_home.php">
   <meta property="og:type" content="website">
