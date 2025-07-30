@@ -96,8 +96,8 @@ function getIdCodeByName($name) {
   <title>Flash Sale Tour Giá Sốc | Tugo</title>
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Flash 7.7. Mua Tour Giá Gốc">
-  <meta property="og:description" content="Flash 7.7. Đặt tour với giá gốc, số lượng có hạn.">
+  <meta property="og:title" content="Flash Sale 8.8 - Ngày Đẹp Đôi – Tour Giá Xinh 8.8">
+  <meta property="og:description" content="Bùng Nổ 8.8 – Bay Ngay Giá Sốc">
   <meta property="og:image" content="https://review.tugo.com.vn/assets/images/flash55.png">
   <meta property="og:url" content="https://review.tugo.com.vn/pages/flashsale_home.php">
   <meta property="og:type" content="website">
@@ -141,8 +141,8 @@ function getIdCodeByName($name) {
   <section class="hero-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       <div class="w-full max-w-xl bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
-        <h1 class="text-3xl md:text-4xl font-bold text-white">Flash 7.7 Giảm giá sốc</h1>
-        <p class="mt-2 text-lg text-white/90">Du lịch Mùa Thu không lo về giá</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-white">Flash Sale 8.8 - Ngày Đẹp Đôi – Tour Giá Xinh 8.8</h1>
+        <p class="mt-2 text-lg text-white/90">Bùng Nổ 8.8 – Bay Ngay Giá Sốc</p>
         <div class="mt-4 inline-flex items-center px-4 py-2 bg-primary text-white rounded-full countdown">
           <?php
           if ($campaign_start) {
