@@ -28,6 +28,7 @@
         <button onclick="scrollToDestination('tour_han_quoc')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Hàn Quốc</button>
         <button onclick="scrollToDestination('tour_nhat_ban')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Nhật Bản</button>
         <button onclick="scrollToDestination('tour_chau_au')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Châu Âu</button>
+        <button onclick="scrollToDestination('tour_uc')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Châu Úc</button>
         <button onclick="scrollToDestination('tour_dai_loan')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Đài Loan</button>
         <button onclick="scrollToDestination('tour_trung_quoc')" class="px-4 py-2 rounded-full bg-primary text-white text-xs hover:bg-purple-800 transition">Trung Quốc</button>
         <!-- Thêm các điểm đến khác nếu cần -->

@@ -69,6 +69,7 @@ function getCountryFlag($name) {
         'Tour Hàn Quốc'   => '🇰🇷',
         'Tour Nhật Bản'   => '🇯🇵',
         'Tour Châu Âu'    => '🇪🇺',
+        'Tour Châu Úc'    => '🇦🇺',
         'Tour Trung Quốc' => '🇨🇳',
     ];
     return $map[$name] ?? '';
@@ -81,6 +82,7 @@ function getIdCodeByName($name) {
         'Tour Hàn Quốc'   => 'tour_han_quoc',
         'Tour Nhật Bản'   => 'tour_nhat_ban',
         'Tour Châu Á'    => 'tour_chau_a',
+        'Tour Châu Úc'    => 'tour_uc',
         'Tour Trung Quốc' => 'tour_trung_quoc',
         'Tour Châu Âu' => 'tour_chau_au',
     ];
