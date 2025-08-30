@@ -5,6 +5,8 @@ import Footer from './components/Footer'
 import RouteGuard from './components/RouteGuard'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
+import EditProfile from './pages/EditProfile'
+import Voucher from './pages/Voucher'
 import Flashsale from './pages/Flashsale'
 import Login from './pages/Login'
 import LoginOtp from './pages/LoginOtp'
@@ -35,6 +37,8 @@ const App = () => (
           <Route path="/register" element={<Register />} />
           <Route element={<RouteGuard />}>
             <Route path="/profile" element={<Profile />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
+            <Route path="/voucher/:id" element={<Voucher />} />
           </Route>
         </Route>
       </Routes>
