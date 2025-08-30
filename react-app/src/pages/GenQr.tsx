@@ -8,7 +8,8 @@ interface GenQrProps {
 
 const GenQr = ({ variant }: GenQrProps) => {
   const location = useLocation()
-  const isVnGroup = variant === 'vngroup' || location.pathname.includes('genqr-vngroup')
+  const isVnGroup =
+    variant === 'vngroup' || location.pathname.includes('genqr-vngroup')
   const [tourName, setTourName] = useState('')
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')

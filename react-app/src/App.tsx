@@ -18,6 +18,9 @@ import ReviewByQr from './pages/ReviewByQr'
 import GenQr from './pages/GenQr'
 import RedirectApp from './pages/RedirectApp'
 import VerifyOtp from './pages/VerifyOtp'
+import ReviewSale from './pages/ReviewSale'
+import ThankyouVngroup from './pages/ThankyouVngroup'
+import ReelFb from './pages/ReelFb'
 import { AuthProvider } from './hooks/useAuth'
 import './styles/App.css'
 
@@ -48,6 +51,9 @@ const App = () => (
           <Route path="/genqr-vngroup" element={<GenQr variant="vngroup" />} />
           <Route path="/redirectapp" element={<RedirectApp />} />
           <Route path="/verify-otp" element={<VerifyOtp />} />
+          <Route path="/reviewsale" element={<ReviewSale />} />
+          <Route path="/thankyou-vngroup" element={<ThankyouVngroup />} />
+          <Route path="/reelfb" element={<ReelFb />} />
           <Route element={<RouteGuard />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit-profile" element={<EditProfile />} />
