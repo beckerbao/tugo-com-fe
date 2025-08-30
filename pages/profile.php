@@ -23,8 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
 
     if ($logoutResponse['status'] === 'success') {
         // Redirect to home page with a logout success message
+        unset($_SESSION['jwt_token']);
         session_destroy();
-        echo "<script>    
+        echo "<script>
                 window.location.href='home.php?notice=logout_success';
             </script>";
         exit;
@@ -64,7 +65,7 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
             <p>Points: <?php echo $user['points']; ?></p> -->
         </div>
         <div class="edit-profile">
-            <button onclick="location.href='editprofile.php'">Cập nhật</button>
+            <button onclick="location.href='edit-profile.php'">Cập nhật</button>
             <form method="POST" style="margin-top: 10px;">
                 <button type="submit" name="logout" class="logout-button">Thoát</button>
             </form>
@@ -84,13 +85,13 @@ if (isset($profile['status']) && $profile['status'] === 'error') {
                 <p>Ngày hiệu lực: <?php echo $voucher['valid_until']; ?></p>
             </div>
             <div class="voucher-actions">
-                <button onclick="location.href='voucher.php'">Xem chi tiết</button>
+                <button onclick="location.href='voucher.php?id=<?php echo $voucher['id'] ?? ''; ?>'">Xem chi tiết</button>
             </div>
             <div class="voucher-status <?php echo strtolower($voucher['status']); ?>"><?php echo $voucher['status']; ?></div>
         </li>
         <?php
         }
-        ?>        
+        ?>
     </ul>
 
     <!-- Reviews Section -->
