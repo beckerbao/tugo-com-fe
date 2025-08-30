@@ -1,0 +1,72 @@
+# TASKS
+
+## 1. Khởi tạo dự án React
+- [ ] Tạo dự án bằng Vite hoặc CRA, cấu hình TypeScript.
+- [ ] Thiết lập ESLint/Prettier theo convention hiện tại.
+- [ ] Khai báo `.env` với `BASE_URL`, `DOMAIN_URL`, `VERSION`.
+
+## 2. Cấu trúc & layout chung
+- [ ] Tạo thư mục `components`, `pages`, `services`, `hooks`, `styles`.
+- [ ] Chuyển `includes/header.php` thành `<Header />` chứa thẻ meta và tracking.
+- [ ] Chuyển `includes/navbar.php` thành `<Navbar />` dùng cho các trang chính.
+- [ ] Chuyển `includes/footer.php` thành `<Footer />`.
+- [ ] Viết `App.tsx` với React Router và layout chung.
+
+## 3. Tầng API & tiện ích
+- [ ] Viết `apiClient` thay cho `APICaller` với các phương thức GET/POST/PUT/DELETE.
+- [ ] Tạo helper `getImageUrl`, `getTimeAgo` tương tự `helpers/common.php`.
+- [ ] Viết hook `useAuth` để quản lý JWT trong `localStorage`.
+
+## 4. Xác thực & đăng nhập
+- [ ] Tạo trang `/login` với form số điện thoại + mật khẩu.
+- [ ] Tạo trang `/login-otp` gửi OTP (`login2.php`).
+- [ ] Tạo trang `/login-verify-otp` nhận mã OTP và lưu JWT.
+- [ ] Tạo trang `/register` theo `register.php`.
+- [ ] Viết route guard cho các trang cần đăng nhập.
+
+## 5. Trang chủ (`home.php`)
+- [ ] Tạo trang `/` gọi API `/statistics` và `/posts`.
+- [ ] Hiển thị số liệu thống kê (đã review, tổng sao...).
+- [ ] Tạo component `PostReview`, `PostGeneral`, `PostReviewSale` dựa trên `includes/post-*.php`.
+- [ ] Cài đặt infinite scroll theo `assets/js/home.js`.
+- [ ] Thêm bộ lọc `type` như tham số query.
+
+## 6. Hồ sơ & voucher
+- [ ] Tạo trang `/profile` lấy dữ liệu từ `/profile`.
+- [ ] Hiển thị thông tin người dùng, danh sách voucher, review.
+- [ ] Thêm nút logout xoá JWT.
+- [ ] Tạo trang `/edit-profile` với form cập nhật và upload avatar (`editprofile.php`).
+- [ ] Tạo trang `/voucher/:id` hiển thị chi tiết voucher.
+
+## 7. Gửi review
+- [ ] Tạo trang `/review` cho review tự do (`review.php`).
+- [ ] Tạo trang `/reviewbyqr` nhận tham số `tour_id` từ QR.
+- [ ] Form review cho phép upload nhiều ảnh bằng `FormData`.
+- [ ] Sau khi submit, điều hướng đến trang `/verify-otp` (`verifyotp.php`).
+- [ ] Trang `/verify-otp` nhập OTP và hoàn tất gửi review.
+
+## 8. QR workflow
+- [ ] Tạo trang `/genqr` sinh QR cho URL review (`genqr.php`).
+- [ ] Bổ sung tuỳ chọn `genqr-vngroup`.
+- [ ] Viết logic nhận biết trình duyệt Zalo và chuyển hướng phù hợp (`redirectapp.php`).
+
+## 9. Flash sale
+- [ ] Tạo trang `/flashsale` giống `flashsale_home.php` với menu bộ sưu tập và countdown.
+- [ ] Tạo trang `/flashsale/:id` giống `flashsale_detail.php`:
+  - Chọn ngày khởi hành, số lượng, tính giá.
+  - Gọi API đặt tour và hiển thị popup thành công.
+- [ ] Tạo component `FlashSaleMenu` dựa trên `flashsale-menu.php` nếu có.
+
+## 10. Trang phụ
+- [ ] Di chuyển `reviewsale.php`, `thankyou-vngroup.php`, `reelfb.php` sang các route tương ứng.
+- [ ] Render nội dung HTML tĩnh hoặc thông điệp cảm ơn như trang gốc.
+
+## 11. Styling
+- [ ] Chuyển từng file CSS trong `assets/css` sang CSS Modules hoặc Tailwind.
+- [ ] Đảm bảo UI responsive như bản PHP.
+- [ ] Giữ nguyên nội dung tiếng Việt và icon hiện có.
+
+## 12. Kiểm thử
+- [ ] Viết unit test cho helper và component chính bằng Jest + RTL.
+- [ ] Viết test e2e tối thiểu cho luồng đăng nhập và đặt tour (có thể dùng Playwright).
+- [ ] Thiết lập GitHub Actions chạy `npm test` và `npm build`.
