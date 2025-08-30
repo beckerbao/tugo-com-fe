@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
 import Voucher from './pages/Voucher'
 import Flashsale from './pages/Flashsale'
+import FlashSaleDetail from './pages/FlashSaleDetail'
 import Login from './pages/Login'
 import LoginOtp from './pages/LoginOtp'
 import LoginVerifyOtp from './pages/LoginVerifyOtp'
@@ -36,6 +37,7 @@ const App = () => (
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/flashsale" element={<Flashsale />} />
+          <Route path="/flashsale/:id" element={<FlashSaleDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login-otp" element={<LoginOtp />} />
           <Route path="/login-verify-otp" element={<LoginVerifyOtp />} />
