@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import apiClient from '../services/apiClient'
-import '../styles/flashsale.css'
+import styles from '../styles/flashsale.module.css'
 import { FlashSaleDeparture } from '../types'
 
 type DetailResponse = {
@@ -67,16 +67,17 @@ const FlashSaleDetail = () => {
   }
 
   return (
-    <div className="flashsale-page">
+    <div className={styles['flashsale-page']}>
       <h1>{tourName}</h1>
-      <div className="departures">
+      <div className={styles.departures}>
         {prices
           .filter((p) => p.available_slots > 0)
           .map((p) => (
             <button
               key={p.departure_date}
               className={
-                'departure' + (selected === p.departure_date ? ' selected' : '')
+                styles.departure +
+                (selected === p.departure_date ? ' ' + styles.selected : '')
               }
               onClick={() => setSelected(p.departure_date)}
             >
@@ -84,7 +85,7 @@ const FlashSaleDetail = () => {
             </button>
           ))}
       </div>
-      <div className="quantity">
+      <div className={styles.quantity}>
         <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
           -
         </button>

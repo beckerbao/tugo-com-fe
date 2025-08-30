@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import '../styles/genqr.css'
+import styles from '../styles/genqr.module.css'
 
 interface GenQrProps {
   variant?: 'vngroup'
@@ -31,10 +31,10 @@ const GenQr = ({ variant }: GenQrProps) => {
   }
 
   return (
-    <div className="genqr-container">
+    <div className={styles['genqr-container']}>
       <h1 style={{ color: primaryColor }}>Generate QR Code</h1>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className={styles['form-group']}>
           <label htmlFor="tour_name">Tour Name</label>
           <input
             type="text"
@@ -45,7 +45,7 @@ const GenQr = ({ variant }: GenQrProps) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles['form-group']}>
           <label htmlFor="start_date">Start Date</label>
           <input
             type="date"
@@ -56,7 +56,7 @@ const GenQr = ({ variant }: GenQrProps) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles['form-group']}>
           <label htmlFor="end_date">End Date</label>
           <input
             type="date"
@@ -67,7 +67,7 @@ const GenQr = ({ variant }: GenQrProps) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles['form-group']}>
           <label htmlFor="guide_name">Guide Name</label>
           <input
             type="text"
@@ -80,14 +80,14 @@ const GenQr = ({ variant }: GenQrProps) => {
         </div>
         <button
           type="submit"
-          className="submit-button"
+          className={styles['submit-button']}
           style={{ backgroundColor: primaryColor }}
         >
           Generate QR Code
         </button>
       </form>
       {qrUrl && (
-        <div className="qr-code-section">
+        <div className={styles['qr-code-section']}>
           <h2>QR Code</h2>
           <p>Scan this QR code to review the tour:</p>
           <img
