@@ -17,9 +17,15 @@ const RedirectApp = () => {
     <div style={{ textAlign: 'center', padding: '40px', color: '#333' }}>
       <h2>🔄 Đang mở ứng dụng Tugo...</h2>
       {isZalo && (
-        <p>Trình duyệt Zalo không hỗ trợ mở trực tiếp. Vui lòng mở bằng trình duyệt khác.</p>
+        <p>
+          Trình duyệt Zalo không hỗ trợ mở trực tiếp. Vui lòng mở bằng trình
+          duyệt khác.
+        </p>
       )}
-      <p>Nếu bạn thấy thông báo này quá lâu, hãy nhấn nút bên dưới để mở thủ công:</p>
+      <p>
+        Nếu bạn thấy thông báo này quá lâu, hãy nhấn nút bên dưới để mở thủ
+        công:
+      </p>
       <a
         href={deepLink}
         style={{
