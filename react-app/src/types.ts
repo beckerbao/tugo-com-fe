@@ -45,3 +45,23 @@ export interface ProfileData {
   vouchers: Voucher[]
   reviews: Review[]
 }
+
+export interface FlashSaleDeparture {
+  date?: string
+  departure_date?: string
+  price: number
+  available_slots?: number
+}
+
+export interface FlashSaleTour {
+  tour_id: number
+  tour_name: string
+  tour_image: string
+  departures: FlashSaleDeparture[]
+}
+
+export interface FlashSaleCollection {
+  collection_name: string
+  collection_image: string
+  tours: FlashSaleTour[]
+}
