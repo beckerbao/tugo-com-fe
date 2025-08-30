@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $phone = $_POST['phone'] ?? '';
     $password = $_POST['password'] ?? '';
-    $profileImage = $_FILES['profile_image'] ?? null;
+    $profile_image = $_FILES['profile_image'] ?? null;
 
     $errors = [];
 
@@ -60,17 +60,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($password)) {
             $data['password'] = $password;
         }
-        if ($profileImage && $profileImage['tmp_name']) {
-            $data['profile_image'] = new CURLFile($profileImage['tmp_name'], $profileImage['type'], $profileImage['name']);
+        if ($profile_image && $profile_image['tmp_name']) {
+            $data['profile_image'] = new CURLFile($profile_image['tmp_name'], $profile_image['type'], $profile_image['name']);
         }
 
-        $updateResponse = APICaller::postMultipart('/profile/update', $data, [
+        $update_response = APICaller::postMultipart('/profile/update', $data, [
             'Authorization: Bearer ' . $access_token,
         ]);
 
-        if (isset($updateResponse['error'])) {
-            $errors[] = $updateResponse['error'];
-        } else {            
+        if (isset($update_response['error'])) {
+            $errors[] = $update_response['error'];
+        } else {
             echo "<script>
                 window.location.href='profile.php?notice=update_success';
             </script>";
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<link rel="stylesheet" href="../assets/css/editprofile.css">
+<link rel="stylesheet" href="../assets/css/edit-profile.css">
 <div class="edit-profile-container">
     <h1>Cập nhật tài khoản</h1>
     <?php if (!empty($errors)): ?>
