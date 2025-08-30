@@ -12,6 +12,9 @@ import Login from './pages/Login'
 import LoginOtp from './pages/LoginOtp'
 import LoginVerifyOtp from './pages/LoginVerifyOtp'
 import Register from './pages/Register'
+import Review from './pages/Review'
+import ReviewByQr from './pages/ReviewByQr'
+import VerifyOtp from './pages/VerifyOtp'
 import { AuthProvider } from './hooks/useAuth'
 import './styles/App.css'
 
@@ -35,6 +38,9 @@ const App = () => (
           <Route path="/login-otp" element={<LoginOtp />} />
           <Route path="/login-verify-otp" element={<LoginVerifyOtp />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/review" element={<Review />} />
+          <Route path="/reviewbyqr" element={<ReviewByQr />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route element={<RouteGuard />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit-profile" element={<EditProfile />} />
