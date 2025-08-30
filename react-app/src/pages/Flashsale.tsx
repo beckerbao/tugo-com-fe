@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import apiClient from '../services/apiClient'
 import FlashSaleMenu from '../components/FlashSaleMenu'
-import '../styles/flashsale.css'
+import styles from '../styles/flashsale.module.css'
 import { FlashSaleCollection } from '../types'
 
 type HomeResponse = {
@@ -77,9 +77,9 @@ const Flashsale = () => {
   }))
 
   return (
-    <div className="flashsale-page">
+    <div className={styles['flashsale-page']}>
       <h1>Flash Sale</h1>
-      {countdown && <p className="countdown">{countdown}</p>}
+      {countdown && <p className={styles.countdown}>{countdown}</p>}
       <FlashSaleMenu items={menuItems} />
       {collections.map((col) => (
         <section
@@ -87,16 +87,16 @@ const Flashsale = () => {
           key={col.collection_name}
         >
           <h2>{col.collection_name}</h2>
-          <div className="tours">
+          <div className={styles.tours}>
             {col.tours.map((tour) => (
-              <div key={tour.tour_id} className="tour-card">
+              <div key={tour.tour_id} className={styles['tour-card']}>
                 <img src={tour.tour_image} alt={tour.tour_name} />
                 <h3>{tour.tour_name}</h3>
-                <div className="departures">
+                <div className={styles.departures}>
                   {tour.departures.slice(0, 4).map((dep) => (
                     <div
                       key={dep.date || dep.departure_date}
-                      className="departure"
+                      className={styles.departure}
                     >
                       <span>{formatDate(dep.date || dep.departure_date)}</span>
                       <span> - {formatPrice(dep.price)}</span>

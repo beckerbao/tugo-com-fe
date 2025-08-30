@@ -24,6 +24,12 @@
   margin-top: 12px;
 }
 
+.flashsale-page {}
+
+.countdown {}
+
+.tours {}
+
 .departures {
   display: flex;
   flex-wrap: wrap;
@@ -37,3 +43,7 @@
   padding: 2px 8px;
   font-size: 12px;
 }
+
+.quantity {}
+
+.selected {}

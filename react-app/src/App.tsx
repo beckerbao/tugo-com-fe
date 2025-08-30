@@ -22,7 +22,6 @@ import ReviewSale from './pages/ReviewSale'
 import ThankyouVngroup from './pages/ThankyouVngroup'
 import ReelFb from './pages/ReelFb'
 import { AuthProvider } from './hooks/useAuth'
-import './styles/App.css'
 
 const Layout = () => (
   <>

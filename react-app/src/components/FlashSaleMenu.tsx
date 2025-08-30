@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import styles from '../styles/flashsale-menu.module.css'
 
 interface MenuItem {
   id: string
@@ -14,7 +15,7 @@ const FlashSaleMenu: FC<{ items: MenuItem[] }> = ({ items }) => {
   }
 
   return (
-    <div className="flashsale-menu">
+    <div className={styles['flashsale-menu']}>
       {items.map((item) => (
         <button key={item.id} onClick={() => scrollTo(item.id)}>
           {item.name}
