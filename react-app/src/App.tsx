@@ -14,6 +14,8 @@ import LoginVerifyOtp from './pages/LoginVerifyOtp'
 import Register from './pages/Register'
 import Review from './pages/Review'
 import ReviewByQr from './pages/ReviewByQr'
+import GenQr from './pages/GenQr'
+import RedirectApp from './pages/RedirectApp'
 import VerifyOtp from './pages/VerifyOtp'
 import { AuthProvider } from './hooks/useAuth'
 import './styles/App.css'
@@ -40,6 +42,9 @@ const App = () => (
           <Route path="/register" element={<Register />} />
           <Route path="/review" element={<Review />} />
           <Route path="/reviewbyqr" element={<ReviewByQr />} />
+          <Route path="/genqr" element={<GenQr />} />
+          <Route path="/genqr-vngroup" element={<GenQr variant="vngroup" />} />
+          <Route path="/redirectapp" element={<RedirectApp />} />
           <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route element={<RouteGuard />}>
             <Route path="/profile" element={<Profile />} />
