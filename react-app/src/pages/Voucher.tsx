@@ -22,8 +22,8 @@ const VoucherPage = () => {
 
   if (!voucher) return <div>Loading...</div>
 
-  const imgSrc = (path?: string) =>
-    path?.startsWith('http') ? path : getImageUrl(path)
+  const imgSrc = (path?: string | null) =>
+    path?.startsWith('http') ? path : getImageUrl(path || '')
 
   return (
     <div className="voucher-container">
