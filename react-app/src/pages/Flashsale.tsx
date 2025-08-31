@@ -91,7 +91,7 @@ const Flashsale = () => {
           key={col.collection_name}
         >
           <h2>{col.collection_name}</h2>
-          <div>
+          <div className={styles['tours-grid']}>
             {col.tours.map((tour) => (
               <div key={tour.tour_id} className={styles['tour-card']}>
                 <img src={tour.tour_image} alt={tour.tour_name} />
@@ -103,7 +103,8 @@ const Flashsale = () => {
                       className={styles['date-pill']}
                     >
                       <span>{formatDate(dep.date || dep.departure_date)}</span>
-                      <span> - {formatPrice(dep.price)}</span>
+                      <span>-</span>
+                      <span>{formatPrice(dep.price)}</span>
                     </div>
                   ))}
                 </div>
