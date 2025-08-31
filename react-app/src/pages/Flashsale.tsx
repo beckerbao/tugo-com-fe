@@ -96,8 +96,10 @@ const Flashsale = () => {
       <section className={styles['hero-section']}>
         <div className={styles['hero-container']}>
           <div className={styles['hero-content']}>
-            <h1>Flash Sale - Ngày Đẹp Đôi – Tour Giá Xinh 8.8</h1>
-            <p className={styles.tagline}>Bùng Nổ 8.8 – Bay Ngay Giá Sốc</p>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded p-4">
+              <h1>Flash Sale - Ngày Đẹp Đôi – Tour Giá Xinh 8.8</h1>
+              <p className={styles.tagline}>Bùng Nổ 8.8 – Bay Ngay Giá Sốc</p>
+            </div>
             {countdown && (
               <p
                 className={styles.countdown}
