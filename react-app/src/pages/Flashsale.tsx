@@ -147,7 +147,7 @@ const Flashsale = () => {
                 </div>
                 <Link
                   to={`/flashsale/${tour.tour_id}`}
-                  className="bg-primary text-white rounded flex items-center justify-center"
+                  className="mt-4 w-full bg-primary text-white py-2 px-4 rounded flex items-center justify-center hover:bg-purple-800 transition"
                 >
                   Xem chi tiết <i className="ri-arrow-right-line ri-lg ml-1" />
                 </Link>
