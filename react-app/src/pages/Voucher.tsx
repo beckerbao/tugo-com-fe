@@ -29,7 +29,7 @@ const VoucherPage = () => {
     <div className="voucher-container">
       <button onClick={() => navigate(-1)}>Back</button>
       <div className="voucher-header">
-        <img src={imgSrc(voucher.qr_image)} alt="QR Code" />
+        <img src={imgSrc(voucher.qr_image ?? undefined)} alt="QR Code" />
       </div>
       <div className="voucher-details">
         <h2>{voucher.name}</h2>
