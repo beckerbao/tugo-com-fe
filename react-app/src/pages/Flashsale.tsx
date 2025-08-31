@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import apiClient from '../services/apiClient'
 import FlashSaleMenu from '../components/FlashSaleMenu'
-import styles from '../styles/flashsale.module.css'
+import styles from '../styles/flashsale-home.module.css'
 import type { FlashSaleCollection } from '../types'
 
 type HomeResponse = {
@@ -77,7 +77,7 @@ const Flashsale = () => {
   }))
 
   return (
-    <div className={styles['flashsale-page']}>
+    <div>
       <h1>Flash Sale</h1>
       {countdown && <p className={styles.countdown}>{countdown}</p>}
       <FlashSaleMenu items={menuItems} />
@@ -87,16 +87,16 @@ const Flashsale = () => {
           key={col.collection_name}
         >
           <h2>{col.collection_name}</h2>
-          <div className={styles.tours}>
+          <div>
             {col.tours.map((tour) => (
               <div key={tour.tour_id} className={styles['tour-card']}>
                 <img src={tour.tour_image} alt={tour.tour_name} />
                 <h3>{tour.tour_name}</h3>
-                <div className={styles.departures}>
+                <div>
                   {tour.departures.slice(0, 4).map((dep) => (
                     <div
                       key={dep.date || dep.departure_date}
-                      className={styles.departure}
+                      className={styles['date-pill']}
                     >
                       <span>{formatDate(dep.date || dep.departure_date)}</span>
                       <span> - {formatPrice(dep.price)}</span>

@@ -41,6 +41,18 @@ body {
     color: #660066;
     border-color: #660066;
   }
+  .departures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .date-option {
+    background: #f3f4f6;
+    border-radius: 9999px;
+    padding: 2px 8px;
+    font-size: 12px;
+  }
   .date-option:hover {
     border-color: #660066;
   }
