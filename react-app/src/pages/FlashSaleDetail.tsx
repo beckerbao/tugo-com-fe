@@ -18,7 +18,7 @@ const FlashSaleDetail = () => {
   const { id } = useParams()
   const [tourName, setTourName] = useState('')
   const [prices, setPrices] = useState<FlashSaleDeparture[]>([])
-  const [selected, setSelected] = useState<string>('')
+  const [selected, setSelected] = useState<string | undefined>()
   const [quantity, setQuantity] = useState(1)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -71,7 +71,14 @@ const FlashSaleDetail = () => {
       <h1>{tourName}</h1>
       <div className={styles.departures}>
         {prices
-          .filter((p) => p.available_slots > 0)
+          .filter(
+            (
+              p,
+            ): p is FlashSaleDeparture & {
+              departure_date: string
+              available_slots: number
+            } => (p.available_slots ?? 0) > 0 && !!p.departure_date,
+          )
           .map((p) => (
             <button
               key={p.departure_date}
