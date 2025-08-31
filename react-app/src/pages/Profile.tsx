@@ -32,8 +32,8 @@ const Profile = () => {
   if (!data) return <div>Loading...</div>
 
   const { user, vouchers, reviews } = data
-  const imgSrc = (path?: string) =>
-    path?.startsWith('http') ? path : getImageUrl(path)
+  const imgSrc = (path?: string | null) =>
+    path?.startsWith('http') ? path : getImageUrl(path || '')
 
   return (
     <div className="profile-container">
