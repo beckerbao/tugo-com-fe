@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import voucherService from '../services/voucher'
 import { getImageUrl } from '../services/helpers'
-import { Voucher } from '../types'
+import type { Voucher } from '../types'
 
 const VoucherPage = () => {
   const { id } = useParams()

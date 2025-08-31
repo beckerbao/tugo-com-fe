@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Post } from '../types'
+import type { Post } from '../types'
 import { getImageUrl, getTimeAgo } from '../services/helpers'
 
 const displayRatingStars = (rating: number) => {

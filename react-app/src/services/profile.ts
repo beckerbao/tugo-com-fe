@@ -1,5 +1,5 @@
 import apiClient from './apiClient'
-import { ProfileData } from '../types'
+import type { ProfileData } from '../types'
 
 export const getProfile = (
   token: string,

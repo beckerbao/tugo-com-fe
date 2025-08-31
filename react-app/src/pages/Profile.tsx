@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import profileService from '../services/profile'
 import { getImageUrl, getTimeAgo } from '../services/helpers'
-import { ProfileData } from '../types'
+import type { ProfileData } from '../types'
 
 const Profile = () => {
   const { token, logout } = useAuth()

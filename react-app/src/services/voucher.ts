@@ -1,5 +1,5 @@
 import apiClient from './apiClient'
-import { Voucher } from '../types'
+import type { Voucher } from '../types'
 
 export const getVoucher = (token: string, id: string) =>
   apiClient
