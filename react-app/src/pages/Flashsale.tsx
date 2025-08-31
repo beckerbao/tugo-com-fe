@@ -78,8 +78,12 @@ const Flashsale = () => {
 
   return (
     <div>
-      <h1>Flash Sale</h1>
-      {countdown && <p className={styles.countdown}>{countdown}</p>}
+      <section className={styles['hero-section']}>
+        <div className={styles['hero-container']}>
+          <h1>Flash Sale</h1>
+          {countdown && <p className={styles.countdown}>{countdown}</p>}
+        </div>
+      </section>
       <FlashSaleMenu items={menuItems} />
       {collections.map((col) => (
         <section
