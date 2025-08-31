@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 import apiClient from '../services/apiClient'
 import type { Post, Statistics } from '../types'
 import PostReview from '../components/PostReview'
@@ -16,6 +17,7 @@ const Home = () => {
   const [searchParams] = useSearchParams()
   const type = searchParams.get('type') ?? 'all'
   const loader = useRef<HTMLDivElement>(null)
+  const { token } = useAuth()
 
   const fetchInitial = useCallback(async () => {
     setLoading(true)
@@ -79,6 +81,40 @@ const Home = () => {
 
   return (
     <>
+      <div className="hero">
+        <h1>Chào mừng bạn đến với GoReview</h1>
+        <p>Kết nối, chia sẻ kinh nghiệm du lịch cùng Tugo</p>
+        {!token && (
+          <Link to="/login">
+            <button>Join Now</button>
+          </Link>
+        )}
+        <p className="app-download-cta">
+          Cài app, đăng nhập <br /> Nhận voucher ưu đãi cùng Tugo!
+        </p>
+        <div className="app-download-links">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.tugo.travel.vn&hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+              alt="Google Play"
+            />
+          </a>
+          <a
+            href="https://apps.apple.com/vn/app/du-l%E1%BB%8Bch-tugo/id6743953061"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+              alt="App Store"
+            />
+          </a>
+        </div>
+      </div>
       <div className="statistics">
         <div className="stat">
           <div className="value">{stats.users ?? 0}+</div>
