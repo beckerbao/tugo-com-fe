@@ -36,7 +36,7 @@ const FlashSaleMenu: FC<{ items: MenuItem[] }> = ({ items }) => {
         onClick={() => setOpen(true)}
         aria-label="Open menu"
       >
-        ☰
+        <i className="ri-menu-line"></i>
       </button>
 
       <div
@@ -47,7 +47,7 @@ const FlashSaleMenu: FC<{ items: MenuItem[] }> = ({ items }) => {
           onClick={() => setOpen(false)}
           aria-label="Close menu"
         >
-          ×
+          <i className="ri-close-line"></i>
         </button>
         <div className={styles['mobile-menu-items']}>
           {items.map((item) => (
