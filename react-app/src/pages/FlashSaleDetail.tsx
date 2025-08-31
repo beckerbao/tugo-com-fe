@@ -32,7 +32,7 @@ const FlashSaleDetail = () => {
       )
       setTourName(res.data.tour.output_json.data.name)
       setPrices(res.data.prices || [])
-      if (res.data.prices?.length) {
+      if (res.data.prices && res.data.prices[0]?.departure_date) {
         setSelected(res.data.prices[0].departure_date)
       }
     }
@@ -71,24 +71,17 @@ const FlashSaleDetail = () => {
       <h1>{tourName}</h1>
       <div className={styles.departures}>
         {prices
-          .filter(
-            (
-              p,
-            ): p is FlashSaleDeparture & {
-              departure_date: string
-              available_slots: number
-            } => (p.available_slots ?? 0) > 0 && !!p.departure_date,
-          )
+          .filter((p) => (p.available_slots ?? 0) > 0)
           .map((p) => (
             <button
-              key={p.departure_date}
+              key={p.departure_date ?? ''}
               className={
                 styles.departure +
                 (selected === p.departure_date ? ' ' + styles.selected : '')
               }
-              onClick={() => setSelected(p.departure_date)}
+              onClick={() => p.departure_date && setSelected(p.departure_date)}
             >
-              {new Date(p.departure_date).toLocaleDateString('vi-VN')}
+              {new Date(p.departure_date!).toLocaleDateString('vi-VN')}
             </button>
           ))}
       </div>
