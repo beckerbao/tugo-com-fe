@@ -71,3 +71,6 @@
 - [x] Viết unit test cho helper và component chính bằng Jest + RTL.
 - [x] Viết test e2e tối thiểu cho luồng đăng nhập và đặt tour (có thể dùng Playwright).
 - [x] Thiết lập GitHub Actions chạy `npm test` và `npm build`.
+
+## 13. Hướng dẫn chạy & test case
+- [x] Tạo README với hướng dẫn chạy và danh sách use case kiểm thử.
