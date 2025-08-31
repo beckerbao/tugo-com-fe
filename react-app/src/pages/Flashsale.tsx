@@ -99,7 +99,10 @@ const Flashsale = () => {
             <h1>Flash Sale - Ngày Đẹp Đôi – Tour Giá Xinh 8.8</h1>
             <p className={styles.tagline}>Bùng Nổ 8.8 – Bay Ngay Giá Sốc</p>
             {countdown && (
-              <p className={styles.countdown}>
+              <p
+                className={styles.countdown}
+                style={{ animation: 'pulse 2s infinite' }}
+              >
                 <i className="ri-time-line ri-lg mr-2" />
                 {countdown}
               </p>
