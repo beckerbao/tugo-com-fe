@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import apiClient from '../services/apiClient'
 import styles from '../styles/flashsale.module.css'
 import type { FlashSaleDeparture } from '../types'
+import { formatCurrency } from '../utils/formatCurrency'
 
 type DetailResponse = {
   data: {
@@ -10,9 +11,6 @@ type DetailResponse = {
     prices: FlashSaleDeparture[]
   }
 }
-
-const formatCurrency = (val: number) =>
-  new Intl.NumberFormat('vi-VN').format(val) + '₫'
 
 const FlashSaleDetail = () => {
   const { id } = useParams()
