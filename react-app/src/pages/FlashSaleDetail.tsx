@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import apiClient from '../services/apiClient'
 import styles from '../styles/flashsale.module.css'
-import { FlashSaleDeparture } from '../types'
+import type { FlashSaleDeparture } from '../types'
 
 type DetailResponse = {
   data: {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import apiClient from '../services/apiClient'
 import FlashSaleMenu from '../components/FlashSaleMenu'
 import styles from '../styles/flashsale.module.css'
-import { FlashSaleCollection } from '../types'
+import type { FlashSaleCollection } from '../types'
 
 type HomeResponse = {
   data: {

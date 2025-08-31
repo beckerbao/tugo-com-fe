@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import apiClient from '../services/apiClient'
-import { Post, Statistics } from '../types'
+import type { Post, Statistics } from '../types'
 import PostReview from '../components/PostReview'
 import PostGeneral from '../components/PostGeneral'
 import PostReviewSale from '../components/PostReviewSale'
