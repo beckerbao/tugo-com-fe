@@ -2,8 +2,20 @@
 :global(body) { font-family: 'Inter', sans-serif; }
 .countdown { animation: pulse 2s infinite; background-color: #660066; }
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-.tour-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-.tour-card { transition: all 0.3s ease; }
+.tour-card {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.tour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
 :global(input[type="number"]::-webkit-inner-spin-button),
 :global(input[type="number"]::-webkit-outer-spin-button) { -webkit-appearance: none; margin: 0; }
 .hero-section {
@@ -26,5 +38,45 @@
 }
 .collection-card { transition: transform 0.3s ease; }
 .collection-card:hover { transform: scale(1.02); }
-.date-pill { transition: all 0.2s ease; }
-.date-pill:hover { transform: translateY(-2px); }
+.date-pill {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.date-pill:hover {
+  transform: translateY(-2px);
+  background-color: #e5e7eb;
+}
+
+.date-pill span:nth-child(2) {
+  margin: 0 0.25rem;
+}
+
+.date-pill span:last-child {
+  color: #660066;
+  font-weight: 600;
+}
+
+.tours-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .tours-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .tours-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
