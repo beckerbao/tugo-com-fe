@@ -83,36 +83,49 @@ const FlashSaleDetail = () => {
             </button>
           ))}
       </div>
-      <div>
-        <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
+      <div className={styles['quantity-selector']}>
+        <button
+          className={styles['quantity-button']}
+          onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+        >
           -
         </button>
         <input
+          className={styles['quantity-input']}
           type="number"
           value={quantity}
           min={1}
           onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
         />
-        <button onClick={() => setQuantity((q) => q + 1)}>+</button>
+        <button
+          className={styles['quantity-button']}
+          onClick={() => setQuantity((q) => q + 1)}
+        >
+          +
+        </button>
       </div>
-      <div>
+      <div className={styles['booking-form']}>
         <input
+          className={styles['booking-input']}
           placeholder="Họ và tên"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-      </div>
-      <div>
         <input
+          className={styles['booking-input']}
           placeholder="Số điện thoại"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
+        <p>Tổng cộng: {formatCurrency(total)}</p>
+        <button
+          className={styles['booking-button']}
+          onClick={book}
+          disabled={loading}
+        >
+          {loading ? 'Đang xử lý...' : 'Đặt ngay'}
+        </button>
       </div>
-      <p>Tổng cộng: {formatCurrency(total)}</p>
-      <button onClick={book} disabled={loading}>
-        {loading ? 'Đang xử lý...' : 'Đặt ngay'}
-      </button>
     </div>
   )
 }
