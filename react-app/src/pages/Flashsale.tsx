@@ -25,6 +25,17 @@ const idMap: Record<string, string> = {
 const getIdCodeByName = (name: string) =>
   idMap[name] || name.toLowerCase().replace(/\s+/g, '_')
 
+const flagMap: Record<string, string> = {
+  'Tour Đài Loan': '🇹🇼',
+  'Tour Hàn Quốc': '🇰🇷',
+  'Tour Nhật Bản': '🇯🇵',
+  'Tour Châu Âu': '🇪🇺',
+  'Tour Châu Úc': '🇦🇺',
+  'Tour Trung Quốc': '🇨🇳',
+}
+
+const getCountryFlag = (name: string) => flagMap[name] || ''
+
 const formatDate = (iso?: string) => {
   if (!iso) return ''
   const d = new Date(iso)
@@ -90,7 +101,18 @@ const Flashsale = () => {
           id={getIdCodeByName(col.collection_name)}
           key={col.collection_name}
         >
-          <h2>{col.collection_name}</h2>
+          <div className={styles['collection-card']}>
+            <img src={col.collection_image} alt={col.collection_name} />
+            <div className={styles['collection-overlay']} />
+            <div className={styles['collection-title']}>
+              <h2>
+                <span className={styles['flag-icon']}>
+                  {getCountryFlag(col.collection_name)}
+                </span>
+                {col.collection_name}
+              </h2>
+            </div>
+          </div>
           <div className={styles['tours-grid']}>
             {col.tours.map((tour) => (
               <div key={tour.tour_id} className={styles['tour-card']}>
