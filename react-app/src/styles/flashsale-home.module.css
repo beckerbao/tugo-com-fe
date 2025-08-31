@@ -94,9 +94,6 @@
   margin-right: 0.5rem;
 }
 
-.collection-card:hover {
-  transform: scale(1.02);
-}
 .date-pill {
   display: inline-flex;
   align-items: center;
