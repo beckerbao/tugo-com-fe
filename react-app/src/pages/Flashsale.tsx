@@ -91,8 +91,16 @@ const Flashsale = () => {
     <div>
       <section className={styles['hero-section']}>
         <div className={styles['hero-container']}>
-          <h1>Flash Sale</h1>
-          {countdown && <p className={styles.countdown}>{countdown}</p>}
+          <div className={styles['hero-content']}>
+            <h1>Flash Sale - Ngày Đẹp Đôi – Tour Giá Xinh 8.8</h1>
+            <p className={styles.tagline}>Bùng Nổ 8.8 – Bay Ngay Giá Sốc</p>
+            {countdown && (
+              <p className={styles.countdown}>
+                <i className="ri-time-line ri-lg mr-2" />
+                {countdown}
+              </p>
+            )}
+          </div>
         </div>
       </section>
       <FlashSaleMenu items={menuItems} />
