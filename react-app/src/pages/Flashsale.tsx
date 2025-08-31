@@ -130,7 +130,12 @@ const Flashsale = () => {
                     </div>
                   ))}
                 </div>
-                <Link to={`/flashsale/${tour.tour_id}`}>Xem chi tiết</Link>
+                <Link
+                  to={`/flashsale/${tour.tour_id}`}
+                  className="bg-primary text-white rounded flex items-center justify-center"
+                >
+                  Xem chi tiết <i className="ri-arrow-right-line ri-lg ml-1" />
+                </Link>
               </div>
             ))}
           </div>
