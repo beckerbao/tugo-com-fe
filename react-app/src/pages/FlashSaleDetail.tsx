@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import apiClient from '../services/apiClient'
-import styles from '../styles/flashsale.module.css'
+import styles from '../styles/flashsale-detail.module.css'
 import type { FlashSaleDeparture } from '../types'
 import { formatCurrency } from '../utils/formatCurrency'
 
@@ -65,7 +65,7 @@ const FlashSaleDetail = () => {
   }
 
   return (
-    <div className={styles['flashsale-page']}>
+    <div>
       <h1>{tourName}</h1>
       <div className={styles.departures}>
         {prices
@@ -74,7 +74,7 @@ const FlashSaleDetail = () => {
             <button
               key={p.departure_date ?? ''}
               className={
-                styles.departure +
+                styles['date-option'] +
                 (selected === p.departure_date ? ' ' + styles.selected : '')
               }
               onClick={() => p.departure_date && setSelected(p.departure_date)}
@@ -83,7 +83,7 @@ const FlashSaleDetail = () => {
             </button>
           ))}
       </div>
-      <div className={styles.quantity}>
+      <div>
         <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
           -
         </button>
