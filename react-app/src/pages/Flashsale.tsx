@@ -68,9 +68,13 @@ const Flashsale = () => {
             const minutes = Math.floor((diff % 3600000) / 60000)
             const seconds = Math.floor((diff % 60000) / 1000)
             setCountdown(
-              `Còn ${days} ngày ${hours.toString().padStart(2, '0')}:${minutes
+              `Chỉ còn ${days} ngày ${hours
                 .toString()
-                .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`,
+                .padStart(2, '0')}:${minutes
+                .toString()
+                .padStart(2, '0')}:${seconds
+                .toString()
+                .padStart(2, '0')} là kết thúc`,
             )
           }
         }
