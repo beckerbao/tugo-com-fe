@@ -50,6 +50,7 @@
 .sticky-booking {
   position: sticky;
   top: 100px;
+  align-self: flex-start;
 }
 .timeline-dot::before {
   content: '';
@@ -83,6 +84,7 @@
 }
 .date-option {
   background: #f3f4f6;
+  border: 1px solid #d1d5db;
   border-radius: 9999px;
   padding: 2px 8px;
   font-size: 12px;
@@ -100,8 +102,14 @@
   gap: 8px;
   margin-top: 8px;
 }
-.quantity-button {
+.rounded-button {
   padding: 2px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  background-color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .quantity-input {
   width: 48px;
@@ -124,6 +132,15 @@
   color: white;
   border: none;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.price-summary {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
 }
 .review-progress-bar {
   height: 6px;

@@ -253,251 +253,272 @@ const FlashSaleDetail = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm mb-6 sticky top-16 z-40">
-        <div className="flex overflow-x-auto scrollbar-hide">
-          <button
-            onClick={() => handleTabClick('overview')}
-            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
-              activeTab === 'overview'
-                ? styles['tab-active']
-                : 'text-gray-500 border-transparent'
-            }`}
-          >
-            Tổng quan
-          </button>
-          <button
-            onClick={() => handleTabClick('booking')}
-            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
-              activeTab === 'booking'
-                ? styles['tab-active']
-                : 'text-gray-500 border-transparent'
-            }`}
-          >
-            Đặt tour
-          </button>
-          <button
-            onClick={() => handleTabClick('itinerary')}
-            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
-              activeTab === 'itinerary'
-                ? styles['tab-active']
-                : 'text-gray-500 border-transparent'
-            }`}
-          >
-            Lịch trình
-          </button>
-          <button
-            onClick={() => handleTabClick('attractions')}
-            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
-              activeTab === 'attractions'
-                ? styles['tab-active']
-                : 'text-gray-500 border-transparent'
-            }`}
-          >
-            Điểm tham quan
-          </button>
-          <button
-            onClick={() => handleTabClick('includes')}
-            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
-              activeTab === 'includes'
-                ? styles['tab-active']
-                : 'text-gray-500 border-transparent'
-            }`}
-          >
-            Dịch vụ bao gồm
-          </button>
-        </div>
-      </div>
-
-      <div
-        id="tab-overview"
-        ref={overviewRef}
-        className="bg-white rounded-lg shadow-sm p-6 mb-6"
-      >
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
-          Tổng quan về tour
-        </h2>
-        <div dangerouslySetInnerHTML={{ __html: tourSummary }} />
-      </div>
-
-      <div
-        id="tab-booking"
-        ref={bookingRef}
-        className="bg-white rounded-lg shadow-sm p-6 mb-6"
-      >
-        <div className="flex flex-wrap gap-4 text-sm">
-          <div className="flex items-center">
-            <i className="ri-calendar-line text-primary mr-2" /> Khởi hành:
-            <strong className="ml-1">
-              {selected ? new Date(selected).toLocaleDateString('vi-VN') : ''}
-            </strong>
-          </div>
-          <div className="flex items-center">
-            <i className="ri-group-line text-primary mr-2" /> Số chỗ còn nhận:
-            <strong className="ml-1">
-              {selectedDeparture?.available_slots ?? 0}
-            </strong>
-          </div>
-        </div>
-        <div className="mt-6 flex items-center justify-between">
-          <div>
-            <span className="text-gray-500 line-through text-lg">
-              {formatCurrency(strikePrice)}
-            </span>
-            <div className="text-2xl font-bold text-primary">
-              {formatCurrency(selectedPrice)}
-            </div>
-            <span className="text-sm text-gray-500">
-              Giá/khách (đã bao gồm thuế VAT)
-            </span>
-            <div className="text-sm text-gray-500">Giá chưa bao gồm TIP</div>
-          </div>
-          <div className="mt-2">
-            <button
-              className="bg-primary text-white px-5 py-2 rounded font-bold"
-              onClick={designTour}
-              disabled={designing}
-            >
-              Thiết kế tour riêng
-            </button>
-          </div>
-        </div>
-        <div className={`${styles.departures} mt-6`}>
-          {prices
-            .filter((p) => (p.available_slots ?? 0) > 0)
-            .map((p) => (
+      <div className="max-w-7xl mx-auto mt-6 flex flex-col lg:flex-row gap-6">
+        <div className="flex-1">
+          <div className="bg-white rounded-lg shadow-sm mb-6 sticky top-16 z-40">
+            <div className="flex overflow-x-auto scrollbar-hide">
               <button
-                key={p.departure_date ?? ''}
-                className={
-                  styles['date-option'] +
-                  (selected === p.departure_date ? ' ' + styles.selected : '')
-                }
-                onClick={() =>
-                  p.departure_date && setSelected(p.departure_date)
-                }
+                onClick={() => handleTabClick('overview')}
+                className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${activeTab === 'overview' ? styles['tab-active'] : 'text-gray-500 border-transparent'}`}
               >
-                {new Date(p.departure_date!).toLocaleDateString('vi-VN')}
+                Tổng quan
               </button>
-            ))}
-        </div>
-        <div className={styles['quantity-selector']}>
-          <button
-            className={styles['quantity-button']}
-            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-          >
-            -
-          </button>
-          <input
-            className={styles['quantity-input']}
-            type="number"
-            value={quantity}
-            min={1}
-            onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-          />
-          <button
-            className={styles['quantity-button']}
-            onClick={() => setQuantity((q) => q + 1)}
-          >
-            +
-          </button>
-        </div>
-        <div className={styles['booking-form']}>
-          <input
-            className={styles['booking-input']}
-            placeholder="Họ và tên"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            className={styles['booking-input']}
-            placeholder="Số điện thoại"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          <p>Tổng cộng: {formatCurrency(total)}</p>
-          <button
-            className={styles['booking-button']}
-            onClick={book}
-            disabled={loading}
-          >
-            {loading ? 'Đang xử lý...' : 'Đặt ngay'}
-          </button>
-        </div>
-      </div>
-
-      <div
-        id="tab-itinerary"
-        ref={itineraryRef}
-        className="bg-white rounded-lg shadow-sm p-6 mb-6"
-      >
-        {tourItinerary.map((day, i) => (
-          <div key={i} className="relative pl-10 pb-8">
-            <div className={styles['timeline-dot']} />
-            {i < tourItinerary.length - 1 && (
-              <div className={styles['timeline-line']} />
-            )}
-            <h3 className="font-bold text-gray-900 mb-2">
-              {`${day.day}: ${day.title}`}
-            </h3>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-gray-700 whitespace-pre-line">
-                {day.description}
-              </p>
+              <button
+                onClick={() => handleTabClick('booking')}
+                className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${activeTab === 'booking' ? styles['tab-active'] : 'text-gray-500 border-transparent'}`}
+              >
+                Đặt tour
+              </button>
+              <button
+                onClick={() => handleTabClick('itinerary')}
+                className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${activeTab === 'itinerary' ? styles['tab-active'] : 'text-gray-500 border-transparent'}`}
+              >
+                Lịch trình
+              </button>
+              <button
+                onClick={() => handleTabClick('attractions')}
+                className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${activeTab === 'attractions' ? styles['tab-active'] : 'text-gray-500 border-transparent'}`}
+              >
+                Điểm tham quan
+              </button>
+              <button
+                onClick={() => handleTabClick('includes')}
+                className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${activeTab === 'includes' ? styles['tab-active'] : 'text-gray-500 border-transparent'}`}
+              >
+                Dịch vụ bao gồm
+              </button>
             </div>
           </div>
-        ))}
-      </div>
 
-      <div
-        id="tab-attractions"
-        ref={attractionsRef}
-        className="bg-white rounded-lg shadow-sm p-6 mb-6"
-      >
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
-          Điểm nổi bật của tour
-        </h2>
-        <ul className="space-y-2 text-gray-800">
-          {tourHighlights.map((hl, idx) => (
-            <li key={idx} className="flex items-start gap-2">
-              <i className="ri-checkbox-circle-line text-[#660066] mt-1" />
-              <span>{hl.description}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+          <div
+            id="tab-overview"
+            ref={overviewRef}
+            className="bg-white rounded-lg shadow-sm p-6 mb-6"
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Tổng quan về tour
+            </h2>
+            <div dangerouslySetInnerHTML={{ __html: tourSummary }} />
+          </div>
 
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
-          Thư viện hình ảnh
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {tourGallery.map((photo, idx) => (
-            <div key={idx} className="overflow-hidden rounded-lg shadow-sm">
-              <img
-                src={photo.image}
-                alt="Gallery"
-                className={`w-full h-40 object-cover ${styles['gallery-img']}`}
-              />
+          <div
+            id="tab-itinerary"
+            ref={itineraryRef}
+            className="bg-white rounded-lg shadow-sm p-6 mb-6"
+          >
+            {tourItinerary.map((day, i) => (
+              <div key={i} className="relative pl-10 pb-8">
+                <div className={styles['timeline-dot']} />
+                {i < tourItinerary.length - 1 && (
+                  <div className={styles['timeline-line']} />
+                )}
+                <h3 className="font-bold text-gray-900 mb-2">
+                  {`${day.day}: ${day.title}`}
+                </h3>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <p className="text-gray-700 whitespace-pre-line">
+                    {day.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            id="tab-attractions"
+            ref={attractionsRef}
+            className="bg-white rounded-lg shadow-sm p-6 mb-6"
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Điểm nổi bật của tour
+            </h2>
+            <ul className="space-y-2 text-gray-800">
+              {tourHighlights.map((hl, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <i className="ri-checkbox-circle-line text-[#660066] mt-1" />
+                  <span>{hl.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Thư viện hình ảnh
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {tourGallery.map((photo, idx) => (
+                <div key={idx} className="overflow-hidden rounded-lg shadow-sm">
+                  <img
+                    src={photo.image}
+                    alt="Gallery"
+                    className={`w-full h-40 object-cover ${styles['gallery-img']}`}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <div
-        id="tab-includes"
-        ref={servicesRef}
-        className="bg-white rounded-lg shadow-sm p-6 mb-6"
-      >
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
-          Dịch vụ bao gồm
-        </h2>
-        <ul className="space-y-2 text-gray-800">
-          {tourServices.map((svc, idx) => (
-            <li key={idx} className="flex items-start gap-2">
-              <i className="ri-check-line text-green-600 mt-1" />
-              <span>{svc.description}</span>
-            </li>
-          ))}
-        </ul>
+          <div
+            id="tab-includes"
+            ref={servicesRef}
+            className="bg-white rounded-lg shadow-sm p-6 mb-6"
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Dịch vụ bao gồm
+            </h2>
+            <ul className="space-y-2 text-gray-800">
+              {tourServices.map((svc, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <i className="ri-check-line text-green-600 mt-1" />
+                  <span>{svc.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div
+          id="tab-booking"
+          ref={bookingRef}
+          className={`${styles['sticky-booking']} mb-6 lg:mb-0`}
+        >
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="flex flex-wrap gap-4 text-sm">
+              <div className="flex items-center">
+                <i className="ri-calendar-line text-primary mr-2" /> Khởi hành:
+                <strong className="ml-1">
+                  {selected
+                    ? new Date(selected).toLocaleDateString('vi-VN')
+                    : ''}
+                </strong>
+              </div>
+              <div className="flex items-center">
+                <i className="ri-group-line text-primary mr-2" /> Số chỗ còn
+                nhận:
+                <strong className="ml-1">
+                  {selectedDeparture?.available_slots ?? 0}
+                </strong>
+              </div>
+            </div>
+            <div className="mt-6">
+              <span className="text-gray-500 line-through text-lg">
+                {formatCurrency(strikePrice)}
+              </span>
+              <div className="text-2xl font-bold text-primary">
+                {formatCurrency(selectedPrice)}
+              </div>
+              <div className="mt-2">
+                <button
+                  className="bg-primary text-white px-5 py-2 rounded font-bold"
+                  onClick={designTour}
+                  disabled={designing}
+                >
+                  Thiết kế tour riêng
+                </button>
+              </div>
+            </div>
+            <div className="mt-4">
+              <div className={`${styles.departures} mt-2`}>
+                {prices
+                  .filter((p) => (p.available_slots ?? 0) > 0)
+                  .map((p) => (
+                    <button
+                      key={p.departure_date ?? ''}
+                      className={
+                        styles['date-option'] +
+                        (selected === p.departure_date
+                          ? ' ' + styles.selected
+                          : '')
+                      }
+                      onClick={() =>
+                        p.departure_date && setSelected(p.departure_date)
+                      }
+                    >
+                      {new Date(p.departure_date!).toLocaleDateString('vi-VN')}
+                    </button>
+                  ))}
+              </div>
+              <div className={styles['quantity-selector']}>
+                <button
+                  className={styles['rounded-button']}
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                >
+                  <i className="ri-subtract-line" />
+                </button>
+                <input
+                  className={styles['quantity-input']}
+                  type="number"
+                  value={quantity}
+                  min={1}
+                  onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+                />
+                <button
+                  className={styles['rounded-button']}
+                  onClick={() => setQuantity((q) => q + 1)}
+                >
+                  <i className="ri-add-line" />
+                </button>
+              </div>
+              <div className={styles['booking-form']}>
+                <input
+                  className={styles['booking-input']}
+                  placeholder="Họ và tên"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  className={styles['booking-input']}
+                  placeholder="Số điện thoại"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+              <div className={styles['price-summary']}>
+                <p id="subtotal-text" data-base={selectedPrice}>
+                  {formatCurrency(selectedPrice)} x{' '}
+                  <span id="current-qty">{quantity}</span>
+                </p>
+                <p id="total-price" className="text-primary font-bold">
+                  {formatCurrency(total)}
+                </p>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Giá/khách (đã bao gồm thuế VAT)
+              </p>
+              <p className="text-xs text-gray-500">Giá chưa bao gồm TIP</p>
+              <button
+                className={`${styles['booking-button']} w-full mt-4`}
+                onClick={book}
+                disabled={loading}
+              >
+                {loading && (
+                  <svg
+                    className="animate-spin h-5 w-5 mr-2 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    />
+                  </svg>
+                )}
+                {loading ? 'Đang xử lý...' : 'Đặt ngay'}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       {designing && (
