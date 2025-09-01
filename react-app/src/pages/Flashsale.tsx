@@ -136,7 +136,7 @@ const Flashsale = () => {
               <div key={tour.tour_id} className={styles['tour-card']}>
                 <img src={tour.tour_image} alt={tour.tour_name} />
                 <h3 className={styles['tour-title']}>{tour.tour_name}</h3>
-                <div>
+                <div className={styles['departure-list']}>
                   {tour.departures.slice(0, 4).map((dep) => (
                     <div
                       key={dep.date || dep.departure_date}
