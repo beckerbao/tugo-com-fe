@@ -7,14 +7,28 @@ import { formatCurrency } from '../utils/formatCurrency'
 
 type DetailResponse = {
   data: {
-    tour: { output_json: { data: { name: string } } }
+    tour: {
+      collection_name?: string
+      output_json: {
+        data: {
+          name: string
+          duration?: string
+          image?: string
+        }
+      }
+    }
     prices: FlashSaleDeparture[]
+    campaign_info?: { end_time?: string }
   }
 }
 
 const FlashSaleDetail = () => {
   const { id } = useParams()
   const [tourName, setTourName] = useState('')
+  const [tourImage, setTourImage] = useState('')
+  const [collection, setCollection] = useState('')
+  const [duration, setDuration] = useState('')
+  const [countdown, setCountdown] = useState('')
   const [prices, setPrices] = useState<FlashSaleDeparture[]>([])
   const [selected, setSelected] = useState<string | undefined>()
   const [quantity, setQuantity] = useState(1)
@@ -23,18 +37,46 @@ const FlashSaleDetail = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    let timer: number | undefined
     const fetchData = async () => {
       if (!id) return
       const res = await apiClient.get<DetailResponse>(
         `/flashsale/tour-detail?tour_id=${id}&force_refresh=true`,
       )
-      setTourName(res.data.tour.output_json.data.name)
+      const tourData = res.data.tour.output_json.data
+      setTourName(tourData.name)
+      setTourImage(tourData.image || '')
+      setDuration(tourData.duration || '')
+      setCollection(res.data.tour.collection_name || '')
       setPrices(res.data.prices || [])
       if (res.data.prices && res.data.prices[0]?.departure_date) {
         setSelected(res.data.prices[0].departure_date)
       }
+      const end = res.data.campaign_info?.end_time
+      if (end) {
+        const endTime = new Date(end).getTime()
+        const update = () => {
+          const diff = endTime - Date.now()
+          if (diff <= 0) {
+            setCountdown('Flash Sale đã kết thúc')
+          } else {
+            const days = Math.floor(diff / 86400000)
+            const hours = Math.floor((diff % 86400000) / 3600000)
+            const minutes = Math.floor((diff % 3600000) / 60000)
+            const seconds = Math.floor((diff % 60000) / 1000)
+            setCountdown(
+              `Còn ${days} ngày ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} là kết thúc`,
+            )
+          }
+        }
+        update()
+        timer = window.setInterval(update, 1000)
+      }
     }
     fetchData()
+    return () => {
+      if (timer) clearInterval(timer)
+    }
   }, [id])
 
   const selectedPrice =
@@ -66,7 +108,47 @@ const FlashSaleDetail = () => {
 
   return (
     <div>
-      <h1>{tourName}</h1>
+      <div className="relative h-96">
+        {tourImage && (
+          <img
+            src={tourImage}
+            alt={tourName}
+            className="w-full h-full object-cover object-top"
+          />
+        )}
+        <div className={styles.overlay} />
+        <a href="/flashsale" className={styles['back-button']}>
+          <i className="ri-arrow-left-line ri-lg mr-1" />
+          <span>Quay lại</span>
+        </a>
+        <div className="absolute bottom-0 left-0 w-full p-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center">
+              <h1 className="text-3xl font-bold text-white">{tourName}</h1>
+            </div>
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-white">
+              {collection && (
+                <div className="flex items-center">
+                  <i className="ri-map-pin-line mr-1" /> {collection}
+                </div>
+              )}
+              {duration && (
+                <div className="flex items-center">
+                  <i className="ri-time-line mr-1" /> {duration}
+                </div>
+              )}
+              {countdown && (
+                <div
+                  className={`${styles.countdown} inline-flex items-center px-3 py-1 bg-primary text-white text-sm font-medium rounded-full`}
+                >
+                  <i className="ri-flashlight-line mr-1" />
+                  {countdown}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
       <div className={styles.departures}>
         {prices
           .filter((p) => (p.available_slots ?? 0) > 0)

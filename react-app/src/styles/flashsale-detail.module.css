@@ -1,14 +1,40 @@
 :global(body) {
     font-family: 'Inter', sans-serif;
   }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  }
+
+  .back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    border-radius: 9999px;
+  }
+
+  .back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
   .countdown {
     animation: pulse 2s infinite;
   }
+
   @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
   }
+
   .gallery-img:hover {
     transform: scale(1.03);
     transition: transform 0.3s ease;
