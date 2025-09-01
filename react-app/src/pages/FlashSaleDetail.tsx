@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import apiClient from '../services/apiClient'
 import styles from '../styles/flashsale-detail.module.css'
@@ -9,11 +9,20 @@ type DetailResponse = {
   data: {
     tour: {
       collection_name?: string
+      summary?: string
       output_json: {
         data: {
           name: string
           duration?: string
           image?: string
+          highlights?: { title?: string; description: string }[]
+          itinerary?: {
+            day: string
+            title: string
+            description: string
+          }[]
+          photo_gallery?: { image: string }[]
+          whats_included?: { description: string }[]
         }
       }
     }
@@ -36,6 +45,71 @@ const FlashSaleDetail = () => {
   const [phone, setPhone] = useState('')
   const [loading, setLoading] = useState(false)
   const [designing, setDesigning] = useState(false)
+  const [tourSummary, setTourSummary] = useState('')
+  const [tourHighlights, setTourHighlights] = useState<
+    { description: string; title?: string }[]
+  >([])
+  const [tourItinerary, setTourItinerary] = useState<
+    { day: string; title: string; description: string }[]
+  >([])
+  const [tourGallery, setTourGallery] = useState<{ image: string }[]>([])
+  const [tourServices, setTourServices] = useState<{ description: string }[]>(
+    [],
+  )
+
+  const overviewRef = useRef<HTMLDivElement>(null)
+  const bookingRef = useRef<HTMLDivElement>(null)
+  const itineraryRef = useRef<HTMLDivElement>(null)
+  const attractionsRef = useRef<HTMLDivElement>(null)
+  const servicesRef = useRef<HTMLDivElement>(null)
+  const [activeTab, setActiveTab] = useState('overview')
+
+  const sectionRefs: Record<string, React.RefObject<HTMLDivElement>> = {
+    overview: overviewRef,
+    booking: bookingRef,
+    itinerary: itineraryRef,
+    attractions: attractionsRef,
+    includes: servicesRef,
+  }
+
+  const scrollToSection = (key: keyof typeof sectionRefs) => {
+    const ref = sectionRefs[key]
+    if (ref.current) {
+      const top = ref.current.getBoundingClientRect().top + window.scrollY - 80
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
+
+  const handleTabClick = (key: keyof typeof sectionRefs) => {
+    setActiveTab(key)
+    scrollToSection(key)
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id.replace(
+              'tab-',
+              '',
+            ) as keyof typeof sectionRefs
+            setActiveTab(id)
+          }
+        })
+      },
+      { rootMargin: '-120px 0px -80% 0px', threshold: 0 },
+    )
+    Object.values(sectionRefs).forEach((ref) => {
+      if (ref.current) observer.observe(ref.current)
+    })
+    return () => {
+      Object.values(sectionRefs).forEach((ref) => {
+        if (ref.current) observer.unobserve(ref.current)
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     let timer: number | undefined
@@ -50,6 +124,11 @@ const FlashSaleDetail = () => {
       setDuration(tourData.duration || '')
       setCollection(res.data.tour.collection_name || '')
       setPrices(res.data.prices || [])
+      setTourSummary(res.data.tour.summary || '')
+      setTourHighlights(tourData.highlights || [])
+      setTourItinerary(tourData.itinerary || [])
+      setTourGallery(tourData.photo_gallery || [])
+      setTourServices(tourData.whats_included || [])
       if (res.data.prices && res.data.prices[0]?.departure_date) {
         setSelected(res.data.prices[0].departure_date)
       }
@@ -66,7 +145,11 @@ const FlashSaleDetail = () => {
             const minutes = Math.floor((diff % 3600000) / 60000)
             const seconds = Math.floor((diff % 60000) / 1000)
             setCountdown(
-              `Còn ${days} ngày ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} là kết thúc`,
+              `Còn ${days} ngày ${hours.toString().padStart(2, '0')}:${minutes
+                .toString()
+                .padStart(2, '0')}:${seconds
+                .toString()
+                .padStart(2, '0')} là kết thúc`,
             )
           }
         }
@@ -169,7 +252,78 @@ const FlashSaleDetail = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+
+      <div className="bg-white rounded-lg shadow-sm mb-6 sticky top-16 z-40">
+        <div className="flex overflow-x-auto scrollbar-hide">
+          <button
+            onClick={() => handleTabClick('overview')}
+            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
+              activeTab === 'overview'
+                ? styles['tab-active']
+                : 'text-gray-500 border-transparent'
+            }`}
+          >
+            Tổng quan
+          </button>
+          <button
+            onClick={() => handleTabClick('booking')}
+            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
+              activeTab === 'booking'
+                ? styles['tab-active']
+                : 'text-gray-500 border-transparent'
+            }`}
+          >
+            Đặt tour
+          </button>
+          <button
+            onClick={() => handleTabClick('itinerary')}
+            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
+              activeTab === 'itinerary'
+                ? styles['tab-active']
+                : 'text-gray-500 border-transparent'
+            }`}
+          >
+            Lịch trình
+          </button>
+          <button
+            onClick={() => handleTabClick('attractions')}
+            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
+              activeTab === 'attractions'
+                ? styles['tab-active']
+                : 'text-gray-500 border-transparent'
+            }`}
+          >
+            Điểm tham quan
+          </button>
+          <button
+            onClick={() => handleTabClick('includes')}
+            className={`flex-1 px-4 py-3 text-center font-medium border-b-2 whitespace-nowrap ${
+              activeTab === 'includes'
+                ? styles['tab-active']
+                : 'text-gray-500 border-transparent'
+            }`}
+          >
+            Dịch vụ bao gồm
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="tab-overview"
+        ref={overviewRef}
+        className="bg-white rounded-lg shadow-sm p-6 mb-6"
+      >
+        <h2 className="text-xl font-bold text-gray-900 mb-4">
+          Tổng quan về tour
+        </h2>
+        <div dangerouslySetInnerHTML={{ __html: tourSummary }} />
+      </div>
+
+      <div
+        id="tab-booking"
+        ref={bookingRef}
+        className="bg-white rounded-lg shadow-sm p-6 mb-6"
+      >
         <div className="flex flex-wrap gap-4 text-sm">
           <div className="flex items-center">
             <i className="ri-calendar-line text-primary mr-2" /> Khởi hành:
@@ -207,66 +361,145 @@ const FlashSaleDetail = () => {
             </button>
           </div>
         </div>
+        <div className={`${styles.departures} mt-6`}>
+          {prices
+            .filter((p) => (p.available_slots ?? 0) > 0)
+            .map((p) => (
+              <button
+                key={p.departure_date ?? ''}
+                className={
+                  styles['date-option'] +
+                  (selected === p.departure_date ? ' ' + styles.selected : '')
+                }
+                onClick={() =>
+                  p.departure_date && setSelected(p.departure_date)
+                }
+              >
+                {new Date(p.departure_date!).toLocaleDateString('vi-VN')}
+              </button>
+            ))}
+        </div>
+        <div className={styles['quantity-selector']}>
+          <button
+            className={styles['quantity-button']}
+            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+          >
+            -
+          </button>
+          <input
+            className={styles['quantity-input']}
+            type="number"
+            value={quantity}
+            min={1}
+            onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+          />
+          <button
+            className={styles['quantity-button']}
+            onClick={() => setQuantity((q) => q + 1)}
+          >
+            +
+          </button>
+        </div>
+        <div className={styles['booking-form']}>
+          <input
+            className={styles['booking-input']}
+            placeholder="Họ và tên"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            className={styles['booking-input']}
+            placeholder="Số điện thoại"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+          <p>Tổng cộng: {formatCurrency(total)}</p>
+          <button
+            className={styles['booking-button']}
+            onClick={book}
+            disabled={loading}
+          >
+            {loading ? 'Đang xử lý...' : 'Đặt ngay'}
+          </button>
+        </div>
       </div>
-      <div className={styles.departures}>
-        {prices
-          .filter((p) => (p.available_slots ?? 0) > 0)
-          .map((p) => (
-            <button
-              key={p.departure_date ?? ''}
-              className={
-                styles['date-option'] +
-                (selected === p.departure_date ? ' ' + styles.selected : '')
-              }
-              onClick={() => p.departure_date && setSelected(p.departure_date)}
-            >
-              {new Date(p.departure_date!).toLocaleDateString('vi-VN')}
-            </button>
+
+      <div
+        id="tab-itinerary"
+        ref={itineraryRef}
+        className="bg-white rounded-lg shadow-sm p-6 mb-6"
+      >
+        {tourItinerary.map((day, i) => (
+          <div key={i} className="relative pl-10 pb-8">
+            <div className={styles['timeline-dot']} />
+            {i < tourItinerary.length - 1 && (
+              <div className={styles['timeline-line']} />
+            )}
+            <h3 className="font-bold text-gray-900 mb-2">
+              {`${day.day}: ${day.title}`}
+            </h3>
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-gray-700 whitespace-pre-line">
+                {day.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div
+        id="tab-attractions"
+        ref={attractionsRef}
+        className="bg-white rounded-lg shadow-sm p-6 mb-6"
+      >
+        <h2 className="text-xl font-bold text-gray-900 mb-4">
+          Điểm nổi bật của tour
+        </h2>
+        <ul className="space-y-2 text-gray-800">
+          {tourHighlights.map((hl, idx) => (
+            <li key={idx} className="flex items-start gap-2">
+              <i className="ri-checkbox-circle-line text-[#660066] mt-1" />
+              <span>{hl.description}</span>
+            </li>
           ))}
+        </ul>
       </div>
-      <div className={styles['quantity-selector']}>
-        <button
-          className={styles['quantity-button']}
-          onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-        >
-          -
-        </button>
-        <input
-          className={styles['quantity-input']}
-          type="number"
-          value={quantity}
-          min={1}
-          onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-        />
-        <button
-          className={styles['quantity-button']}
-          onClick={() => setQuantity((q) => q + 1)}
-        >
-          +
-        </button>
+
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <h2 className="text-xl font-bold text-gray-900 mb-4">
+          Thư viện hình ảnh
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {tourGallery.map((photo, idx) => (
+            <div key={idx} className="overflow-hidden rounded-lg shadow-sm">
+              <img
+                src={photo.image}
+                alt="Gallery"
+                className={`w-full h-40 object-cover ${styles['gallery-img']}`}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className={styles['booking-form']}>
-        <input
-          className={styles['booking-input']}
-          placeholder="Họ và tên"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          className={styles['booking-input']}
-          placeholder="Số điện thoại"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        <p>Tổng cộng: {formatCurrency(total)}</p>
-        <button
-          className={styles['booking-button']}
-          onClick={book}
-          disabled={loading}
-        >
-          {loading ? 'Đang xử lý...' : 'Đặt ngay'}
-        </button>
+
+      <div
+        id="tab-includes"
+        ref={servicesRef}
+        className="bg-white rounded-lg shadow-sm p-6 mb-6"
+      >
+        <h2 className="text-xl font-bold text-gray-900 mb-4">
+          Dịch vụ bao gồm
+        </h2>
+        <ul className="space-y-2 text-gray-800">
+          {tourServices.map((svc, idx) => (
+            <li key={idx} className="flex items-start gap-2">
+              <i className="ri-check-line text-green-600 mt-1" />
+              <span>{svc.description}</span>
+            </li>
+          ))}
+        </ul>
       </div>
+
       {designing && (
         <div className={styles['loading-overlay']}>
           <div className="text-center">
