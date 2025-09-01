@@ -421,7 +421,7 @@ const FlashSaleDetail = () => {
             <div className="mt-4">
               <div className={`${styles.departures} mt-2`}>
                 {prices
-                  .filter((p) => (p.available_slots ?? 0) > 0)
+                  .filter((p) => p.available_slots > 0)
                   .map((p) => (
                     <button
                       key={p.departure_date ?? ''}
@@ -435,7 +435,31 @@ const FlashSaleDetail = () => {
                         p.departure_date && setSelected(p.departure_date)
                       }
                     >
-                      {new Date(p.departure_date!).toLocaleDateString('vi-VN')}
+                      <div>
+                        <div className="font-medium">
+                          {new Date(p.departure_date!).toLocaleDateString(
+                            'vi-VN',
+                          )}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          Còn {p.available_slots} chỗ
+                        </div>
+                        {p.short_title && (
+                          <div className="text-xs text-red-600">
+                            ({p.short_title})
+                          </div>
+                        )}
+                      </div>
+                      <div className="text-right">
+                        {p.is_flash_sale && (
+                          <span className="text-gray-500 line-through text-sm">
+                            {formatCurrency(Math.ceil(p.price * 1.15))}
+                          </span>
+                        )}
+                        <div className="text-primary font-bold">
+                          {formatCurrency(p.price)}
+                        </div>
+                      </div>
                     </button>
                   ))}
               </div>
