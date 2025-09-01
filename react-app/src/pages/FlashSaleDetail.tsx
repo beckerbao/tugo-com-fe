@@ -196,12 +196,19 @@ const FlashSaleDetail = () => {
     if (!id) return
     setDesigning(true)
     try {
-      await apiClient.post('/api/v1/custom-tours/from-app-tour', {
+      const res = await apiClient.post<{
+        status: string
+        data?: { custom_tour_id?: string }
+      }>('/api/v1/custom-tours/from-app-tour', {
         tour_id: id,
         departure_date: selected,
         expected_guests: quantity,
       })
-      alert('Yêu cầu đã được gửi')
+      if (res.status === 'success' && res.data?.custom_tour_id) {
+        window.location.href = `https://customtour.tugo.com.vn/?id=${res.data.custom_tour_id}`
+      } else {
+        alert('Đã có lỗi xảy ra')
+      }
     } catch {
       alert('Không thể gửi yêu cầu')
     } finally {
@@ -410,6 +417,7 @@ const FlashSaleDetail = () => {
               </div>
               <div className="mt-2">
                 <button
+                  id="customTourBtn"
                   className="bg-primary text-white px-5 py-2 rounded font-bold"
                   onClick={designTour}
                   disabled={designing}
@@ -548,9 +556,9 @@ const FlashSaleDetail = () => {
       </div>
 
       {designing && (
-        <div className={styles['loading-overlay']}>
-          <div className="text-center">
-            <div className={styles.spinner} />
+        <div id="loadingOverlay">
+          <div id="loadingContent">
+            <div id="loadingIcon" />
             <div className="mt-2 text-white font-bold">
               Hệ thống đang xử lý...
             </div>
