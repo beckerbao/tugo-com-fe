@@ -64,9 +64,9 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #660066;
+  background-color: var(--primary);
   border: 3px solid white;
-  box-shadow: 0 0 0 2px #660066;
+  box-shadow: 0 0 0 2px var(--primary);
 }
 .timeline-line::before {
   content: '';
@@ -75,11 +75,11 @@
   top: 16px;
   bottom: -16px;
   width: 2px;
-  background-color: #660066;
+  background-color: var(--primary);
 }
 .tab-active {
-  color: #660066;
-  border-color: #660066;
+  color: var(--primary);
+  border-color: var(--primary);
 }
 .departures {
   display: flex;
@@ -93,18 +93,18 @@
   align-items: center;
   width: 100%;
   background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.375rem;
-  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
   cursor: pointer;
 }
 .date-option:hover {
-  border-color: #660066;
+  border-color: var(--primary);
   background-color: #f9fafb;
 }
-.selected {
-  border-color: #660066;
-  background-color: rgba(102, 0, 102, 0.05);
+.date-option.selected {
+  border-color: var(--primary);
+  background-color: #F5F3FF;
 }
 .quantity-selector {
   display: flex;
@@ -112,8 +112,8 @@
   gap: 8px;
   margin-top: 8px;
   border: 1px solid #e5e7eb;
-  border-radius: 0.375rem;
-  padding: 12px;
+  border-radius: 0.25rem;
+  padding: 8px;
 }
 .quantity-button {
   width: 32px;
@@ -147,7 +147,7 @@
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
+  border-radius: 0.25rem;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 .booking-input:hover {
@@ -155,18 +155,19 @@
 }
 .booking-input:focus {
   outline: none;
-  border-color: #660066;
+  border-color: var(--primary);
 }
 .booking-button {
-  padding: 8px;
-  background-color: #660066;
+  padding: 12px 16px;
+  background-color: var(--primary);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
+  font-weight: 500;
 }
 .price-summary {
   display: flex;
@@ -181,7 +182,13 @@
 }
 .review-progress-bar-fill {
   height: 100%;
-  background-color: #660066;
+  background-color: var(--primary);
+}
+
+.booking-total {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--primary);
 }
 
 :global(#loadingOverlay) {

@@ -412,7 +412,7 @@ const FlashSaleDetail = () => {
           ref={bookingRef}
           className={`${styles['sticky-booking']} mb-6 lg:mb-0`}
         >
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="p-6 rounded-lg border shadow-sm bg-white">
             <div className="flex flex-wrap gap-4 text-sm">
               <div className="flex items-center">
                 <i className="ri-calendar-line text-primary mr-2" /> Khởi hành:
@@ -535,7 +535,7 @@ const FlashSaleDetail = () => {
                   {formatCurrency(selectedPrice)} x{' '}
                   <span id="current-qty">{quantity}</span>
                 </p>
-                <p id="total-price" className="text-primary font-bold">
+                <p id="total-price" className={styles['booking-total']}>
                   {formatCurrency(total)}
                 </p>
               </div>
