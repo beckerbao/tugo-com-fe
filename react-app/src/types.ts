@@ -50,7 +50,9 @@ export interface FlashSaleDeparture {
   date?: string
   departure_date?: string
   price: number
-  available_slots?: number
+  available_slots: number
+  short_title?: string
+  is_flash_sale: boolean
 }
 
 export interface FlashSaleTour {
