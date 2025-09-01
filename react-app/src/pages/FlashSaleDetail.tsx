@@ -277,13 +277,15 @@ const FlashSaleDetail = () => {
       </Helmet>
       <div className={`relative ${styles['hero-banner']}`}>
         {tourImage && (
-          <img
-            src={tourImage}
-            alt={tourName}
-            className="w-full h-full object-cover object-top"
-          />
+          <>
+            <img
+              src={tourImage}
+              alt={tourName}
+              className="w-full h-full object-cover object-top"
+            />
+            <div className={styles.overlay} />
+          </>
         )}
-        <div className={styles.overlay} />
         <a href="/flashsale" className={styles['back-button']}>
           <i className="ri-arrow-left-line ri-lg mr-1" />
           <span>Quay lại</span>
