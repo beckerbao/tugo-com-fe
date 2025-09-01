@@ -240,7 +240,7 @@ const FlashSaleDetail = () => {
           content={typeof window !== 'undefined' ? window.location.href : ''}
         />
       </Helmet>
-      <div className="relative h-96">
+      <div className={`relative ${styles['hero-banner']}`}>
         {tourImage && (
           <img
             src={tourImage}
