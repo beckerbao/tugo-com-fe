@@ -1,10 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 import apiClient from '../services/apiClient'
+import ItineraryMap from '../components/ItineraryMap'
 import styles from '../styles/flashsale-detail.module.css'
+import mapStyles from '../styles/itinerary-map.module.css'
 import type { FlashSaleDeparture } from '../types'
 import { formatCurrency } from '../utils/formatCurrency'
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
+import markerIcon from 'leaflet/dist/images/marker-icon.png'
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+
+delete (L.Icon.Default.prototype as unknown as Record<string, unknown>)
+  ._getIconUrl
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+})
 
 type DetailResponse = {
   data: {
@@ -57,6 +72,10 @@ const FlashSaleDetail = () => {
   const [tourServices, setTourServices] = useState<{ description: string }[]>(
     [],
   )
+  const [locations, setLocations] = useState<
+    { lat: number; lng: number; name: string }[]
+  >([])
+  const [mapOpen, setMapOpen] = useState(false)
 
   const overviewRef = useRef<HTMLElement>(null)
   const bookingRef = useRef<HTMLElement>(null)
@@ -130,6 +149,22 @@ const FlashSaleDetail = () => {
       setTourItinerary(tourData.itinerary || [])
       setTourGallery(tourData.photo_gallery || [])
       setTourServices(tourData.whats_included || [])
+      const locRes = await apiClient.get<{
+        data: {
+          locations: {
+            latitude: number
+            longitude: number
+            name: string
+          }[]
+        }
+      }>(`/flashsale/tours/locations?tour_id=${id}`)
+      setLocations(
+        (locRes.data.locations || []).map((loc) => ({
+          lat: Number(loc.latitude),
+          lng: Number(loc.longitude),
+          name: loc.name,
+        })),
+      )
       if (res.data.prices && res.data.prices[0]?.departure_date) {
         setSelected(res.data.prices[0].departure_date)
       }
@@ -329,84 +364,6 @@ const FlashSaleDetail = () => {
             </h2>
             <div dangerouslySetInnerHTML={{ __html: tourSummary }} />
           </div>
-
-
-          <div
-            id="tab-itinerary"
-            ref={itineraryRef}
-            className="bg-white rounded-lg shadow-sm p-6 mb-6"
-          >
-            {tourItinerary.map((day, i) => (
-              <div key={i} className="relative pl-10 pb-8">
-                <div className={styles['timeline-dot']} />
-                {i < tourItinerary.length - 1 && (
-                  <div className={styles['timeline-line']} />
-                )}
-                <h3 className="font-bold text-gray-900 mb-2">
-                  {`${day.day}: ${day.title}`}
-                </h3>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <p className="text-gray-700 whitespace-pre-line">
-                    {day.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div
-            id="tab-attractions"
-            ref={attractionsRef}
-            className="bg-white rounded-lg shadow-sm p-6 mb-6"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-4">
-              Điểm nổi bật của tour
-            </h2>
-            <ul className="space-y-2 text-gray-800">
-              {tourHighlights.map((hl, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <i className="ri-checkbox-circle-line text-[#660066] mt-1" />
-                  <span>{hl.description}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">
-              Thư viện hình ảnh
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {tourGallery.map((photo, idx) => (
-                <div key={idx} className="overflow-hidden rounded-lg shadow-sm">
-                  <img
-                    src={photo.image}
-                    alt="Gallery"
-                    className={`w-full h-40 object-cover ${styles['gallery-img']}`}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div
-            id="tab-includes"
-            ref={servicesRef}
-            className="bg-white rounded-lg shadow-sm p-6 mb-6"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-4">
-              Dịch vụ bao gồm
-            </h2>
-            <ul className="space-y-2 text-gray-800">
-              {tourServices.map((svc, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <i className="ri-check-line text-green-600 mt-1" />
-                  <span>{svc.description}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
         </div>
       </section>
 
@@ -580,6 +537,40 @@ const FlashSaleDetail = () => {
       <section id="tab-itinerary" ref={itineraryRef} className={styles.section}>
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold text-gray-900">
+                Lịch trình chi tiết
+              </h2>
+              {locations.length > 0 && (
+                <button
+                  onClick={() => setMapOpen(true)}
+                  className="px-4 py-2 bg-purple-700 text-white rounded hover:bg-purple-800 text-sm md:text-base"
+                >
+                  Bản đồ hành trình
+                </button>
+              )}
+            </div>
+            <p className="text-sm italic text-red-500 mb-4">
+              (tuỳ theo ngày khởi hành có thể sẽ khác nhau)
+            </p>
+            {mapOpen && (
+              <div
+                className={mapStyles['map-overlay']}
+                onClick={(e) => {
+                  if (e.target === e.currentTarget) setMapOpen(false)
+                }}
+              >
+                <div className={mapStyles['map-inner']}>
+                  <button
+                    className={mapStyles['close-button']}
+                    onClick={() => setMapOpen(false)}
+                  >
+                    ×
+                  </button>
+                  <ItineraryMap locations={locations} />
+                </div>
+              </div>
+            )}
             {tourItinerary.map((day, i) => (
               <div key={i} className="relative pl-10 pb-8">
                 <div className={styles['timeline-dot']} />
