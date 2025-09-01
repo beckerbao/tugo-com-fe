@@ -33,22 +33,19 @@ const FlashSaleMenu: FC<{ items: MenuItem[] }> = ({ items }) => {
 
       <button
         className={styles['menu-toggle']}
-        onClick={() => setOpen(true)}
-        aria-label="Open menu"
+        onClick={() => setOpen(!open)}
+        aria-label={open ? 'Close menu' : 'Open menu'}
       >
-        <i className="ri-menu-line"></i>
+        {open ? (
+          <i className="ri-close-line"></i>
+        ) : (
+          <i className="ri-menu-line"></i>
+        )}
       </button>
 
       <div
         className={`${styles['mobile-slide-menu']} ${open ? styles.active : ''}`}
       >
-        <button
-          className={styles['close-btn']}
-          onClick={() => setOpen(false)}
-          aria-label="Close menu"
-        >
-          <i className="ri-close-line"></i>
-        </button>
         <div className={styles['mobile-menu-items']}>
           {items.map((item) => (
             <button key={item.id} onClick={() => handleNavigate(item.id)}>
