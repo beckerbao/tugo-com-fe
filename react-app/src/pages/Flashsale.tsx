@@ -135,7 +135,7 @@ const Flashsale = () => {
             {col.tours.map((tour) => (
               <div key={tour.tour_id} className={styles['tour-card']}>
                 <img src={tour.tour_image} alt={tour.tour_name} />
-                <h3>{tour.tour_name}</h3>
+                <h3 className={styles['tour-title']}>{tour.tour_name}</h3>
                 <div>
                   {tour.departures.slice(0, 4).map((dep) => (
                     <div
@@ -150,7 +150,7 @@ const Flashsale = () => {
                 </div>
                 <Link
                   to={`/flashsale/${tour.tour_id}`}
-                  className="mt-4 w-full bg-primary text-white py-2 px-4 rounded flex items-center justify-center hover:bg-purple-800 transition"
+                  className={styles['tour-button']}
                 >
                   Xem chi tiết <i className="ri-arrow-right-line ri-lg ml-1" />
                 </Link>
