@@ -100,6 +100,13 @@
   margin-right: 0.5rem;
 }
 
+.departure-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
 .date-pill {
   display: inline-flex;
   align-items: center;
