@@ -44,6 +44,12 @@
   margin: 0 auto;
 }
 
+.destination-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .hero-content {
   width: 100%;
   max-width: 36rem;
@@ -64,6 +70,7 @@
   overflow: hidden;
   border-radius: 0.5rem;
   transition: transform 0.3s ease;
+  width: 100%;
 }
 
 .collection-card img {
