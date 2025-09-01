@@ -465,10 +465,11 @@ const FlashSaleDetail = () => {
               </div>
               <div className={styles['quantity-selector']}>
                 <button
-                  className={styles['rounded-button']}
+                  className={styles['quantity-button']}
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  aria-label="Decrease quantity"
                 >
-                  <i className="ri-subtract-line" />
+                  <i className="ri-subtract-line"></i>
                 </button>
                 <input
                   className={styles['quantity-input']}
@@ -478,10 +479,11 @@ const FlashSaleDetail = () => {
                   onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
                 />
                 <button
-                  className={styles['rounded-button']}
+                  className={styles['quantity-button']}
                   onClick={() => setQuantity((q) => q + 1)}
+                  aria-label="Increase quantity"
                 >
-                  <i className="ri-add-line" />
+                  <i className="ri-add-line"></i>
                 </button>
               </div>
               <div className={styles['booking-form']}>
