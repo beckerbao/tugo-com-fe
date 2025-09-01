@@ -35,6 +35,7 @@ const FlashSaleDetail = () => {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [loading, setLoading] = useState(false)
+  const [designing, setDesigning] = useState(false)
 
   useEffect(() => {
     let timer: number | undefined
@@ -81,6 +82,8 @@ const FlashSaleDetail = () => {
 
   const selectedPrice =
     prices.find((p) => p.departure_date === selected)?.price || 0
+  const selectedDeparture = prices.find((p) => p.departure_date === selected)
+  const strikePrice = Math.ceil(selectedPrice * 1.15)
   const total = selectedPrice * quantity
 
   const book = async () => {
@@ -103,6 +106,23 @@ const FlashSaleDetail = () => {
       alert('Không thể đặt tour')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const designTour = async () => {
+    if (!id) return
+    setDesigning(true)
+    try {
+      await apiClient.post('/api/v1/custom-tours/from-app-tour', {
+        tour_id: id,
+        departure_date: selected,
+        expected_guests: quantity,
+      })
+      alert('Yêu cầu đã được gửi')
+    } catch {
+      alert('Không thể gửi yêu cầu')
+    } finally {
+      setDesigning(false)
     }
   }
 
@@ -146,6 +166,45 @@ const FlashSaleDetail = () => {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="flex flex-wrap gap-4 text-sm">
+          <div className="flex items-center">
+            <i className="ri-calendar-line text-primary mr-2" /> Khởi hành:
+            <strong className="ml-1">
+              {selected ? new Date(selected).toLocaleDateString('vi-VN') : ''}
+            </strong>
+          </div>
+          <div className="flex items-center">
+            <i className="ri-group-line text-primary mr-2" /> Số chỗ còn nhận:
+            <strong className="ml-1">
+              {selectedDeparture?.available_slots ?? 0}
+            </strong>
+          </div>
+        </div>
+        <div className="mt-6 flex items-center justify-between">
+          <div>
+            <span className="text-gray-500 line-through text-lg">
+              {formatCurrency(strikePrice)}
+            </span>
+            <div className="text-2xl font-bold text-primary">
+              {formatCurrency(selectedPrice)}
+            </div>
+            <span className="text-sm text-gray-500">
+              Giá/khách (đã bao gồm thuế VAT)
+            </span>
+            <div className="text-sm text-gray-500">Giá chưa bao gồm TIP</div>
+          </div>
+          <div className="mt-2">
+            <button
+              className="bg-primary text-white px-5 py-2 rounded font-bold"
+              onClick={designTour}
+              disabled={designing}
+            >
+              Thiết kế tour riêng
+            </button>
           </div>
         </div>
       </div>
@@ -208,6 +267,16 @@ const FlashSaleDetail = () => {
           {loading ? 'Đang xử lý...' : 'Đặt ngay'}
         </button>
       </div>
+      {designing && (
+        <div className={styles['loading-overlay']}>
+          <div className="text-center">
+            <div className={styles.spinner} />
+            <div className="mt-2 text-white font-bold">
+              Hệ thống đang xử lý...
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
