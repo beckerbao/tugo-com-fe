@@ -117,6 +117,7 @@ const Flashsale = () => {
         <section
           id={getIdCodeByName(col.collection_name)}
           key={col.collection_name}
+          className={styles['destination-section']}
         >
           <div className={styles['collection-card']}>
             <img src={col.collection_image} alt={col.collection_name} />
