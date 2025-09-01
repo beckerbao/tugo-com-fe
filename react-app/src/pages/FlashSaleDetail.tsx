@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import apiClient from '../services/apiClient'
 import styles from '../styles/flashsale-detail.module.css'
 import type { FlashSaleDeparture } from '../types'
@@ -217,7 +218,28 @@ const FlashSaleDetail = () => {
   }
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>{`${tourName} | Tugo`}</title>
+        <meta property="og:title" content={`${tourName} | Tugo`} />
+        {tourSummary && (
+          <meta property="og:description" content={tourSummary} />
+        )}
+        {tourImage && <meta property="og:image" content={tourImage} />}
+        <meta
+          property="og:url"
+          content={typeof window !== 'undefined' ? window.location.href : ''}
+        />
+        <meta name="twitter:title" content={`${tourName} | Tugo`} />
+        {tourSummary && (
+          <meta name="twitter:description" content={tourSummary} />
+        )}
+        {tourImage && <meta name="twitter:image" content={tourImage} />}
+        <meta
+          name="twitter:url"
+          content={typeof window !== 'undefined' ? window.location.href : ''}
+        />
+      </Helmet>
       <div className="relative h-96">
         {tourImage && (
           <img
@@ -565,7 +587,7 @@ const FlashSaleDetail = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 
