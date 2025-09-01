@@ -141,3 +141,22 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.tour-title {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #111827;
+}
+
+.tour-button {
+  margin-top: 1rem;
+  width: 100%;
+  background-color: var(--primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
