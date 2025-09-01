@@ -375,7 +375,7 @@ const FlashSaleDetail = () => {
             <h2 className="text-xl font-bold text-gray-900 mb-4">
               Thư viện hình ảnh
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {tourGallery.map((photo, idx) => (
                 <div key={idx} className="overflow-hidden rounded-lg shadow-sm">
                   <img
