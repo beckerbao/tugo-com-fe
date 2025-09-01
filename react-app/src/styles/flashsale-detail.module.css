@@ -8,6 +8,11 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
 }
 
+.hero-banner {
+  height: 380px;
+  overflow: hidden;
+}
+
 .back-button {
   position: absolute;
   top: 1rem;
