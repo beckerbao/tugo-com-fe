@@ -8,6 +8,11 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
 }
 
+.section {
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
 .hero-banner {
   height: 380px;
   overflow: hidden;

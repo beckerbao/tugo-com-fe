@@ -58,14 +58,14 @@ const FlashSaleDetail = () => {
     [],
   )
 
-  const overviewRef = useRef<HTMLDivElement>(null)
-  const bookingRef = useRef<HTMLDivElement>(null)
-  const itineraryRef = useRef<HTMLDivElement>(null)
-  const attractionsRef = useRef<HTMLDivElement>(null)
-  const servicesRef = useRef<HTMLDivElement>(null)
+  const overviewRef = useRef<HTMLElement>(null)
+  const bookingRef = useRef<HTMLElement>(null)
+  const itineraryRef = useRef<HTMLElement>(null)
+  const attractionsRef = useRef<HTMLElement>(null)
+  const servicesRef = useRef<HTMLElement>(null)
   const [activeTab, setActiveTab] = useState('overview')
 
-  const sectionRefs: Record<string, React.RefObject<HTMLDivElement>> = {
+  const sectionRefs: Record<string, React.RefObject<HTMLElement>> = {
     overview: overviewRef,
     booking: bookingRef,
     itinerary: itineraryRef,
@@ -282,9 +282,9 @@ const FlashSaleDetail = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-6 flex flex-col lg:flex-row gap-6">
-        <div className="flex-1">
-          <div className="bg-white rounded-lg shadow-sm mb-6 sticky top-16 z-40">
+      <section className={styles.section}>
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-lg shadow-sm sticky top-16 z-40">
             <div className="flex overflow-x-auto scrollbar-hide">
               <button
                 onClick={() => handleTabClick('overview')}
@@ -318,17 +318,18 @@ const FlashSaleDetail = () => {
               </button>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div
-            id="tab-overview"
-            ref={overviewRef}
-            className="bg-white rounded-lg shadow-sm p-6 mb-6"
-          >
+      <section id="tab-overview" ref={overviewRef} className={styles.section}>
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-lg shadow-sm p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-4">
               Tổng quan về tour
             </h2>
             <div dangerouslySetInnerHTML={{ __html: tourSummary }} />
           </div>
+
 
           <div
             id="tab-itinerary"
@@ -405,13 +406,12 @@ const FlashSaleDetail = () => {
               ))}
             </ul>
           </div>
-        </div>
 
-        <div
-          id="tab-booking"
-          ref={bookingRef}
-          className={`${styles['sticky-booking']} mb-6 lg:mb-0`}
-        >
+        </div>
+      </section>
+
+      <section id="tab-booking" ref={bookingRef} className={styles.section}>
+        <div className="max-w-7xl mx-auto">
           <div className="p-6 rounded-lg border shadow-sm bg-white">
             <div className="flex flex-wrap gap-4 text-sm">
               <div className="flex items-center">
@@ -575,7 +575,91 @@ const FlashSaleDetail = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section id="tab-itinerary" ref={itineraryRef} className={styles.section}>
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            {tourItinerary.map((day, i) => (
+              <div key={i} className="relative pl-10 pb-8">
+                <div className={styles['timeline-dot']} />
+                {i < tourItinerary.length - 1 && (
+                  <div className={styles['timeline-line']} />
+                )}
+                <h3 className="font-bold text-gray-900 mb-2">
+                  {`${day.day}: ${day.title}`}
+                </h3>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <p className="text-gray-700 whitespace-pre-line">
+                    {day.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="tab-attractions"
+        ref={attractionsRef}
+        className={styles.section}
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Điểm nổi bật của tour
+            </h2>
+            <ul className="space-y-2 text-gray-800">
+              {tourHighlights.map((hl, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <i className="ri-checkbox-circle-line text-[#660066] mt-1" />
+                  <span>{hl.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Thư viện hình ảnh
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {tourGallery.map((photo, idx) => (
+                <div key={idx} className="overflow-hidden rounded-lg shadow-sm">
+                  <img
+                    src={photo.image}
+                    alt="Gallery"
+                    className={`w-full h-40 object-cover ${styles['gallery-img']}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-includes" ref={servicesRef} className={styles.section}>
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Dịch vụ bao gồm
+            </h2>
+            <ul className="space-y-2 text-gray-800">
+              {tourServices.map((svc, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <i className="ri-check-line text-green-600 mt-1" />
+                  <span>{svc.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
 
       {designing && (
         <div id="loadingOverlay">
