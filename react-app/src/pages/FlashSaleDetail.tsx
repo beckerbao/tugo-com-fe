@@ -9,6 +9,7 @@ import styles from '../styles/flashsale-detail.module.css'
 import mapStyles from '../styles/itinerary-map.module.css'
 import type { FlashSaleDeparture } from '../types'
 import { formatCurrency } from '../utils/formatCurrency'
+import { sanitizeHtml } from '../utils/sanitizeHtml'
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
@@ -364,7 +365,9 @@ const FlashSaleDetail = () => {
             <h2 className="text-xl font-bold text-gray-900 mb-4">
               Tổng quan về tour
             </h2>
-            <div dangerouslySetInnerHTML={{ __html: tourSummary }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(tourSummary) }}
+            />
           </div>
         </div>
       </section>
