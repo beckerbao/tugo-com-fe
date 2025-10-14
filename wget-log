@@ -1,0 +1,10 @@
+--2025-09-17 00:47:27--  http://drive.google.com/uc?export=view
+Resolving drive.google.com (drive.google.com)... 142.250.198.206
+Connecting to drive.google.com (drive.google.com)|142.250.198.206|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://drive.google.com/uc?export=view [following]
+--2025-09-17 00:47:27--  https://drive.google.com/uc?export=view
+Connecting to drive.google.com (drive.google.com)|142.250.198.206|:443... connected.
+HTTP request sent, awaiting response... 400 Bad Request
+2025-09-17 00:47:28 ERROR 400: Bad Request.
+
