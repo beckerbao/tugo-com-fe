@@ -95,19 +95,19 @@ function getIdCodeByName($name) {
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flash Sale - 10.10 Golden Day (tặng SIM) | Tugo</title>
+  <title>Chúc mừng Tết Bính Ngọ | Tugo</title>
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="10.10 Golden Day (tặng SIM) – Ưu Đãi Vui Vẻ">
-  <meta property="og:description" content="10.10 Golden Day (tặng SIM) – Ưu Đãi Vui Vẻ">
+  <meta property="og:title" content="Chúc mừng Tết Bính Ngọ – Ưu Đãi Vui Vẻ">
+  <meta property="og:description" content="Chúc mừng Tết Bính Ngọ – Ưu Đãi Vui Vẻ">
   <meta property="og:image" content="https://review.tugo.com.vn/assets/images/flash55.png">
   <meta property="og:url" content="https://review.tugo.com.vn/pages/flashsale_home.php">
   <meta property="og:type" content="website">
 
   <!-- Twitter Card Tags (tùy chọn) -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="10.10 Golden Day (tặng SIM) – Ưu Đãi Vui Vẻ">
-  <meta name="twitter:description" content="10.10 Golden Day (tặng SIM) – Ưu Đãi Vui Vẻ">
+  <meta name="twitter:title" content="Chúc mừng Tết Bính Ngọ – Ưu Đãi Vui Vẻ">
+  <meta name="twitter:description" content="Chúc mừng Tết Bính Ngọ– Ưu Đãi Vui Vẻ">
   <meta name="twitter:image" content="https://yourdomain.com/images/flashsale-5-5.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -143,8 +143,8 @@ function getIdCodeByName($name) {
   <section class="hero-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       <div class="w-full max-w-xl bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
-        <h1 class="text-3xl md:text-4xl font-bold text-white">10.10 Golden Day (tặng SIM) </h1>
-        <p class="mt-2 text-lg text-white/90">Từ 10.10 đến 17.10</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-white">Chúc mừng Tết Bính Ngọ </h1>
+        <p class="mt-2 text-lg text-white/90">Từ 12.1 đến 17.1</p>
         <div class="mt-4 inline-flex items-center px-4 py-2 bg-primary text-white rounded-full countdown">
           <?php
           if ($campaign_start) {

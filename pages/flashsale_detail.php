@@ -116,8 +116,8 @@ $tour_price_strike = ceil($tour_price * 1.15);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= htmlspecialchars($tour_name) ?> | Tugo</title>
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="10.10 Golden Day (tặng SIM) – Ưu Đãi Vui Vẻ | Tugo">
-  <meta property="og:description" content="10.10 Golden Day (tặng SIM) – Ưu Đãi Vui Vẻ | Tugo">
+  <meta property="og:title" content="Chúc mừng Tết Bính Ngọ – Ưu Đãi Vui Vẻ | Tugo">
+  <meta property="og:description" content="Chúc mừng Tết Bính Ngọ – Ưu Đãi Vui Vẻ | Tugo">
   <meta property="og:image" content="https://review.tugo.com.vn/assets/images/flash55.png">
   <meta property="og:url" content="https://review.tugo.com.vn/pages/flashsale_detail.php">
   <meta property="og:type" content="website">
