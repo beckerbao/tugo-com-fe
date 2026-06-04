@@ -78,6 +78,19 @@ body {
     color: #888;
 }
 
+.review-suggestions {
+    display: grid;
+    gap: 4px;
+    margin: 4px 0 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #777;
+}
+
+.review-suggestions span {
+    display: block;
+}
+
 .submit-button {
     background-color: #660066;
     color: #fff;

@@ -11,6 +11,8 @@ APICaller::init();
 // Biến lưu giá trị để hiển thị trên form
 $tour_name = '';
 $guide_name = '';
+$local_guide_name = '';
+$local_guide_review = '';
 $start_date_display = '';
 $end_date_display = '';
 $is_zalo = false;
@@ -50,6 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'start_date' => $start_date,
         'end_date' => $end_date,
         'guide_name' => $_POST['guide_name'],
+        'local_guide_name' => $_POST['local_guide_name'],
+        'local_guide_review' => $_POST['local_guide_review'],
         'guest_name' => $_POST['guest_name'],
         'guest_phone' => $_POST['guest_phone'],
         'review_content' => $_POST['review_content'],
@@ -89,6 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $guide_name = $_POST['guide_name'] ?? '';
         $start_date_display = $_POST['start_date'] ?? '';
         $end_date_display = $_POST['end_date'] ?? '';
+        $local_guide_name = $_POST['local_guide_name'] ?? '';
+        $local_guide_review = $_POST['local_guide_review'] ?? '';
         $guest_name = $_POST['guest_name'] ?? '';
         $guest_phone = $_POST['guest_phone'] ?? '';
         $review_content = $_POST['review_content'] ?? '';
@@ -138,6 +144,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="guide-name" name="guide_name" value="<?php echo htmlspecialchars($guide_name); ?>" readonly>
         </div>
 
+        <div class="form-group">
+            <label for="local-guide-name">Hướng dẫn viên địa phương</label>
+            <small>Nếu tour có hướng dẫn viên địa phương, vui lòng nhập tên tại đây.</small>
+            <input type="text" id="local-guide-name" name="local_guide_name" placeholder="Nhập tên hướng dẫn viên địa phương nếu có" value="<?php echo htmlspecialchars($local_guide_name); ?>" <?php if ($is_zalo) echo 'readonly'; ?>>
+        </div>
+
+        <div class="form-group">
+            <label for="local-guide-review">Đánh giá hướng dẫn viên địa phương</label>
+            <div class="review-suggestions">
+                <span>Gợi ý:</span>
+                <span>HDV địa phương có nói Tiếng Việt tốt không?</span>
+                <span>Có thuyết minh khi đến các điểm tham quan không?</span>
+                <span>Có hỗ trợ đoàn nhiệt tình, đúng giờ không?</span>
+            </div>
+            <textarea id="local-guide-review" name="local_guide_review" placeholder="Nhập đánh giá về hướng dẫn viên địa phương nếu có..." <?php if ($is_zalo) echo 'readonly'; ?>><?php echo htmlspecialchars($local_guide_review); ?></textarea>
+        </div>
+
         <!-- nếu $is_zalo = true thì readonly -->
         <div class="form-group">
             <label for="guest-name">Tên khách</label>
@@ -151,6 +174,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="form-group">
             <label for="review-content">Nội dung đánh giá</label>
+            <div class="review-suggestions">
+                <span>Gợi ý:</span>
+                <span>HDV tại VN có hỗ trợ đoàn tốt không?</span>
+                <span>Món ăn tại địa phương có phù hợp với mình không?</span>
+                <span>Thời gian di chuyển có phù hợp không?</span>
+                <span>Khách sạn có phù hợp với nhu cầu của mình không?</span>
+            </div>
             <textarea id="review-content" name="review_content" placeholder="Nhập nội dung đánh giá..." required <?php if ($is_zalo) echo 'readonly'; ?>></textarea>
         </div>
 
