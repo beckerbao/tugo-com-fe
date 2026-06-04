@@ -13,6 +13,7 @@ $tour_name = '';
 $guide_name = '';
 $local_guide_name = '';
 $local_guide_review = '';
+$tour_review = '';
 $start_date_display = '';
 $end_date_display = '';
 $is_zalo = false;
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'guide_name' => $_POST['guide_name'],
         'local_guide_name' => $_POST['local_guide_name'],
         'local_guide_review' => $_POST['local_guide_review'],
+        'tour_review' => $_POST['tour_review'],
         'guest_name' => $_POST['guest_name'],
         'guest_phone' => $_POST['guest_phone'],
         'review_content' => $_POST['review_content'],
@@ -95,13 +97,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $end_date_display = $_POST['end_date'] ?? '';
         $local_guide_name = $_POST['local_guide_name'] ?? '';
         $local_guide_review = $_POST['local_guide_review'] ?? '';
+        $tour_review = $_POST['tour_review'] ?? '';
         $guest_name = $_POST['guest_name'] ?? '';
         $guest_phone = $_POST['guest_phone'] ?? '';
         $review_content = $_POST['review_content'] ?? '';
     }
 }
 ?>
-<link rel="stylesheet" href="../assets/css/review.css?<?php echo $version; ?>">
+<link rel="stylesheet" href="../assets/css/review.css?v=<?php echo $version; ?>">
 <div class="review-container">
     <!-- <button class="back-button" onclick="location.href='home.php'">Quay lại</button> -->
     <!-- Help Section -->
@@ -139,10 +142,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="end-date" name="end_date" value="<?php echo htmlspecialchars($end_date_display); ?>" readonly>
         </div>
 
+        <div class="review-section-divider"></div>
+
         <div class="form-group">
-            <label for="guide-name">Hướng dẫn viên</label>
+            <label for="guide-name">Trưởng đoàn từ Việt Nam</label>
             <input type="text" id="guide-name" name="guide_name" value="<?php echo htmlspecialchars($guide_name); ?>" readonly>
         </div>
+
+        <div class="form-group">
+            <label for="review-content">Đánh giá trưởng đoàn từ Việt Nam</label>
+            <div class="review-suggestions">
+                <span>Gợi ý:</span>
+                <span>HDV tại VN có hỗ trợ mình checkin tốt không?</span>
+                <span>HDV tại VN có hướng dẫn dặn dò mình khi làm thủ tục xuất nhập cảnh không?</span>
+                <span>HDV tại VN có hỗ trợ đoàn trên đường tour không?</span>
+            </div>
+            <textarea id="review-content" name="review_content" placeholder="Nhập đánh giá về trưởng đoàn từ Việt Nam..." required <?php if ($is_zalo) echo 'readonly'; ?>><?php echo htmlspecialchars($review_content ?? ''); ?></textarea>
+        </div>
+
+        <div class="review-section-divider"></div>
 
         <div class="form-group">
             <label for="local-guide-name">Hướng dẫn viên địa phương</label>
@@ -161,6 +179,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea id="local-guide-review" name="local_guide_review" placeholder="Nhập đánh giá về hướng dẫn viên địa phương nếu có..." <?php if ($is_zalo) echo 'readonly'; ?>><?php echo htmlspecialchars($local_guide_review); ?></textarea>
         </div>
 
+        <div class="review-section-divider"></div>
+
+        <div class="form-group">
+            <label for="tour-review">Đánh giá tour</label>
+            <div class="review-suggestions">
+                <span>Gợi ý:</span>
+                <span>Món ăn tại địa phương có phù hợp với mình không?</span>
+                <span>Thời gian di chuyển có phù hợp không?</span>
+                <span>Khách sạn có phù hợp với nhu cầu của mình không?</span>
+            </div>
+            <textarea id="tour-review" name="tour_review" placeholder="Nhập đánh giá về chương trình tour, điểm tham quan, lịch trình..." required <?php if ($is_zalo) echo 'readonly'; ?>><?php echo htmlspecialchars($tour_review); ?></textarea>
+        </div>
+
         <!-- nếu $is_zalo = true thì readonly -->
         <div class="form-group">
             <label for="guest-name">Tên khách</label>
@@ -170,18 +201,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
             <label for="guest-phone">Số điện thoại  (có sử dụng Zalo)</label>
             <input type="text" id="guest-phone" name="guest_phone" placeholder="Nhập số điện thoại" required <?php if ($is_zalo) echo 'readonly'; ?>>
-        </div>
-
-        <div class="form-group">
-            <label for="review-content">Nội dung đánh giá</label>
-            <div class="review-suggestions">
-                <span>Gợi ý:</span>
-                <span>HDV tại VN có hỗ trợ đoàn tốt không?</span>
-                <span>Món ăn tại địa phương có phù hợp với mình không?</span>
-                <span>Thời gian di chuyển có phù hợp không?</span>
-                <span>Khách sạn có phù hợp với nhu cầu của mình không?</span>
-            </div>
-            <textarea id="review-content" name="review_content" placeholder="Nhập nội dung đánh giá..." required <?php if ($is_zalo) echo 'readonly'; ?>></textarea>
         </div>
 
         <div class="form-group">
