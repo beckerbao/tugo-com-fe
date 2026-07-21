@@ -53,4 +53,4 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
 </head>
-<body>
+<body class="<?php echo htmlspecialchars($body_class ?? ''); ?>">
