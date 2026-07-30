@@ -10,7 +10,7 @@ body.statistics-page { background: var(--paper); color: var(--ink); font-family:
 .statistics-hero p { margin: 0; color: rgba(255,255,255,.78); }
 .refresh-button { position: relative; z-index: 1; margin-top: 22px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.13); color: #fff; border-radius: 999px; padding: 10px 16px; cursor: pointer; font-weight: 700; }
 .refresh-button:hover { background: rgba(255,255,255,.24); }
-.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 20px 0; }
+.kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin: 20px 0; }
 .kpi-card, .dashboard-card { background: #fff; border: 1px solid #e6eaed; border-radius: 18px; box-shadow: 0 8px 24px rgba(38, 49, 57, .05); }
 .kpi-card { padding: 20px; min-height: 112px; }
 .kpi-label { color: var(--muted); font-size: 13px; font-weight: 600; }
@@ -36,5 +36,6 @@ body.statistics-page { background: var(--paper); color: var(--ink); font-family:
 .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_paginate { color: var(--muted) !important; font-size: 12px; margin-top: 14px; }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current { background: var(--purple) !important; color: #fff !important; border-color: var(--purple) !important; border-radius: 7px; }
 .api-error { background: #fff0f0; border: 1px solid #f2b8b8; border-radius: 12px; color: #a43737; padding: 16px; margin-top: 18px; }
+@media (max-width: 1100px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } .dashboard-grid { grid-template-columns: 1fr; } .dashboard-card.wide { grid-column: auto; } }
 @media (max-width: 520px) { .statistics-shell { padding: 18px 12px 28px; } .statistics-hero { padding: 24px 20px; border-radius: 18px; } .kpi-grid { gap: 10px; } .kpi-card { padding: 15px; } .kpi-value { font-size: 23px; } .dashboard-card { padding: 15px; border-radius: 14px; } .card-heading { display: block; } .date-filter { margin-top: 12px; } }
