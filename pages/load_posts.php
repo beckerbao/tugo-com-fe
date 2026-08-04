@@ -15,7 +15,7 @@ if ($type === 'all') {
 }
 
 APICaller::init();
-$response = APICaller::get("/posts",array("page_size"=>20,"page"=>$cursor,'type'=>$type));
+$response = APICaller::get("/posts",array("page_size"=>20,"cursor"=>$cursor,'type'=>$type));
 
 if (isset($response['data'])) {
     $posts = $response['data']['posts'];
@@ -29,6 +29,9 @@ if (isset($response['data'])) {
         } elseif ($post['type'] === 'general') {
             $post['time_ago'] = get_time_ago($post['created_at']);
             $html .= renderPostGeneral($post);
+        } elseif ($post['type'] === 'review_sale') {
+            $post['time_ago'] = get_time_ago($post['created_at']);
+            $html .= renderPostSaleReview($post);
         }
     }
 
@@ -62,5 +65,14 @@ function renderPostReview($post) {
 function renderPostGeneral($post) {
     ob_start();
     include '../includes/post-general.php';
+    return ob_get_clean();
+}
+
+/**
+ * Render sale-review HTML from a template file.
+ */
+function renderPostSaleReview($post) {
+    ob_start();
+    include '../includes/post-sale-review.php';
     return ob_get_clean();
 }

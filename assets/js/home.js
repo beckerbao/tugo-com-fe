@@ -14,7 +14,8 @@ async function loadMore(cursor, type = 'all') {
     loadMoreButton.textContent = "Loading...";
 
     try {
-        const response = await fetch(`load_posts.php?cursor=${cursor}&type=${type}`);
+        const params = new URLSearchParams({ cursor, type });
+        const response = await fetch(`load_posts.php?${params.toString()}`);
         if (!response.ok) {
             throw new Error(`HTTP Error! status: ${response.status}`);
         }
@@ -83,4 +84,3 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(postId);
     });
 });
-
