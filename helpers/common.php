@@ -39,6 +39,23 @@ function hasHttpOrHttps($url) {
     return false;
 }
 
+function displayRatingStars($rating) {
+    $maxRating = 10;
+    $fullStar = '★';
+    $emptyStar = '☆';
+    $output = '';
+
+    for ($i = 1; $i <= $maxRating; $i++) {
+        if ($i <= $rating) {
+            $output .= '<span style="color:gold;">' . $fullStar . '</span>';
+        } else {
+            $output .= '<span style="color:#ccc;">' . $emptyStar . '</span>';
+        }
+    }
+
+    return $output;
+}
+
 //get version in .env
 function get_version() {
     if (file_exists(__DIR__ . '/../.env')) {
