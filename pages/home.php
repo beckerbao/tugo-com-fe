@@ -102,7 +102,7 @@ $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['
 <!-- Include thêm các phần như Statistics và Feed -->
 
 <?php include '../includes/navbar.php'; ?>
-<script src="../assets/js/home.js"></script>
+<script src="../assets/js/home.js?v=<?php echo (int) filemtime(__DIR__ . '/../assets/js/home.js'); ?>"></script>
 <!--
     cần 1 script check nếu query string biến notice=review_success thì sẽ alert "Đánh giá thành công"
 -->
