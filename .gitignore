@@ -1,3 +1,5 @@
 .DS_Store
 pages/.env
 .env
+# CocoIndex Code (ccc)
+/.cocoindex_code/

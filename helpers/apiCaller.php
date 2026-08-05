@@ -25,6 +25,13 @@ class APICaller {
         return self::$baseGoUrl;
     }
 
+    private static function closeCurl($handle) {
+        // curl_close() is deprecated and a no-op on PHP 8.5+.
+        if (PHP_VERSION_ID < 80500) {
+            curl_close($handle);
+        }
+    }
+
     // Hàm GET
     public static function get($endpoint, $params = []) {
         $url = self::$baseUrl . $endpoint . '?' . http_build_query($params);
@@ -37,7 +44,7 @@ class APICaller {
 
         $response = curl_exec($ch);
         $error = curl_error($ch);
-        curl_close($ch);
+        self::closeCurl($ch);
 
         if ($response === false) {
             return ['error' => 'Failed to connect: ' . $error];
@@ -61,7 +68,7 @@ class APICaller {
 
         $response = curl_exec($ch);
         $error = curl_error($ch);
-        curl_close($ch);
+        self::closeCurl($ch);
 
         if ($response === false) {
             return ['error' => 'Failed to connect: ' . $error];
@@ -85,7 +92,7 @@ class APICaller {
 
         $response = curl_exec($ch);
         $error = curl_error($ch);
-        curl_close($ch);        
+        self::closeCurl($ch);
 
         if ($response === false) {
             return ['error' => 'Failed to connect: ' . $error];
@@ -131,7 +138,7 @@ class APICaller {
         $response = curl_exec($ch);
         $error = curl_error($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        self::closeCurl($ch);
     
         if ($response === false) {
             return [
@@ -159,7 +166,7 @@ class APICaller {
 
         $response = curl_exec($ch);
         $error = curl_error($ch);
-        curl_close($ch);
+        self::closeCurl($ch);
 
         if ($response === false) {
             return ['error' => 'Failed to connect: ' . $error];
@@ -182,7 +189,7 @@ class APICaller {
 
         $response = curl_exec($ch);
         $error = curl_error($ch);
-        curl_close($ch);
+        self::closeCurl($ch);
 
         if ($response === false) {
             return ['error' => 'Failed to connect: ' . $error];

@@ -42,6 +42,7 @@
         <a href="javascript:void(0);" class="toggle-content" onclick="toggleContent(<?php echo $post['id']; ?>)" id="toggle-<?php echo $post['id']; ?>" style="display: none;">Show More</a>
     </div>    
     <?php include '../includes/post-common.php'; ?>
+    <?php include '../includes/post-admin-reply.php'; ?>
     <!-- <div class="actions">
         <button>Like</button>
         <button>Comment</button>

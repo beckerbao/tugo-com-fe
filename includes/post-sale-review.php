@@ -70,6 +70,7 @@
     <img class="image" src="<?php echo $image?>" alt="Tour Image">
     <?php endforeach; ?>       
     <?php include '../includes/post-common.php'; ?>
+    <?php include '../includes/post-admin-reply.php'; ?>
     <!-- <div class="actions">
         <button>Like</button>
         <button>Comment</button>
