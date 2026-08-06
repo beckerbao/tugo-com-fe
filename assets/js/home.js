@@ -86,14 +86,14 @@ async function submitAdminReply(event) {
     }
 }
 
-async function loadMore(cursor, type = 'all') {
+async function loadMore(page, type = 'all') {
     const loadMoreButton = document.getElementById('load-more');
     //document get from attribute data-base-url
     loadMoreButton.disabled = true;
     loadMoreButton.textContent = "Loading...";
 
     try {
-        const params = new URLSearchParams({ cursor, type });
+        const params = new URLSearchParams({ page, type });
         const response = await fetch(`load_posts.php?${params.toString()}`);
         if (!response.ok) {
             throw new Error(`HTTP Error! status: ${response.status}`);

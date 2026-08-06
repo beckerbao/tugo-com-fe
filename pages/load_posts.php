@@ -2,12 +2,13 @@
 include '../helpers/apiCaller.php';
 include '../helpers/common.php';
 
-if (!isset($_GET['cursor'])) {
-    echo json_encode(['error' => 'Cursor is required.']);
+if (!isset($_GET['page']) && !isset($_GET['cursor'])) {
+    header('Content-Type: application/json', true, 400);
+    echo json_encode(['error' => 'Page is required.']);
     exit;
 }
 
-$cursor = isset($_GET['cursor']) ? $_GET['cursor'] : '';
+$page = isset($_GET['page']) ? $_GET['page'] : $_GET['cursor'];
 $type = isset($_GET['type']) ? $_GET['type'] : '';
 //nếu type=all thi $type='';
 if ($type === 'all') {
@@ -15,7 +16,7 @@ if ($type === 'all') {
 }
 
 APICaller::init();
-$response = APICaller::get("/posts",array("page_size"=>20,"cursor"=>$cursor,'type'=>$type));
+$response = APICaller::get("/posts",array("page_size"=>20,"page"=>$page,'type'=>$type));
 
 if (isset($response['data'])) {
     $posts = $response['data']['posts'];

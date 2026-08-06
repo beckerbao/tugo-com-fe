@@ -14,7 +14,7 @@ $postsResponse = APICaller::get('/posts',array("page_size"=>20,"page"=>1,'type'=
 
 $statistics = isset($statistics['data']) ? $statistics['data'] : [];
 $posts = isset($postsResponse['data']['posts']) ? $postsResponse['data']['posts'] : [];
-$nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['cursor'] : null;
+$nextPage = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['cursor'] : null;
 
 ?>
 <!-- <div class="header">
@@ -91,9 +91,9 @@ $nextCursor = isset($postsResponse['data']['cursor']) ? $postsResponse['data']['
 </div>
 
 <!-- Load More Button -->
-<?php if ($nextCursor): ?>
+<?php if ($nextPage): ?>
     <div class="load-more-container" id="load-more-container">
-        <button id="load-more" onclick="loadMore('<?php echo $nextCursor; ?>', '<?php echo $type; ?>')">Xem thêm</button>
+        <button id="load-more" onclick="loadMore('<?php echo $nextPage; ?>', '<?php echo $type; ?>')">Xem thêm</button>
     </div>
 <?php endif; ?>
 
