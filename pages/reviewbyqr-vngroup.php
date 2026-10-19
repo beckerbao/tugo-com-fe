@@ -64,7 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Gửi dữ liệu đến API bằng hàm postMultipart
-    $response = APICaller::postMultipart('/review/qr', array_merge($data, ['images' => $files]), [
+    $endpoint = APICaller::getReviewQrEndpoint();
+    $response = APICaller::postMultipart($endpoint, array_merge($data, ['images' => $files]), [
         'Content-Type: multipart/form-data',
     ]);
 
@@ -83,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </script>";
         exit;
     } else {
-        $error_message = $response['error'] ?? 'Something went wrong. Please try again.';
+        $error_message = !empty($response['message']) ? $response['message'] : ($response['error'] ?? 'Something went wrong. Please try again.');
 
         $tour_name = $_POST['tour_name'] ?? '';
         $guide_name = $_POST['guide_name'] ?? '';

@@ -2,6 +2,7 @@
 class APICaller {
     private static $baseUrl;// = 'http://host.docker.internal:9090/api/v1'; // Thay bằng URL API chính thức của bạn
     private static $baseGoUrl;
+    private static $reviewQrApiUrl;
     // private static $baseUrl = 'https://edd2-14-160-150-11.ngrok-free.app/api/v1';
 
     // Load base URL from .env file
@@ -10,6 +11,7 @@ class APICaller {
             $env = parse_ini_file(__DIR__ . '/../.env');
             self::$baseUrl = $env['BASE_URL'] ?? '';
             self::$baseGoUrl = $env['DOMAIN_URL'] ?? '';
+            self::$reviewQrApiUrl = $env['REVIEW_QR_API_URL'] ?? '';
         } else {
             throw new Exception(".env file not found.");
         }
@@ -25,6 +27,27 @@ class APICaller {
         return self::$baseGoUrl;
     }
 
+    //hàm get review qr api url
+    public static function getReviewQrApiUrl() {
+        return self::$reviewQrApiUrl;
+    }
+
+    //hàm get review qr endpoint (ưu tiên REVIEW_QR_API_URL, fallback về /review/qr)
+    public static function getReviewQrEndpoint() {
+        return !empty(self::$reviewQrApiUrl) ? self::$reviewQrApiUrl : '/review/qr';
+    }
+
+    //hàm build full url hỗ trợ endpoint tương đối hoặc URL tuyệt đối (http:// hoặc https://)
+    public static function buildUrl($endpoint) {
+        if (strpos($endpoint, 'http://') === 0 || strpos($endpoint, 'https://') === 0) {
+            return $endpoint;
+        }
+        if ($endpoint === '/review/qr' && !empty(self::$reviewQrApiUrl)) {
+            return self::$reviewQrApiUrl;
+        }
+        return self::$baseUrl . $endpoint;
+    }
+
     private static function closeCurl($handle) {
         // curl_close() is deprecated and a no-op on PHP 8.5+.
         if (PHP_VERSION_ID < 80500) {
@@ -34,7 +57,8 @@ class APICaller {
 
     // Hàm GET
     public static function get($endpoint, $params = []) {
-        $url = self::$baseUrl . $endpoint . '?' . http_build_query($params);
+        $baseUrl = self::buildUrl($endpoint);
+        $url = !empty($params) ? ($baseUrl . (strpos($baseUrl, '?') === false ? '?' : '&') . http_build_query($params)) : $baseUrl;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -55,7 +79,8 @@ class APICaller {
 
     // Hàm GET với headers tùy chỉnh
     public static function getWithHeaders($endpoint, $params = [], $headers = []) {
-        $url = self::$baseUrl . $endpoint . '?' . http_build_query($params);
+        $baseUrl = self::buildUrl($endpoint);
+        $url = !empty($params) ? ($baseUrl . (strpos($baseUrl, '?') === false ? '?' : '&') . http_build_query($params)) : $baseUrl;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -79,7 +104,7 @@ class APICaller {
 
     // Hàm POST
     public static function post($endpoint, $data, $headers = []) {
-        $url = self::$baseUrl . $endpoint;
+        $url = self::buildUrl($endpoint);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -103,7 +128,7 @@ class APICaller {
 
     // Hàm POST
     public static function postMultipart($endpoint, $data, $headers = [] ) {
-        $url = self::$baseUrl . $endpoint;
+        $url = self::buildUrl($endpoint);
     
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -153,7 +178,7 @@ class APICaller {
 
     // Hàm PUT (nếu cần)
     public static function put($endpoint, $data, $headers = []) {
-        $url = self::$baseUrl . $endpoint;
+        $url = self::buildUrl($endpoint);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -177,7 +202,8 @@ class APICaller {
 
     // Hàm DELETE (nếu cần)
     public static function delete($endpoint, $params = [], $headers = []) {
-        $url = self::$baseUrl . $endpoint . '?' . http_build_query($params);
+        $baseUrl = self::buildUrl($endpoint);
+        $url = !empty($params) ? ($baseUrl . (strpos($baseUrl, '?') === false ? '?' : '&') . http_build_query($params)) : $baseUrl;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
