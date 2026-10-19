@@ -8,7 +8,7 @@
   - `helpers/` – utility functions (API caller, session/token helpers, time helpers).
   - `assets/` – static resources (`css/`, `js/`, `images`).
   - `db/` – sample SQL and UML.
-  - `.env` (not tracked) – contains `BASE_URL`, `DOMAIN_URL`, `VERSION`.
+  - `.env` (not tracked) – contains `BASE_URL`, `DOMAIN_URL`, `REVIEW_QR_API_URL`, `VERSION`.
 
 ## Coding guidelines
 - PHP files begin with `<?php` and close with `?>` only when HTML follows.
