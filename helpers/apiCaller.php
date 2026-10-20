@@ -37,6 +37,60 @@ class APICaller {
         return !empty(self::$reviewQrApiUrl) ? self::$reviewQrApiUrl : '/review/qr';
     }
 
+    // Hàm lấy base URL của Giữ Chỗ từ REVIEW_QR_API_URL
+    public static function getGiuchoBaseUrl() {
+        if (!empty(self::$reviewQrApiUrl)) {
+            if (strpos(self::$reviewQrApiUrl, '/api/v1/review/qr') !== false) {
+                $base = preg_replace('#/api/v1/review/qr/?$#', '', self::$reviewQrApiUrl);
+                if (!empty($base)) {
+                    return rtrim($base, '/');
+                }
+            }
+            $parsed = parse_url(self::$reviewQrApiUrl);
+            if (!empty($parsed['scheme']) && !empty($parsed['host'])) {
+                $port = !empty($parsed['port']) ? ':' . $parsed['port'] : '';
+                return $parsed['scheme'] . '://' . $parsed['host'] . $port;
+            }
+        }
+        return 'http://localhost:43001';
+    }
+
+    // Hàm lấy danh sách điểm tham quan theo templateId
+    public static function getReviewTemplateAttractions($templateId) {
+        if (empty($templateId)) {
+            return null;
+        }
+
+        $url = self::getGiuchoBaseUrl() . '/api/v1/review/templates/' . urlencode($templateId) . '/attractions';
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        self::closeCurl($ch);
+
+        if ($response === false || $httpCode !== 200) {
+            return null;
+        }
+
+        $data = json_decode($response, true);
+        if (!is_array($data)) {
+            return null;
+        }
+
+        usort($data, function($a, $b) {
+            $orderA = $a['sortOrder'] ?? 0;
+            $orderB = $b['sortOrder'] ?? 0;
+            return $orderA <=> $orderB;
+        });
+
+        return $data;
+    }
+
     //hàm build full url hỗ trợ endpoint tương đối hoặc URL tuyệt đối (http:// hoặc https://)
     public static function buildUrl($endpoint) {
         if (strpos($endpoint, 'http://') === 0 || strpos($endpoint, 'https://') === 0) {
