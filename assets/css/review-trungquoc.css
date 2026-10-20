@@ -1,0 +1,402 @@
+/* ==========================================================================
+   Tugo Review Tour Trung Quốc - Dedicated Stylesheet
+   File: assets/css/review-trungquoc.css
+   ========================================================================== */
+
+:root {
+    --tugo-primary: #007BFF;
+    --tugo-primary-hover: #0056b3;
+    --tugo-primary-active: #004085;
+    --tugo-primary-light: #f0f7ff;
+    --tugo-border: #cbd5e1;
+    --tugo-border-light: #e2e8f0;
+    --tugo-text-main: #0f172a;
+    --tugo-text-secondary: #334155;
+    --tugo-text-muted: #64748b;
+    --tugo-bg-gray: #f8fafc;
+    --tugo-badge-bg: #e0f2fe;
+    --tugo-badge-text: #0284c7;
+    --tugo-prompt-bg: #fffbeb;
+    --tugo-prompt-border: #f59e0b;
+    --tugo-prompt-text: #92400e;
+    --tugo-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --tugo-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Base Body Layout */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--tugo-bg-gray);
+    color: var(--tugo-text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main Form Container */
+.review-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--tugo-shadow-md);
+    box-sizing: border-box;
+    flex-grow: 1;
+    position: relative;
+    width: calc(100% - 20px);
+}
+
+/* Form Heading */
+.review-container h2 {
+    color: var(--tugo-primary);
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+/* Section Divider */
+.review-section-divider {
+    border: none;
+    border-bottom: 1px solid var(--tugo-border-light);
+    margin: 25px 0;
+    width: 100%;
+}
+
+/* Form Groups & Inputs */
+.form-group {
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--tugo-text-secondary);
+    margin-bottom: 6px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1px solid var(--tugo-border);
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--tugo-text-main);
+    background-color: #ffffff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--tugo-primary);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    outline: none;
+}
+
+.form-group input[readonly] {
+    background-color: var(--tugo-bg-gray);
+    color: var(--tugo-text-muted);
+    cursor: default;
+    border-color: var(--tugo-border-light);
+}
+
+.form-group input[type="file"] {
+    padding: 8px 10px;
+    border: 1px dashed var(--tugo-border);
+    border-radius: 6px;
+    background-color: var(--tugo-bg-gray);
+    cursor: pointer;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: var(--tugo-text-muted);
+}
+
+/* Error message styling */
+.error-message,
+p.error {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+/* Review Suggestions Box */
+.review-suggestions {
+    background-color: var(--tugo-primary-light);
+    border-left: 3px solid var(--tugo-primary);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #475569;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Attraction Card Component */
+.attraction-card {
+    background-color: #ffffff;
+    border: 1px solid var(--tugo-border-light);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--tugo-shadow-sm);
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.attraction-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.attraction-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.attraction-badge {
+    background-color: var(--tugo-badge-bg);
+    color: var(--tugo-badge-text);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+.attraction-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--tugo-text-main);
+    margin: 4px 0 8px 0;
+    line-height: 1.4;
+}
+
+.attraction-prompt {
+    background-color: var(--tugo-prompt-bg);
+    border-left: 3px solid var(--tugo-prompt-border);
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--tugo-prompt-text);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.attraction-card textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1px solid var(--tugo-border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    min-height: 80px;
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.attraction-card textarea:focus {
+    border-color: var(--tugo-primary);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    outline: none;
+}
+
+/* Submit Button */
+.submit-button {
+    background-color: var(--tugo-primary);
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: block;
+    margin: 24px auto 10px auto;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    min-height: 48px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.submit-button:hover {
+    background-color: var(--tugo-primary-hover);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.submit-button:active {
+    background-color: var(--tugo-primary-active);
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 123, 255, 0.2);
+}
+
+.submit-button:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+/* Help & Zalo WebView Banner / Tooltip */
+.help-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.help-tooltip {
+    display: block;
+    background-color: #fef2f2;
+    color: #b91c1c;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: var(--tugo-shadow-md);
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 8px;
+    border: 1px solid #fecaca;
+}
+
+.help-icon {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    box-shadow: var(--tugo-shadow-sm);
+    color: var(--tugo-primary);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Back Button */
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #f1f5f9;
+    color: var(--tugo-text-secondary);
+    border: 1px solid var(--tugo-border-light);
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #e2e8f0;
+    color: var(--tugo-text-main);
+}
+
+/* Responsive Media Queries (Mobile-first optimization) */
+@media (max-width: 600px) {
+    .review-container {
+        margin: 10px auto;
+        padding: 16px 14px;
+        border-radius: 8px;
+        width: calc(100% - 16px);
+    }
+
+    .review-container h2 {
+        font-size: 20px;
+        margin: 40px 0 16px 0;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 15px;
+        padding: 10px 12px;
+        min-height: 44px; /* Minimum mobile touch tap target */
+    }
+
+    .attraction-card {
+        padding: 12px;
+        margin-bottom: 14px;
+    }
+
+    .attraction-title {
+        font-size: 15px;
+        margin: 2px 0 6px 0;
+    }
+
+    .attraction-badge {
+        font-size: 11px;
+        padding: 2px 6px;
+    }
+
+    .attraction-prompt {
+        padding: 8px 10px;
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .review-suggestions {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .submit-button {
+        width: 100%;
+        min-height: 48px;
+        font-size: 16px;
+        padding: 14px 20px;
+        margin-top: 20px;
+    }
+
+    .help-container {
+        position: static;
+        margin-bottom: 12px;
+        justify-content: flex-end;
+    }
+
+    .help-tooltip {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
